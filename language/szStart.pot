@@ -1,15 +1,16 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-#: tszstartmain.actexit.caption
-msgid "E&xit"
-msgstr ""
-
 #: tszstartmain.caption
 msgid "szStart"
 msgstr ""
 
 #: tszstartmain.menuitem1.caption
 msgid "&File"
+msgstr ""
+
+#: tszstartmain.menuitem2.caption
+msgctxt "tszstartmain.menuitem2.caption"
+msgid "E&xit"
 msgstr ""
 

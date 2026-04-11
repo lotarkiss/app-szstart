@@ -72,6 +72,7 @@
         <Filename Value="forms/frmMainForm.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="szStartMain"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

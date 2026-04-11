@@ -11,25 +11,98 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
       </Unit>
       <Unit>
         <Filename Value="forms/frmMainForm.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="szStartMain"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="25"/>
-        <CursorPos X="20" Y="41"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="35"/>
+        <CursorPos X="35" Y="55"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory>
+    <JumpHistory HistoryIndex="18">
       <Position>
         <Filename Value="forms/frmMainForm.pas"/>
         <Caret Line="38" Column="14" TopLine="23"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="39" Column="16" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Column="73"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="31" Column="14" TopLine="15"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="37" Column="29" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="39" Column="50" TopLine="27"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="40" Column="24" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="41" Column="57" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="38" Column="42" TopLine="29"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="60" Column="24" TopLine="35"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="46" Column="29" TopLine="43"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="48" Column="41" TopLine="37"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="21" Column="18" TopLine="14"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="47" Column="52" TopLine="41"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="44" Column="38" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="43" Column="38" TopLine="37"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="42" Column="38" TopLine="36"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="43" Column="31" TopLine="36"/>
+      </Position>
+      <Position>
+        <Filename Value="forms/frmMainForm.pas"/>
+        <Caret Line="42" Column="31" TopLine="35"/>
       </Position>
     </JumpHistory>
     <RunParams>

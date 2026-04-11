@@ -5,18 +5,18 @@ unit frmMainForm;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ActnList;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ActnList,
+  StdCtrls;
 
 type
 
   { TszStartMain }
 
   TszStartMain = class(TForm)
-    aclActions: TActionList;
-    actExit: TAction;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     mnuMain: TMainMenu;
+    procedure actExitExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
 
@@ -33,17 +33,27 @@ implementation
 
 { TszStartMain }
 
-procedure TszStartMain.FormCreate(Sender: TObject);
+procedure UpdateMenuKeys(const AMenu: TMenuItem);
 var
   I: integer;
 begin
-  for I := 0 to aclActions.ActionCount - 1 do
-    if aclActions[I] is TAction then
-      with aclActions[I] as TAction do
-        case SecondaryShortCuts.Count of
-          1: ShortCut := SecondaryShortCuts.ShortCuts[0];
-          2: ShortCut := SecondaryShortCuts.ShortCuts[{$IFDEF DARWIN} 1 {$ELSE} 0 {$ENDIF}];
-        end;
+  {$IFDEF DARWIN}
+  AMenu.ShortCut := AMenu.ShortCutKey2;
+  {$ENDIF}
+  AMenu.ShortCutKey2 := 0;
+
+  for I := 0 to AMenu.Count - 1 do
+    UpdateMenuKeys(AMenu.Items[I]);
+end;
+
+procedure TszStartMain.FormCreate(Sender: TObject);
+begin
+   UpdateMenuKeys(mnuMain.Items);
+end;
+
+procedure TszStartMain.actExitExecute(Sender: TObject);
+begin
+  Close;
 end;
 
 end.
