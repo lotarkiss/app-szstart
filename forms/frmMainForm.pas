@@ -5,14 +5,15 @@ unit frmMainForm;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ActnList,
-  StdCtrls, SQLite3Conn, SQLDB, uPlatform;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus,
+  SQLite3Conn, SQLDB, uPlatform;
 
 type
 
   { TszStartMain }
 
   TszStartMain = class(TForm)
+    dbqQuery: TSQLQuery;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     mnuMain: TMainMenu;
@@ -71,7 +72,9 @@ begin
         end;
 
       Transaction.Commit;
-    end;
+    end
+    else
+      Open;
   end;
 end;
 

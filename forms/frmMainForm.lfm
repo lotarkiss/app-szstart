@@ -36,4 +36,16 @@ object szStartMain: TszStartMain
     Left = 176
     Top = 48
   end
+  object dbqQuery: TSQLQuery
+    FieldDefs = <>
+    Database = dbcSQLite
+    Transaction = dbtTransact
+    SQL.Strings = (
+      'SELECT * FROM servers'
+    )
+    Params = <>
+    Macros = <>
+    Left = 176
+    Top = 168
+  end
 end
