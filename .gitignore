@@ -89,6 +89,9 @@ lib/
 backup/
 *.lps
 
+# vscode
+.vscode
+
 # ???
 GPATH
 GRTAGS
