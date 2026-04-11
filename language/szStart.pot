@@ -1,0 +1,15 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tszstartmain.actexit.caption
+msgid "E&xit"
+msgstr ""
+
+#: tszstartmain.caption
+msgid "szStart"
+msgstr ""
+
+#: tszstartmain.menuitem1.caption
+msgid "&File"
+msgstr ""
+

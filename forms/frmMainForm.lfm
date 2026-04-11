@@ -1,0 +1,32 @@
+object szStartMain: TszStartMain
+  Left = 1883
+  Height = 424
+  Top = 241
+  Width = 677
+  Caption = 'szStart'
+  Menu = mnuMain
+  OnCreate = FormCreate
+  Position = poDefault
+  LCLVersion = '3.7.0.0'
+  object mnuMain: TMainMenu
+    Left = 259
+    Top = 109
+    object MenuItem1: TMenuItem
+      Caption = '&File'
+      object MenuItem2: TMenuItem
+        Action = actExit
+      end
+    end
+  end
+  object aclActions: TActionList
+    Left = 357
+    Top = 124
+    object actExit: TAction
+      Caption = 'E&xit'
+      SecondaryShortCuts.Strings = (
+        'Alt+F4'
+        'Cmd+Q'
+      )
+    end
+  end
+end

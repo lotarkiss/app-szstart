@@ -84,3 +84,26 @@ modules/
 # Deployment
 bin/
 lib/
+
+# Lazarus
+backup/
+
+# ???
+GPATH
+GRTAGS
+GTAGS
+
+# macOS stuff
+.DS_Store
+
+# Linux stuff
+*.kate-swp
+
+# Test files
+*.input
+*.txt
+*.output
+*.dat
+
+# Optional symbolic links for easier use
+locale

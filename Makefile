@@ -1,10 +1,13 @@
-.PHONY: all clean build deps copy-libs build-app
+.PHONY: all clean deps copy-libs build-app locales
 
-APP=project1
-LPI=project1.lpi
+APP=szStart
+LPI=szStart.lpi
 
-ARCH := $(shell uname -m)
-OS := $(shell uname -s | tr A-Z a-z)
+ARCH := $(shell fpc -iTP)
+OS   := $(shell fpc -iTO)
+
+PO_FILES := $(wildcard language/*.po)
+MO_FILES := $(patsubst language/%.po,bin/locale/%.mo,$(PO_FILES))
 
 TARGET_BIN_DIR=bin
 TARGET_LIB_DIR=lib/external/$(ARCH)-$(OS)
@@ -12,7 +15,7 @@ TARGET_LIB_DIR=lib/external/$(ARCH)-$(OS)
 SODIUM_DIR=libraries/libsodium
 UPNP_DIR=libraries/miniupnp/miniupnpc
 
-all: deps copy-libs build-app
+all: deps copy-libs build-app locales
 
 deps:
 	@echo "Building libsodium..."
@@ -39,6 +42,12 @@ build-app:
 	@echo "Building Lazarus project..."
 
 	lazbuild $(LPI)
+
+locales: $(MO_FILES)
+
+bin/locale/%.mo: language/%.po
+	@mkdir -p bin/locale
+	msgfmt -o $@ $<	
 
 clean:
 	cd $(SODIUM_DIR) && make clean || true
