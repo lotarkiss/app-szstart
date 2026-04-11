@@ -6,18 +6,19 @@ LPI=project1.lpi
 ARCH := $(shell uname -m)
 OS := $(shell uname -s | tr A-Z a-z)
 
-TARGET_DIR=lib/external/$(ARCH)-$(OS)
+TARGET_BIN_DIR=bin
+TARGET_LIB_DIR=lib/external/$(ARCH)-$(OS)
 
 SODIUM_DIR=libraries/libsodium
-UPNP_DIR=libraries/miniupnp
+UPNP_DIR=libraries/miniupnp/miniupnpc
 
-all: deps build-libs copy-libs build-app
+all: deps copy-libs build-app
 
 deps:
 	@echo "Building libsodium..."
 	cd $(SODIUM_DIR) && \
 	./autogen.sh && \
-	./configure --enable-static --disable-shared && \
+	./configure --enable-static --enable-shared && \
 	make -j4
 
 	@echo "Building miniupnpc..."
@@ -25,14 +26,14 @@ deps:
 	make
 
 copy-libs:
-	@echo "Copying static libs..."
+	@echo "Copying libraries to $(TARGET_LIB_DIR)..."
 
-	mkdir -p $(TARGET_DIR)
+	mkdir -p $(TARGET_LIB_DIR)
 
-	find $(SODIUM_DIR) -name "*.a" -exec cp {} $(TARGET_DIR)/ \;
-	find $(UPNP_DIR) -name "*.a" -exec cp {} $(TARGET_DIR)/ \;
+	find $(SODIUM_DIR) -type f | grep -E '\.(a|lib|so|dll|dylib)$$' | xargs -I {} cp "{}" $(TARGET_LIB_DIR)/
+	find $(UPNP_DIR) -type f | grep -E '\.(a|lib|so|dll|dylib)$$' | xargs -I {} cp "{}" $(TARGET_LIB_DIR)/
 
-	@echo "Done copying libs to $(TARGET_DIR)"
+	@echo "Done copying libs to $(TARGET_LIB_DIR)"
 
 build-app:
 	@echo "Building Lazarus project..."
@@ -42,4 +43,4 @@ build-app:
 clean:
 	cd $(SODIUM_DIR) && make clean || true
 	cd $(UPNP_DIR) && make clean || true
-	rm -rf $(TARGET_DIR)
+	rm -rf $(TARGET_LIB_DIR)
