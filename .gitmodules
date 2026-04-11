@@ -1,0 +1,6 @@
+[submodule "libraries/miniupnp"]
+	path = libraries/miniupnp
+	url = https://github.com/miniupnp/miniupnp
+[submodule "libraries/libsodium"]
+	path = libraries/libsodium
+	url = https://github.com/jedisct1/libsodium
