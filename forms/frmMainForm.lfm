@@ -1,7 +1,7 @@
 object szStartMain: TszStartMain
-  Left = 2114
+  Left = 604
   Height = 424
-  Top = 291
+  Top = 261
   Width = 677
   Caption = 'szStart'
   Menu = mnuMain

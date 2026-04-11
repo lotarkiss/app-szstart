@@ -37,7 +37,7 @@ procedure UpdateMenuKeys(const AMenu: TMenuItem);
 var
   I: integer;
 begin
-  {$IFDEF DARWIN}
+  {$IFNDEF DARWIN}
   AMenu.ShortCut := AMenu.ShortCutKey2;
   {$ENDIF}
   AMenu.ShortCutKey2 := 0;
