@@ -1,7 +1,7 @@
 object szStartMain: TszStartMain
-  Left = 604
+  Left = 851
   Height = 424
-  Top = 261
+  Top = 240
   Width = 677
   Caption = 'szStart'
   Menu = mnuMain
@@ -20,5 +20,20 @@ object szStartMain: TszStartMain
         OnClick = actExitExecute
       end
     end
+  end
+  object dbcSQLite: TSQLite3Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    Transaction = dbtTransact
+    AlwaysUseBigint = False
+    Left = 176
+    Top = 109
+  end
+  object dbtTransact: TSQLTransaction
+    Active = False
+    Database = dbcSQLite
+    Left = 176
+    Top = 48
   end
 end

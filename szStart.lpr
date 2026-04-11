@@ -17,7 +17,6 @@ uses
 
 begin
   RequireDerivedFormResource:=True;
-  Application.Title:='szStart';
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TszStartMain, szStartMain);

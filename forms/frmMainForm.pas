@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ActnList,
-  StdCtrls;
+  StdCtrls, SQLite3Conn, SQLDB, uPlatform;
 
 type
 
@@ -16,12 +16,14 @@ type
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     mnuMain: TMainMenu;
+    dbcSQLite: TSQLite3Connection;
+    dbtTransact: TSQLTransaction;
     procedure actExitExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
 
   public
-
+    procedure InitSQLite(const DbName: string = 'sqlite.db');
   end;
 
 var
@@ -33,22 +35,44 @@ implementation
 
 { TszStartMain }
 
-procedure UpdateMenuKeys(const AMenu: TMenuItem);
-var
-  I: integer;
-begin
-  {$IFNDEF DARWIN}
-  AMenu.ShortCut := AMenu.ShortCutKey2;
-  {$ENDIF}
-  AMenu.ShortCutKey2 := 0;
-
-  for I := 0 to AMenu.Count - 1 do
-    UpdateMenuKeys(AMenu.Items[I]);
+procedure TszStartMain.FormCreate(Sender: TObject);
+begin                            
+   InitSQLite();
+   UpdateMenuKeys(mnuMain.Items);
 end;
 
-procedure TszStartMain.FormCreate(Sender: TObject);
+procedure TszStartMain.InitSQLite(const DbName: string);
+var
+  Stmt: string;
+  Stream: TStream;
 begin
-   UpdateMenuKeys(mnuMain.Items);
+  with dbcSQLite do begin
+    Close();
+    DatabaseName := GetAppDataPath(true) + DbName;
+
+    if not FileExists(DatabaseName) then begin
+      Open;
+      Transaction.Active := true;
+
+      with TStringList.Create do
+        try
+          Stream := TResourceStream.Create(hInstance, 'INITDB-SQLITE', RT_RCDATA);
+          try
+            LoadFromStream(Stream, TEncoding.UTF8);
+          finally
+            Stream.Free;
+          end;
+
+          for Stmt in Text.Split(';') do
+            if Trim(Stmt) <> '' then
+              ExecuteDirect(Stmt);
+        finally
+          Free;
+        end;
+
+      Transaction.Commit;
+    end;
+  end;
 end;
 
 procedure TszStartMain.actExitExecute(Sender: TObject);

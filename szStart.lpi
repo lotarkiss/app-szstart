@@ -12,6 +12,9 @@
         <DpiAware Value="True"/>
       </XPManifest>
       <Icon Value="0"/>
+      <Resources Count="1">
+        <Resource_0 FileName="resources/initdb-sqlite.sql" Type="RCDATA" ResourceName="INITDB-SQLITE"/>
+      </Resources>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -27,7 +30,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="forms;units;platform;libraries/bindings;frames;components"/>
+            <OtherUnitFiles Value="forms;platform;libraries/bindings;frames;components;units"/>
             <UnitOutputDirectory Value="lib/Release/$(TargetCPU)-$(TargetOS)-$(LCLWidgetType)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -60,6 +63,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="SQLDBLaz"/>
+      </Item>
+      <Item>
         <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
@@ -75,10 +81,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
-      <Unit>
-        <Filename Value="units/LocaleUtil.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -88,7 +90,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="forms;units;platform;libraries/bindings;frames;components"/>
+      <OtherUnitFiles Value="forms;platform;libraries/bindings;frames;components;units"/>
       <UnitOutputDirectory Value="lib/Debug/$(TargetCPU)-$(TargetOS)-$(LCLWidgetType)"/>
     </SearchPaths>
     <Parsing>
