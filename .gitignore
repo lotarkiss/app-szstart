@@ -87,6 +87,7 @@ lib/
 
 # Lazarus
 backup/
+*.lps
 
 # ???
 GPATH
