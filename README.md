@@ -1,6 +1,6 @@
 # szStart
 
-> The project is in initial state, therefore no ready-to-go binaries.
+> The project is in initial state, therefore no ready-to-go binaries, or even working builds.
 
 Cross-platform Minecraft Server GUI written in Lazarus / FPC.
 
