@@ -2,6 +2,8 @@
 
 > The project is in initial state, therefore no ready-to-go binaries, or even working builds.
 
+<center><img src="assets/screenshot.png"></img></center>
+
 Cross-platform Minecraft Server GUI written in Lazarus / FPC.
 
 ## Aims of this project
