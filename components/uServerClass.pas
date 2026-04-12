@@ -2,7 +2,7 @@ unit uServerClass;
 
 interface
 
-uses SysUtils, Classes, SQLDB;
+uses SysUtils, Classes, SQLDB, Generics.Collections;
 
 type
   TServerPath = (spPwd, spLog, spIcon, spProps, spEula);
@@ -14,7 +14,7 @@ const
       'logs/latest.log',    //spLog
       'server-icon.png',    //spIcon
       'server.properties',  //spProps
-      'eula.txt',           //spEula
+      'eula.txt'            //spEula
     );
 
 type
@@ -38,7 +38,7 @@ type
   public
     constructor Create(Query: TSQLQuery); overload; virtual; reintroduce;
     constructor Create(const AId, AKind: string); overload; reintroduce; deprecated;
-    procedure AssignTo(Dest: TPersistent);
+    procedure AssignTo(Dest: TPersistent); override;
     destructor Destroy; override;
 
     procedure Update;
@@ -53,7 +53,22 @@ type
     property Logs: TStrings read FLogs;
   end;
 
+  TServerClass = class of TCustomServer;
+
+  { TServerManager }
+
+  TServerManager = class(specialize TObjectList<TCustomServer>)
+  public
+    procedure QueryServers(Query: TSQLQuery);
+    function FindServerById(const AId: string): TCustomServer;
+  end;
+
+var
+  ServerKinds: specialize TDictionary<string, TServerClass>;
+
 implementation
+
+uses uDatabase;
 
 { TCustomServer }
 
@@ -62,7 +77,7 @@ var
   PathKind: TServerPath;
 begin
   if FPath <> '' then
-    FPath := IncludeTrailingPathDelimiter(AValue);
+    FPath := IncludeTrailingPathDelimiter(AValue)
   else
     FPath := '';
 
@@ -82,6 +97,7 @@ end;
 constructor TCustomServer.Create(Query: TSQLQuery);
 begin
   FLogs   := TStringList.Create;
+
   FId     := Query.FieldByName('id').AsString;
   FKind   := Query.FieldByName('kind').AsString;
   FName   := Query.FieldByName('name').AsString;
@@ -144,5 +160,47 @@ begin
   end;
   {$I+}
 end;
+
+{ TServerManager }
+
+procedure TServerManager.QueryServers(Query: TSQLQuery);
+var
+  KindName: string;
+  KindClass: TServerClass;
+begin
+  Clear;
+  OwnsObjects := true;
+
+  uDatabase.QueryServersAll(Query);
+  with Query do
+    try
+      while not Eof do begin
+        KindName := FieldByName('kind').AsString;
+        if ServerKinds.TryGetValue(KindName, KindClass) then
+          Add(KindClass.Create(Query));
+
+        Next;
+      end;
+    finally
+      Close;
+    end;
+end;
+
+function TServerManager.FindServerById(const AId: string): TCustomServer;
+var
+  I: integer;
+begin
+  for I := 0 to Count - 1 do
+    if Assigned(Items[I]) and (Items[I].Id = AId) then begin
+      Result := Items[I];
+      exit;
+    end;
+end;
+
+initialization
+  ServerKinds := specialize TDictionary<string, TServerClass>.Create;
+
+finalization
+  ServerKinds.Free;
 
 end.

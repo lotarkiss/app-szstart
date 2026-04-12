@@ -3,23 +3,14 @@ object szStartMain: TszStartMain
   Height = 424
   Top = 293
   Width = 677
-  ActiveControl = lbxServers
   Caption = 'szStart'
   ClientHeight = 424
   ClientWidth = 677
   Menu = mnuMain
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   Position = poScreenCenter
   LCLVersion = '3.7.0.0'
-  object lbxServers: TListBox
-    Left = 0
-    Height = 350
-    Top = 56
-    Width = 224
-    Align = alLeft
-    ItemHeight = 0
-    TabOrder = 0
-  end
   object stbStatusBar: TStatusBar
     Left = 0
     Height = 18
@@ -28,19 +19,19 @@ object szStartMain: TszStartMain
     Panels = <>
   end
   object splSplitter: TSplitter
-    Left = 224
+    Left = 170
     Height = 350
     Top = 56
     Width = 5
   end
   object nbtPages: TNotebook
-    Left = 229
+    Left = 175
     Height = 350
     Top = 56
-    Width = 448
+    Width = 502
     PageIndex = 0
     Align = alClient
-    TabOrder = 3
+    TabOrder = 2
     object pgWelcome: TPage
       ChildSizing.LeftRightSpacing = 20
       ChildSizing.TopBottomSpacing = 20
@@ -49,7 +40,7 @@ object szStartMain: TszStartMain
         Left = 20
         Height = 22
         Top = 20
-        Width = 408
+        Width = 462
         Align = alTop
         Caption = 'Welcome to szStart!'
         Font.Height = -19
@@ -59,7 +50,7 @@ object szStartMain: TszStartMain
         Left = 20
         Height = 273
         Top = 57
-        Width = 408
+        Width = 462
         Align = alClient
         Caption = 'To start playing Minecraft multiplayer with friends,'#10#10' - choose a server from the list on the left, or'#10' - create a new one by File > New...'#10#10'For more information use our Getting Started guide.'
         WordWrap = True
@@ -72,7 +63,34 @@ object szStartMain: TszStartMain
     Top = 0
     Width = 677
     Align = alTop
+    TabOrder = 3
+  end
+  object pnlLeft: TPanel
+    Left = 0
+    Height = 350
+    Top = 56
+    Width = 170
+    Align = alLeft
+    ClientHeight = 350
+    ClientWidth = 170
     TabOrder = 4
+    object edtSearch: TEdit
+      Left = 1
+      Height = 22
+      Top = 1
+      Width = 168
+      Align = alTop
+      TabOrder = 0
+    end
+    object lbxServers: TListBox
+      Left = 1
+      Height = 326
+      Top = 23
+      Width = 168
+      Align = alClient
+      ItemHeight = 0
+      TabOrder = 1
+    end
   end
   object mnuMain: TMainMenu
     Left = 176

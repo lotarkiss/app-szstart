@@ -6,29 +6,45 @@ uses SysUtils, Classes, SQLite3Conn, SQLDB;
 
 procedure InitSQLite(Connection: TSQLite3Connection; const DbName: string = 'sqlite.db');
 
-procedure QueryServers(Query: TSQLQuery; const Filter: string = '');
+procedure QueryServersByName(Query: TSQLQuery; const AFilter: string = '');
+procedure QueryServersAll(Query: TSQLQuery);
 
 implementation
 
-uses uPlatform;
+uses uPlatform, Dialogs;
 
-procedure QueryServers(Query: TSQLQuery; const Filter: string = '');
+procedure QueryServersByName(Query: TSQLQuery; const AFilter: string = '');
+const
+  SqlQuery1: string = 
+    'SELECT id, name FROM servers';
+  SqlQuery2: string =
+    'WHERE name LIKE ''%'' || :name || ''%''';
+begin
+  with Query do begin
+    Close;
+    if AFilter <> '' then begin
+      SQL.Text := SqlQuery1 + ' ' + SqlQuery2 ;
+      ParamByName('name').AsString := AFilter;
+    end
+    else
+      SQL.Text := SqlQuery1;
+
+    Open;
+  end;
+end;
+
+procedure QueryServersAll(Query: TSQLQuery);
 const
   SqlQuery: string =
     'SELECT * FROM servers s ' + LineEnding +
     'LEFT JOIN java_opts j ON j.server_id = s.id ' + LineEnding +
     'LEFT JOIN bedrock_opts b ON b.server_id = s.id ' + LineEnding +
-    'LEFT JOIN rcon_opts r ON r.server_id = s.id' + LineEnding +
-    'WHERE (:name IS NULL OR s.name LIKE ''%'' || :name || ''%'');';
+    'LEFT JOIN rcon_opts r ON r.server_id = s.id;';
 begin
   with Query do begin
     Close;
     SQL.Text := SqlQuery;
-    if Filter <> '' then
-      ParamByName('name').AsString := Filter
-    else
-      ParamByName('name').Clear;
-
+    Params.Clear;
     Open;
   end;
 end;
@@ -67,6 +83,6 @@ begin
     else
       Open;
   end;
-end;   
+end;
 
 end.
