@@ -1,16 +1,82 @@
 object szStartMain: TszStartMain
-  Left = 851
+  Left = 843
   Height = 424
-  Top = 240
+  Top = 293
   Width = 677
+  ActiveControl = lbxServers
   Caption = 'szStart'
+  ClientHeight = 424
+  ClientWidth = 677
   Menu = mnuMain
   OnCreate = FormCreate
-  Position = poDefault
+  Position = poScreenCenter
   LCLVersion = '3.7.0.0'
+  object lbxServers: TListBox
+    Left = 0
+    Height = 350
+    Top = 56
+    Width = 224
+    Align = alLeft
+    ItemHeight = 0
+    TabOrder = 0
+  end
+  object stbStatusBar: TStatusBar
+    Left = 0
+    Height = 18
+    Top = 406
+    Width = 677
+    Panels = <>
+  end
+  object splSplitter: TSplitter
+    Left = 224
+    Height = 350
+    Top = 56
+    Width = 5
+  end
+  object nbtPages: TNotebook
+    Left = 229
+    Height = 350
+    Top = 56
+    Width = 448
+    PageIndex = 0
+    Align = alClient
+    TabOrder = 3
+    object pgWelcome: TPage
+      ChildSizing.LeftRightSpacing = 20
+      ChildSizing.TopBottomSpacing = 20
+      ChildSizing.VerticalSpacing = 15
+      object lblWelcomeHeader: TLabel
+        Left = 20
+        Height = 22
+        Top = 20
+        Width = 408
+        Align = alTop
+        Caption = 'Welcome to szStart!'
+        Font.Height = -19
+        ParentFont = False
+      end
+      object lblWelcomeText: TLabel
+        Left = 20
+        Height = 273
+        Top = 57
+        Width = 408
+        Align = alClient
+        Caption = 'To start playing Minecraft multiplayer with friends,'#10#10' - choose a server from the list on the left, or'#10' - create a new one by File > New...'#10#10'For more information use our Getting Started guide.'
+        WordWrap = True
+      end
+    end
+  end
+  object pnlToolbar: TPanel
+    Left = 0
+    Height = 56
+    Top = 0
+    Width = 677
+    Align = alTop
+    TabOrder = 4
+  end
   object mnuMain: TMainMenu
-    Left = 259
-    Top = 109
+    Left = 176
+    Top = 168
     object MenuItem1: TMenuItem
       Caption = '&File'
       object MenuItem2: TMenuItem
@@ -40,12 +106,9 @@ object szStartMain: TszStartMain
     FieldDefs = <>
     Database = dbcSQLite
     Transaction = dbtTransact
-    SQL.Strings = (
-      'SELECT * FROM servers'
-    )
     Params = <>
     Macros = <>
     Left = 176
-    Top = 168
+    Top = 234
   end
 end

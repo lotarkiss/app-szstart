@@ -5,26 +5,33 @@ unit frmMainForm;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus,
-  SQLite3Conn, SQLDB, uPlatform;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls,
+  ComCtrls, ExtCtrls, SQLite3Conn, SQLDB;
 
 type
 
   { TszStartMain }
 
   TszStartMain = class(TForm)
-    dbqQuery: TSQLQuery;
+    lblWelcomeText: TLabel;
+    lblWelcomeHeader: TLabel;
+    lbxServers: TListBox;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     mnuMain: TMainMenu;
     dbcSQLite: TSQLite3Connection;
     dbtTransact: TSQLTransaction;
+    nbtPages: TNotebook;
+    pnlToolbar: TPanel;
+    pgWelcome: TPage;
+    splSplitter: TSplitter;
+    dbqQuery: TSQLQuery;
+    stbStatusBar: TStatusBar;
     procedure actExitExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
 
   public
-    procedure InitSQLite(const DbName: string = 'sqlite.db');
   end;
 
 var
@@ -34,48 +41,23 @@ implementation
 
 {$R *.lfm}
 
+uses uPlatform, uDatabase;
+
 { TszStartMain }
 
 procedure TszStartMain.FormCreate(Sender: TObject);
 begin                            
-   InitSQLite();
+   InitSQLite(dbcSQLite);
    UpdateMenuKeys(mnuMain.Items);
-end;
 
-procedure TszStartMain.InitSQLite(const DbName: string);
-var
-  Stmt: string;
-  Stream: TStream;
-begin
-  with dbcSQLite do begin
-    Close();
-    DatabaseName := GetAppDataPath(true) + DbName;
-
-    if not FileExists(DatabaseName) then begin
-      Open;
-      Transaction.Active := true;
-
-      with TStringList.Create do
-        try
-          Stream := TResourceStream.Create(hInstance, 'INITDB-SQLITE', RT_RCDATA);
-          try
-            LoadFromStream(Stream, TEncoding.UTF8);
-          finally
-            Stream.Free;
-          end;
-
-          for Stmt in Text.Split(';') do
-            if Trim(Stmt) <> '' then
-              ExecuteDirect(Stmt);
-        finally
-          Free;
-        end;
-
-      Transaction.Commit;
-    end
-    else
-      Open;
-  end;
+   QueryServers(dbqQuery);
+   with dbqQuery do begin
+     while not Eof do begin
+       lbxServers.Items.Add(FieldByName('id').AsString);
+       Next;
+     end;
+     Close;
+   end;
 end;
 
 procedure TszStartMain.actExitExecute(Sender: TObject);

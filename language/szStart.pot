@@ -5,6 +5,20 @@ msgstr "Content-Type: text/plain; charset=UTF-8"
 msgid "szStart"
 msgstr ""
 
+#: tszstartmain.lblwelcomeheader.caption
+msgid "Welcome to szStart!"
+msgstr ""
+
+#: tszstartmain.lblwelcometext.caption
+msgid ""
+"To start playing Minecraft multiplayer with friends,\n"
+"\n"
+" - choose a server from the list on the left, or\n"
+" - create a new one by File > New...\n"
+"\n"
+"For more information use our Getting Started guide."
+msgstr ""
+
 #: tszstartmain.menuitem1.caption
 msgid "&File"
 msgstr ""
