@@ -1,88 +1,117 @@
 unit uDatabase;
 
+{$mode ObjFPC}{$H+}
+
 interface
 
-uses SysUtils, Classes, SQLite3Conn, SQLDB;
+uses
+  Classes,
+  mormot.core.base,
+  mormot.core.os,
+  mormot.core.collections,
+  mormot.orm.core,
+  mormot.orm.sqlite3,
+  mormot.rest.sqlite3,
+  mormot.db.raw.sqlite3.static;
 
-procedure InitSQLite(Connection: TSQLite3Connection; const DbName: string = 'sqlite.db');
+type
 
-procedure QueryServersByName(Query: TSQLQuery; const AFilter: string = '');
-procedure QueryServersAll(Query: TSQLQuery);
+
+  // Schema
+
+  { TOrmServerEntry }
+
+  TOrmServerEntry = class(TOrm)
+  private
+    FArguments: TStrings;
+    FDescription: RawUtf8;
+    FJavaArgs: TStrings;
+    FJavaJar: RawUtf8;
+    FJavaJre: RawUtf8;
+    FJavaXms: dword;
+    FJavaXmx: dword;
+    FJvmXms: dword;
+    FJvmXmx: dword;
+    FKind: RawUtf8;
+    FName: RawUtf8;
+    FPath: RawUtf8;
+    FProtected: boolean;
+    FRconHost: RawUtf8;
+    FRconPort: word;
+    FRconUser: RawUtf8;
+  published
+    property Kind: RawUtf8 read FKind write FKind;
+    property Path: RawUtf8 read FPath write FPath;
+    property Name: RawUtf8 read FName write FName;
+    property Description: RawUtf8 read FDescription write FDescription;
+    property Protected: boolean read FProtected write FProtected;
+    property Arguments: TStrings read FArguments write FArguments;
+
+    // Kind = 'java'
+    property java_jrePath: RawUtf8 read FJavaJre write FJavaJre;
+    property java_jarName: RawUtf8 read FJavaJar write FJavaJar;
+    property java_jvmXMS: dword read FJavaXms write FJvmXms;
+    property java_jvmXMX: dword read FJavaXmx write FJvmXmx;
+    property java_jvmArgs: TStrings read FJavaArgs write FJavaArgs;
+
+    // Kind = 'bedrock'
+    // - empty -
+
+    // Kind = 'rcon'
+    property rcon_remoteHost: RawUtf8 read FRconHost write FRconHost;
+    property rcon_remotePort: word read FRconPort write FRconPort;
+    property rcon_remoteUser: RawUtf8 read FRconUser write FRconUser;
+    // ... just do not store password currently ...
+  end;
+
+  IOrmServerEntries = specialize IList<TOrmServerEntry>;
+
+procedure InitSQLite(const DbName: string = 'sqlite.db');
+procedure FreeSQLite();
+
+function QueryServersByName(const AFilter: string = ''; var Query): boolean;
+function QueryServersAll(var Query): boolean;
+
+var
+  Model: TOrmModel;
+  Server: TRestServerDB;
 
 implementation
 
-uses uPlatform, Dialogs;
+uses uPlatform, uExamples;
 
-procedure QueryServersByName(Query: TSQLQuery; const AFilter: string = '');
-const
-  SqlQuery1: string = 
-    'SELECT id, name FROM servers';
-  SqlQuery2: string =
-    'WHERE name LIKE ''%'' || :name || ''%''';
-begin
-  with Query do begin
-    Close;
-    if AFilter <> '' then begin
-      SQL.Text := SqlQuery1 + ' ' + SqlQuery2 ;
-      ParamByName('name').AsString := AFilter;
-    end
-    else
-      SQL.Text := SqlQuery1;
-
-    Open;
-  end;
-end;
-
-procedure QueryServersAll(Query: TSQLQuery);
-const
-  SqlQuery: string =
-    'SELECT * FROM servers s ' + LineEnding +
-    'LEFT JOIN java_opts j ON j.server_id = s.id ' + LineEnding +
-    'LEFT JOIN bedrock_opts b ON b.server_id = s.id ' + LineEnding +
-    'LEFT JOIN rcon_opts r ON r.server_id = s.id;';
-begin
-  with Query do begin
-    Close;
-    SQL.Text := SqlQuery;
-    Params.Clear;
-    Open;
-  end;
-end;
-
-procedure InitSQLite(Connection: TSQLite3Connection; const DbName: string = 'sqlite.db');
+procedure InitSQLite(const DbName: string);
 var
-  Stmt: string;
-  Stream: TStream;
+  DbPath: string;
+  DryRun: boolean;
 begin
-  with Connection do begin
-    Close();
-    DatabaseName := GetAppDataPath(true) + DbName;
+  Model := TOrmModel.Create([TOrmServerEntry]);
 
-    if not FileExists(DatabaseName) then begin
-      Open;
-      Transaction.Active := true;
+  DbPath := GetAppDataPath(true) + DbName;
+  DryRun := not FileExists(DbPath);
 
-      with TStringList.Create do
-        try
-          Stream := TResourceStream.Create(hInstance, 'INITDB-SQLITE', RT_RCDATA);
-          try
-            LoadFromStream(Stream, TEncoding.UTF8);
-          finally
-            Stream.Free;
-          end;
+  Server := TRestServerDB.Create(Model, DbPath);
+  Server.Server.CreateMissingTables();
 
-          for Stmt in Text.Split(';') do
-            if Trim(Stmt) <> '' then
-              ExecuteDirect(Stmt);
-        finally
-          Free;
-        end;
+  if DryRun then
+    InitExamples();
+end;
 
-      Transaction.Commit;
-    end
-    else
-      Open;
-  end;
+procedure FreeSQLite();
+begin
+  Server.Free;
+  Model.Free;
+end;
+
+function QueryServersByName(const AFilter: string; var Query): boolean;
+begin                                              
+  Result := Server.Orm.RetrieveIList(TOrmServerEntry, Query, 'name LIKE ?', [AFilter]);
+end;
+
+function QueryServersAll(var Query): boolean;
+begin
+  Result := Server.Orm.RetrieveIList(TOrmServerEntry, Query);
 end;
 
 end.
+

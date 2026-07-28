@@ -4,29 +4,29 @@ object szStartMain: TszStartMain
   Top = 293
   Width = 677
   Caption = 'szStart'
-  ClientHeight = 424
-  ClientWidth = 677
+  ClientHeight = 240
+  ClientWidth = 320
   Menu = mnuMain
+  Position = poScreenCenter
+  LCLVersion = '4.6.0.0'
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  Position = poScreenCenter
-  LCLVersion = '3.7.0.0'
   object stbStatusBar: TStatusBar
     Left = 0
-    Height = 18
-    Top = 406
+    Height = 20
+    Top = 404
     Width = 677
     Panels = <>
   end
   object splSplitter: TSplitter
     Left = 170
-    Height = 350
+    Height = 348
     Top = 56
     Width = 5
   end
   object nbtPages: TNotebook
     Left = 175
-    Height = 350
+    Height = 348
     Top = 56
     Width = 502
     PageIndex = 0
@@ -38,7 +38,7 @@ object szStartMain: TszStartMain
       ChildSizing.VerticalSpacing = 15
       object lblWelcomeHeader: TLabel
         Left = 20
-        Height = 22
+        Height = 23
         Top = 20
         Width = 462
         Align = alTop
@@ -48,8 +48,8 @@ object szStartMain: TszStartMain
       end
       object lblWelcomeText: TLabel
         Left = 20
-        Height = 273
-        Top = 57
+        Height = 270
+        Top = 58
         Width = 462
         Align = alClient
         Caption = 'To start playing Minecraft multiplayer with friends,'#10#10' - choose a server from the list on the left, or'#10' - create a new one by File > New...'#10#10'For more information use our Getting Started guide.'
@@ -67,16 +67,16 @@ object szStartMain: TszStartMain
   end
   object pnlLeft: TPanel
     Left = 0
-    Height = 350
+    Height = 348
     Top = 56
     Width = 170
     Align = alLeft
-    ClientHeight = 350
+    ClientHeight = 348
     ClientWidth = 170
     TabOrder = 4
     object edtSearch: TEdit
       Left = 1
-      Height = 22
+      Height = 29
       Top = 1
       Width = 168
       Align = alTop
@@ -84,12 +84,13 @@ object szStartMain: TszStartMain
     end
     object lbxServers: TListBox
       Left = 1
-      Height = 326
-      Top = 23
+      Height = 317
+      Top = 30
       Width = 168
       Align = alClient
       ItemHeight = 0
       TabOrder = 1
+      TopIndex = -1
     end
   end
   object mnuMain: TMainMenu
@@ -104,29 +105,5 @@ object szStartMain: TszStartMain
         OnClick = actExitExecute
       end
     end
-  end
-  object dbcSQLite: TSQLite3Connection
-    Connected = False
-    LoginPrompt = False
-    KeepConnection = False
-    Transaction = dbtTransact
-    AlwaysUseBigint = False
-    Left = 176
-    Top = 109
-  end
-  object dbtTransact: TSQLTransaction
-    Active = False
-    Database = dbcSQLite
-    Left = 176
-    Top = 48
-  end
-  object dbqQuery: TSQLQuery
-    FieldDefs = <>
-    Database = dbcSQLite
-    Transaction = dbtTransact
-    Params = <>
-    Macros = <>
-    Left = 176
-    Top = 234
   end
 end

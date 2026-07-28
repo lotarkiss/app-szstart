@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls,
-  ComCtrls, ExtCtrls, SQLite3Conn, SQLDB, uServerClass;
+  ComCtrls, ExtCtrls, uDatabase;
 
 type
 
@@ -19,14 +19,11 @@ type
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     mnuMain: TMainMenu;
-    dbcSQLite: TSQLite3Connection;
-    dbtTransact: TSQLTransaction;
     nbtPages: TNotebook;
     pnlLeft: TPanel;
     pnlToolbar: TPanel;
     pgWelcome: TPage;
     splSplitter: TSplitter;
-    dbqQuery: TSQLQuery;
     stbStatusBar: TStatusBar;
     lbxServers: TListBox;
     procedure actExitExecute(Sender: TObject);
@@ -34,9 +31,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
-
   public
-    Servers: TServerManager;
+    Servers: IOrmServerEntries;
   end;
 
 var
@@ -46,25 +42,27 @@ implementation
 
 {$R *.lfm}
 
-uses uPlatform, uDatabase;
+uses uPlatform, uExamples;
 
 { TszStartMain }
 
 procedure TszStartMain.FormCreate(Sender: TObject);
 begin
-   Servers := TServerManager.Create;
-
-   InitSQLite(dbcSQLite);
-   UpdateMenuKeys(mnuMain.Items);
-   Servers.QueryServers(dbqQuery);
-
-   edtSearch.OnChange := @edtSearchChange;
-   edtSearch.OnChange(edtSearch);
+  InitSQLite();
+  UpdateMenuKeys(mnuMain.Items);
+  QueryServersAll(Servers);
+                 
+  Servers := nil;  // initialize properly
+  edtSearch.OnChange := @edtSearchChange;
+  edtSearch.OnChange(edtSearch);
 end;
 
 procedure TszStartMain.FormDestroy(Sender: TObject);
 begin
-  Servers.Free;
+  lbxServers.Clear; // clear references to Servers IList<>
+  Servers := nil;   // free the list itself
+
+  FreeSQLite();
 end;
 
 procedure TszStartMain.actExitExecute(Sender: TObject);
@@ -74,21 +72,18 @@ end;
 
 procedure TszStartMain.edtSearchChange(Sender: TObject);
 var
-  AId: string;
+  Server: TOrmServerEntry;
+  Result: boolean;
 begin
   lbxServers.Items.Clear;  
-  uDatabase.QueryServersByName(dbqQuery, edtSearch.Text);
-  with dbqQuery do
-    try
-      while not Eof do begin
-        AId := FieldByName('name').AsString;
-        lbxServers.Items.AddObject(AId, Servers.FindServerById(AId));
+  if edtSearch.Text = '' then
+    Result := QueryServersAll(Servers)
+  else
+    Result := QueryServersByName(edtSearch.Text, Servers);
 
-        Next;
-      end;
-    finally
-      Close;
-    end;
+  if Result then
+    for Server in Servers do
+      lbxServers.Items.AddObject(Server.Name, Server);
 end;
 
 end.
