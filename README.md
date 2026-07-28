@@ -31,8 +31,8 @@ This project relies on the following internal packages configured in the Lazarus
 
 ### External libraries
 
-This project embeds the following external dependencies as Git submodules inside the `/libraries` directory:
+This project uses the following external libraries, which are included as git submodules in /libraries.
 
-- **libsodium** (ISC License) \u2013 https://github.com/jedisct1/libsodium
-- **miniupnpc** (BSD 3-Clause License) \u2013 https://github.com/miniupnp/miniupnp
+- libsodium (ISC license) - https://github.com/jedisct1/libsodium
+- miniupnpc (BSD-like license) - https://github.com/miniupnp/miniupnp
 
