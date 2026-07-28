@@ -38,4 +38,4 @@ This project uses the following external libraries, which are included as git su
 
 ## Other source indications
 
-Minecraft related informations, like `server.properties` entries, and so on... from (minecraft.fandom.com)[https://minecraft.fandom.com/wiki/Server.properties].
+Minecraft related informations, like `server.properties` entries, and so on... from [minecraft.fandom.com](https://minecraft.fandom.com/wiki/Server.properties).
