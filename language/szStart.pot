@@ -18,28 +18,57 @@ msgstr ""
 msgid "dlgServerProperties"
 msgstr ""
 
+#: tdlgserverproperties.cbleveltype.text
+msgid "DEFAULT"
+msgstr ""
+
 #: tdlgserverproperties.edname.text
 msgid "edName"
 msgstr ""
 
-#: tdlgserverproperties.label1.caption
-msgid "Icon:"
+#: tdlgserverproperties.gbentry.caption
+msgid "&General"
 msgstr ""
 
-#: tdlgserverproperties.label2.caption
-msgid "Change server-icon.png in the folder."
+#: tdlgserverproperties.gblevel.caption
+msgid "&World"
 msgstr ""
 
 #: tdlgserverproperties.lbdescription.caption
 msgid "&Description:"
 msgstr ""
 
+#: tdlgserverproperties.lbinfoseedtype.caption
+msgctxt "tdlgserverproperties.lbinfoseedtype.caption"
+msgid "Seed and level type are only affects newly generated worlds."
+msgstr ""
+
+#: tdlgserverproperties.lblevelname.caption
+msgid "Level &name:"
+msgstr ""
+
+#: tdlgserverproperties.lblevelseed.caption
+msgid "Level &seed:"
+msgstr ""
+
+#: tdlgserverproperties.lbleveltype.caption
+msgid "Level &type:"
+msgstr ""
+
 #: tdlgserverproperties.lbname.caption
 msgid "&Name:"
 msgstr ""
 
+#: tdlgserverproperties.lbplaceholder1.caption
+msgid " "
+msgstr ""
+
 #: tdlgserverproperties.pggeneral.hint
 msgid "General"
+msgstr ""
+
+#: tdlgserverproperties.pgworld.hint
+msgid "World"
 msgstr ""
 
 #: tszstartmain.acexit.caption

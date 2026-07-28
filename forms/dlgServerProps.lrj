@@ -3,9 +3,16 @@
 {"hash":177752476,"name":"tdlgserverproperties.btncancel.caption","sourcebytes":[38,67,97,110,99,101,108],"value":"&Cancel"},
 {"hash":11067,"name":"tdlgserverproperties.btnok.caption","sourcebytes":[38,79,75],"value":"&OK"},
 {"hash":231000124,"name":"tdlgserverproperties.pggeneral.hint","sourcebytes":[71,101,110,101,114,97,108],"value":"General"},
+{"hash":231000796,"name":"tdlgserverproperties.gbentry.caption","sourcebytes":[38,71,101,110,101,114,97,108],"value":"&General"},
 {"hash":45384586,"name":"tdlgserverproperties.lbname.caption","sourcebytes":[38,78,97,109,101,58],"value":"&Name:"},
 {"hash":112805941,"name":"tdlgserverproperties.edname.text","sourcebytes":[101,100,78,97,109,101],"value":"edName"},
 {"hash":181829802,"name":"tdlgserverproperties.lbdescription.caption","sourcebytes":[38,68,101,115,99,114,105,112,116,105,111,110,58],"value":"&Description:"},
-{"hash":5219866,"name":"tdlgserverproperties.label1.caption","sourcebytes":[73,99,111,110,58],"value":"Icon:"},
-{"hash":52922926,"name":"tdlgserverproperties.label2.caption","sourcebytes":[67,104,97,110,103,101,32,115,101,114,118,101,114,45,105,99,111,110,46,112,110,103,32,105,110,32,116,104,101,32,102,111,108,100,101,114,46],"value":"Change server-icon.png in the folder."}
+{"hash":6187300,"name":"tdlgserverproperties.pgworld.hint","sourcebytes":[87,111,114,108,100],"value":"World"},
+{"hash":46033188,"name":"tdlgserverproperties.gblevel.caption","sourcebytes":[38,87,111,114,108,100],"value":"&World"},
+{"hash":133744746,"name":"tdlgserverproperties.lblevelname.caption","sourcebytes":[76,101,118,101,108,32,38,110,97,109,101,58],"value":"Level &name:"},
+{"hash":133525658,"name":"tdlgserverproperties.lblevelseed.caption","sourcebytes":[76,101,118,101,108,32,38,115,101,101,100,58],"value":"Level &seed:"},
+{"hash":133746026,"name":"tdlgserverproperties.lbleveltype.caption","sourcebytes":[76,101,118,101,108,32,38,116,121,112,101,58],"value":"Level &type:"},
+{"hash":144337492,"name":"tdlgserverproperties.cbleveltype.text","sourcebytes":[68,69,70,65,85,76,84],"value":"DEFAULT"},
+{"hash":32,"name":"tdlgserverproperties.lbplaceholder1.caption","sourcebytes":[32],"value":" "},
+{"hash":243694830,"name":"tdlgserverproperties.lbinfoseedtype.caption","sourcebytes":[83,101,101,100,32,97,110,100,32,108,101,118,101,108,32,116,121,112,101,32,97,114,101,32,111,110,108,121,32,97,102,102,101,99,116,115,32,110,101,119,108,121,32,103,101,110,101,114,97,116,101,100,32,119,111,114,108,100,115,46],"value":"Seed and level type are only affects newly generated worlds."}
 ]}

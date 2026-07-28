@@ -12,8 +12,9 @@
         <DpiAware Value="True"/>
       </XPManifest>
       <Icon Value="0"/>
-      <Resources Count="1">
-        <Resource_0 FileName="resources/initdb-sqlite.sql" Type="RCDATA" ResourceName="INITDB-SQLITE"/>
+      <Resources Count="2">
+        <Resource_0 FileName="resources/server-bedrock.properties" Type="RCDATA" ResourceName="SERVER-BEDROCK"/>
+        <Resource_1 FileName="resources/server-java.properties" Type="RCDATA" ResourceName="SERVER-JAVA"/>
       </Resources>
     </General>
     <i18n>
@@ -93,7 +94,12 @@
         <Filename Value="forms/dlgServerProps.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dlgServerProperties"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="units/uMinecraft.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
   </ProjectOptions>

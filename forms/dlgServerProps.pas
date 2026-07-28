@@ -15,13 +15,22 @@ type
   TdlgServerProperties = class(TForm)
     btnCancel: TButton;
     btnOK: TButton;
+    cbLevelName: TComboBox;
+    cbLevelType: TComboBox;
+    edLevelSeed: TEdit;
     edName: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
+    gbLevel: TGroupBox;
+    gbEntry: TGroupBox;
+    lbInfoSeedType: TLabel;
+    lbPlaceholder1: TLabel;
+    lbLevelName: TLabel;
+    lbLevelSeed: TLabel;
+    lbLevelType: TLabel;
     lbName: TLabel;
     lbDescription: TLabel;
     lbPages: TListBox;
     mmDescription: TMemo;
+    pgWorld: TPage;
     pgGeneral: TPage;
     pgNotebook: TNotebook;
     pnBottom: TPanel;
@@ -37,7 +46,7 @@ var
 
 implementation
 
-uses Math;
+uses Math, uMinecraft;
 
 resourcestring
   dlgPropsCaption = '%s properties';
@@ -57,6 +66,8 @@ end;
 procedure TdlgServerProperties.Load(AServer: TOrmServerEntry);
 var
   I: integer;
+  Kind: string;
+  Props: TServerProperties;
 begin
   // Dialog caption
   Caption := format(dlgPropsCaption, [AServer.Name]);
@@ -64,15 +75,32 @@ begin
   // Load general, and server specific pages into lbPages
   lbPages.Clear;
   for I := 0 to pgNotebook.PageCount - 1 do
-    if (pgNotebook.Page[I].HelpKeyword = '') or
-       (pgNotebook.Page[I].HelpKeyword = AServer.Kind) then
-      lbPages.Items.AddObject(pgNotebook.Page[I].Hint, pgNotebook.Page[I]);
+    for Kind in pgNotebook.Page[I].HelpKeyword.Split(['|']) do
+      if (Kind = '*') or (Kind = AServer.Kind) then
+        lbPages.Items.AddObject(pgNotebook.Page[I].Hint, pgNotebook.Page[I]);
   lbPages.ItemIndex := Min(0, lbPages.Count - 1);
   lbPagesClick(lbPages); // navigate to the first page
 
   // General
   edName.Text := AServer.Name;
   mmDescription.Text := AServer.Description;
+
+  // Props
+  if AServer.Kind = 'bedrock' then
+    Props := TServerProperties.Create(spDefaultsBedrock)
+  else if AServer.Kind = 'java' then
+    Props := TServerProperties.Create(spDefaultsJava)
+  else                                            
+    Props := TServerProperties.Create('');
+
+  with Props do
+    try
+      cbLevelType.Text := ReadString('level-type');
+      edLevelSeed.Text := ReadString('level-seed');
+      cbLevelName.Text := ReadString('level-name');
+    finally
+      Free;
+    end;
 end;
 
 procedure TdlgServerProperties.Save(AServer: TOrmServerEntry);
