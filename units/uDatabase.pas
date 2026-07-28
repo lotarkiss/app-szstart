@@ -69,7 +69,7 @@ type
 procedure InitSQLite(const DbName: string = 'sqlite.db');
 procedure FreeSQLite();
 
-function QueryServersByName(const AFilter: string = ''; var Query): boolean;
+function QueryServersByName(AFilter: string = ''; var Query): boolean;
 function QueryServersAll(var Query): boolean;
 
 var
@@ -103,9 +103,10 @@ begin
   Model.Free;
 end;
 
-function QueryServersByName(const AFilter: string; var Query): boolean;
-begin                                              
-  Result := Server.Orm.RetrieveIList(TOrmServerEntry, Query, 'name LIKE ?', [AFilter]);
+function QueryServersByName(AFilter: string; var Query): boolean;
+begin
+  AFilter := '%' + AFilter + '%';
+  Result  := Server.Orm.RetrieveIList(TOrmServerEntry, Query, 'name LIKE ?', [AFilter]);
 end;
 
 function QueryServersAll(var Query): boolean;
