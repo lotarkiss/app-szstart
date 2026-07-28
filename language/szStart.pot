@@ -1,6 +1,56 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: dlgserverprops.dlgpropscaption
+#, object-pascal-format
+msgid "%s properties"
+msgstr ""
+
+#: tdlgserverproperties.btncancel.caption
+msgid "&Cancel"
+msgstr ""
+
+#: tdlgserverproperties.btnok.caption
+msgid "&OK"
+msgstr ""
+
+#: tdlgserverproperties.caption
+msgid "dlgServerProperties"
+msgstr ""
+
+#: tdlgserverproperties.edname.text
+msgid "edName"
+msgstr ""
+
+#: tdlgserverproperties.label1.caption
+msgid "Icon:"
+msgstr ""
+
+#: tdlgserverproperties.label2.caption
+msgid "Change server-icon.png in the folder."
+msgstr ""
+
+#: tdlgserverproperties.lbdescription.caption
+msgid "&Description:"
+msgstr ""
+
+#: tdlgserverproperties.lbname.caption
+msgid "&Name:"
+msgstr ""
+
+#: tdlgserverproperties.pggeneral.hint
+msgid "General"
+msgstr ""
+
+#: tszstartmain.acexit.caption
+msgctxt "tszstartmain.acexit.caption"
+msgid "E&xit"
+msgstr ""
+
+#: tszstartmain.acserverproperties.caption
+msgid "&Properties..."
+msgstr ""
+
 #: tszstartmain.caption
 msgid "szStart"
 msgstr ""
@@ -21,10 +71,5 @@ msgstr ""
 
 #: tszstartmain.menuitem1.caption
 msgid "&File"
-msgstr ""
-
-#: tszstartmain.menuitem2.caption
-msgctxt "tszstartmain.menuitem2.caption"
-msgid "E&xit"
 msgstr ""
 

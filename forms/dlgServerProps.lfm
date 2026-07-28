@@ -1,0 +1,132 @@
+object dlgServerProperties: TdlgServerProperties
+  Left = 327
+  Height = 367
+  Top = 250
+  Width = 549
+  BorderStyle = bsDialog
+  Caption = 'dlgServerProperties'
+  ClientHeight = 367
+  ClientWidth = 549
+  Position = poMainFormCenter
+  LCLVersion = '4.6.0.0'
+  object pnBottom: TPanel
+    Left = 0
+    Height = 49
+    Top = 318
+    Width = 549
+    Align = alBottom
+    BevelOuter = bvLowered
+    ChildSizing.LeftRightSpacing = 15
+    ChildSizing.TopBottomSpacing = 7
+    ChildSizing.HorizontalSpacing = 5
+    ClientHeight = 49
+    ClientWidth = 549
+    TabOrder = 0
+    object btnCancel: TButton
+      Left = 458
+      Height = 33
+      Top = 8
+      Width = 75
+      Align = alRight
+      Caption = '&Cancel'
+      Default = True
+      ModalResult = 2
+      TabOrder = 0
+    end
+    object btnOK: TButton
+      Left = 378
+      Height = 33
+      Top = 8
+      Width = 75
+      Align = alRight
+      Caption = '&OK'
+      ModalResult = 1
+      TabOrder = 1
+    end
+  end
+  object pgNotebook: TNotebook
+    Left = 136
+    Height = 318
+    Top = 0
+    Width = 413
+    PageIndex = 0
+    Align = alClient
+    TabOrder = 1
+    object pgGeneral: TPage
+      Hint = 'General'
+      ChildSizing.LeftRightSpacing = 20
+      ChildSizing.TopBottomSpacing = 20
+      ChildSizing.HorizontalSpacing = 20
+      ChildSizing.VerticalSpacing = 20
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 2
+      object lbName: TLabel
+        Left = 20
+        Height = 29
+        Top = 20
+        Width = 106
+        Caption = '&Name:'
+        FocusControl = edName
+      end
+      object edName: TEdit
+        Left = 146
+        Height = 29
+        Top = 20
+        Width = 247
+        TabOrder = 0
+        Text = 'edName'
+      end
+      object lbDescription: TLabel
+        Left = 20
+        Height = 192
+        Top = 69
+        Width = 106
+        Caption = '&Description:'
+        FocusControl = mmDescription
+      end
+      object mmDescription: TMemo
+        Left = 146
+        Height = 192
+        Top = 69
+        Width = 247
+        Lines.Strings = (
+          'mmDescription'
+        )
+        TabOrder = 1
+      end
+      object Label1: TLabel
+        Left = 20
+        Height = 16
+        Top = 281
+        Width = 106
+        Caption = 'Icon:'
+      end
+      object Label2: TLabel
+        Left = 146
+        Height = 16
+        Top = 281
+        Width = 247
+        Caption = 'Change server-icon.png in the folder.'
+      end
+    end
+  end
+  object lbPages: TListBox
+    Left = 0
+    Height = 318
+    Top = 0
+    Width = 131
+    Align = alLeft
+    ItemHeight = 0
+    TabOrder = 2
+    TopIndex = -1
+    OnClick = lbPagesClick
+  end
+  object spSplitter: TSplitter
+    Left = 131
+    Height = 318
+    Top = 0
+    Width = 5
+  end
+end
