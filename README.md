@@ -36,6 +36,6 @@ This project uses the following external libraries, which are included as git su
 - libsodium (ISC license) - https://github.com/jedisct1/libsodium
 - miniupnpc (BSD-like license) - https://github.com/miniupnp/miniupnp
 
-## Other source indications
+### Other source indications
 
 Minecraft related informations, like `server.properties` entries, and so on... from [minecraft.fandom.com](https://minecraft.fandom.com/wiki/Server.properties).
