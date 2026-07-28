@@ -25,7 +25,7 @@ In binary form, the program is compiled and linked as a single executable, distr
 
 This project relies on the following internal packages configured in the Lazarus Project Options:
 
-- **FPC RTL & Lazarus LCL** (FPC modified LGPL2013)
+- **FPC RTL & Lazarus LCL** (FPC modified LGPL)
 - **mORMot 2** (Dual/Tri-licensed: MPL v1.1 or later / GPL v2.0 or later / LGPL v2.1 or later)
 - **SQLite3** via `mormot.db.raw.sqlite3.static` (Public Domain)
 
@@ -36,6 +36,6 @@ This project uses the following external libraries, which are included as git su
 - libsodium (ISC license) - https://github.com/jedisct1/libsodium
 - miniupnpc (BSD-like license) - https://github.com/miniupnp/miniupnp
 
-### Other source indications
+## Other source indications
 
-Minecraft related informations, like `server.properties` entries, and so on... from [minecraft.fandom.com](https://minecraft.fandom.com/wiki/Server.properties).
+Minecraft related informations, like `server.properties` entries, and so on... from (minecraft.fandom.com)[https://minecraft.fandom.com/wiki/Server.properties].
