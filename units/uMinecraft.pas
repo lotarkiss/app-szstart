@@ -11,6 +11,9 @@ const
   spDefaultsJava    = 'SERVER-JAVA';
   spDefaultsBedrock = 'SERVER-BEDROCK';
 
+  spPathProperties  = 'server.properties';
+  spPathIcon        = 'server-icon.png';
+
 type
 
   { TServerProperties }

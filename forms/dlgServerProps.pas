@@ -66,7 +66,7 @@ end;
 procedure TdlgServerProperties.Load(AServer: TOrmServerEntry);
 var
   I: integer;
-  Kind: string;
+  Kind, Path: string;
   Props: TServerProperties;
 begin
   // Dialog caption
@@ -95,6 +95,10 @@ begin
 
   with Props do
     try
+      Path := IncludeTrailingPathDelimiter(AServer.Path) + spPathProperties;
+      if FileExists(Path) then
+        LoadFromFile(Path);
+
       cbLevelType.Text := ReadString('level-type');
       edLevelSeed.Text := ReadString('level-seed');
       cbLevelName.Text := ReadString('level-name');
@@ -104,12 +108,39 @@ begin
 end;
 
 procedure TdlgServerProperties.Save(AServer: TOrmServerEntry);
+var
+  Path: string;
+  Props: TServerProperties;
 begin
   // General
   AServer.Name := edName.Text;
   AServer.Description := mmDescription.Text;
 
+  // Db
   Server.Orm.Update(AServer);
+
+  // Props
+  if AServer.Kind = 'bedrock' then
+    Props := TServerProperties.Create(spDefaultsBedrock)
+  else if AServer.Kind = 'java' then
+    Props := TServerProperties.Create(spDefaultsJava)
+  else
+    Props := TServerProperties.Create('');
+
+  with Props do
+    try
+      WriteString('level-type', cbLevelType.Text);
+      WriteString('level-seed', edLevelSeed.Text);
+      WriteString('level-name', cbLevelName.Text);
+
+      Optimize();
+
+      ForceDirectories(AServer.Path);
+      Path := IncludeTrailingPathDelimiter(AServer.Path) + spPathProperties;
+      SaveToFile(Path);
+    finally
+      Free;
+    end;
 end;
 
 end.
