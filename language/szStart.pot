@@ -6,12 +6,50 @@ msgstr "Content-Type: text/plain; charset=UTF-8"
 msgid "%s properties"
 msgstr ""
 
+#: dlgserverprops.dlgveaddkeycaption
+msgid "Add custom key"
+msgstr ""
+
+#: dlgserverprops.dlgveaddkeynamelbl
+msgid "Enter the name of the &custom key:"
+msgstr ""
+
+#: dlgserverprops.dlgveaddkeyvallbl
+msgid "Enter the &value of the custom key:"
+msgstr ""
+
+#: dlgserverprops.dlgvedelkeytext
+msgid "Are you sure?"
+msgstr ""
+
+#: dlgserverprops.vedefaultkeyformat
+#, object-pascal-format
+msgid "key%d"
+msgstr ""
+
+#: dlgserverprops.vedefaultvalformat
+#, object-pascal-format
+msgid "value%d"
+msgstr ""
+
 #: tdlgserverproperties.btncancel.caption
 msgid "&Cancel"
 msgstr ""
 
 #: tdlgserverproperties.btnok.caption
 msgid "&OK"
+msgstr ""
+
+#: tdlgserverproperties.btnveadd.caption
+msgid "&Add"
+msgstr ""
+
+#: tdlgserverproperties.btnveclear.caption
+msgid "&Clear"
+msgstr ""
+
+#: tdlgserverproperties.btnvedelete.caption
+msgid "&Delete"
 msgstr ""
 
 #: tdlgserverproperties.caption
@@ -24,6 +62,10 @@ msgstr ""
 
 #: tdlgserverproperties.edname.text
 msgid "edName"
+msgstr ""
+
+#: tdlgserverproperties.gbadvanced.caption
+msgid "&Advanced"
 msgstr ""
 
 #: tdlgserverproperties.gbentry.caption
@@ -61,6 +103,10 @@ msgstr ""
 
 #: tdlgserverproperties.lbplaceholder1.caption
 msgid " "
+msgstr ""
+
+#: tdlgserverproperties.pgadvanced.hint
+msgid "Advanced"
 msgstr ""
 
 #: tdlgserverproperties.pggeneral.hint

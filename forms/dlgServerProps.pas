@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  StdCtrls, uDatabase;
+  StdCtrls, ValEdit, uDatabase;
 
 type
 
@@ -15,12 +15,16 @@ type
   TdlgServerProperties = class(TForm)
     btnCancel: TButton;
     btnOK: TButton;
+    btnVeClear: TButton;
+    btnVeAdd: TButton;
+    btnVeDelete: TButton;
     cbLevelName: TComboBox;
     cbLevelType: TComboBox;
     edLevelSeed: TEdit;
     edName: TEdit;
     gbLevel: TGroupBox;
     gbEntry: TGroupBox;
+    gbAdvanced: TGroupBox;
     lbInfoSeedType: TLabel;
     lbPlaceholder1: TLabel;
     lbLevelName: TLabel;
@@ -30,11 +34,15 @@ type
     lbDescription: TLabel;
     lbPages: TListBox;
     mmDescription: TMemo;
+    pnAdvanced: TPanel;
+    pgAdvanced: TPage;
     pgWorld: TPage;
     pgGeneral: TPage;
     pgNotebook: TNotebook;
     pnBottom: TPanel;
     spSplitter: TSplitter;
+    veAdvanced: TValueListEditor;
+    procedure btnVeAddClick(Sender: TObject);
     procedure lbPagesClick(Sender: TObject);
   public
     procedure Load(AServer: TOrmServerEntry);
@@ -50,6 +58,14 @@ uses Math, uMinecraft;
 
 resourcestring
   dlgPropsCaption = '%s properties';
+  veDefaultKeyFormat = 'key%d';      
+  veDefaultValFormat = 'value%d';
+
+  dlgVeAddKeyCaption = 'Add custom key';
+  dlgVeAddKeyNameLbl = 'Enter the name of the &custom key:';
+  dlgVeAddKeyValLbl  = 'Enter the &value of the custom key:';
+
+  dlgVeDelKeyText    = 'Are you sure?';
 
 {$R *.lfm}
 
@@ -61,6 +77,34 @@ begin
     pgNotebook.PageIndex := -1
   else
     pgNotebook.PageIndex := (lbPages.Items.Objects[lbPages.ItemIndex] as TPage).PageIndex;
+end;
+
+procedure TdlgServerProperties.btnVeAddClick(Sender: TObject);
+var
+  Result: array of string;
+begin
+  SetLength(Result, 2);
+  Result[0] := format(veDefaultKeyFormat, [veAdvanced.Strings.Count]);
+  Result[1] := format(veDefaultValFormat, [veAdvanced.Strings.Count]);
+  case (Sender as TComponent).Tag of
+    1: if InputQuery(
+            dlgVeAddKeyCaption,
+            [
+              dlgVeAddKeyNameLbl,
+              dlgVeAddKeyValLbl
+            ],
+            Result) and (Result[0] <> '') then
+         veAdvanced.Strings.Add(Result[0] + '=' + Result[1]);
+    2: if (veAdvanced.Row <> -1) and
+          (MessageDlg(dlgVeDelKeyText,
+            mtConfirmation, [mbYes, mbNo], 0, mbNo) = mrYes) then
+         veAdvanced.DeleteRow(veAdvanced.Row);
+    3: if MessageDlg(dlgVeDelKeyText,
+            mtConfirmation, [mbYes, mbNo], 0, mbNo) = mrYes then
+         veAdvanced.Clear;
+    else
+      raise Exception.Create('Operation not implemented');
+  end;
 end;
 
 procedure TdlgServerProperties.Load(AServer: TOrmServerEntry);
@@ -99,9 +143,12 @@ begin
       if FileExists(Path) then
         LoadFromFile(Path);
 
-      cbLevelType.Text := ReadString('level-type');
-      edLevelSeed.Text := ReadString('level-seed');
-      cbLevelName.Text := ReadString('level-name');
+      cbLevelType.Text := ReadString('level-type', true);
+      edLevelSeed.Text := ReadString('level-seed', true);
+      cbLevelName.Text := ReadString('level-name', true);
+
+      veAdvanced.Strings.Clear();
+      veAdvanced.Strings.AddStrings(Props);
     finally
       Free;
     end;
@@ -129,6 +176,8 @@ begin
 
   with Props do
     try
+      AddStrings(veAdvanced.Strings);
+
       WriteString('level-type', cbLevelType.Text);
       WriteString('level-seed', edLevelSeed.Text);
       WriteString('level-name', cbLevelName.Text);

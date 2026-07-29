@@ -14,5 +14,10 @@
 {"hash":133746026,"name":"tdlgserverproperties.lbleveltype.caption","sourcebytes":[76,101,118,101,108,32,38,116,121,112,101,58],"value":"Level &type:"},
 {"hash":144337492,"name":"tdlgserverproperties.cbleveltype.text","sourcebytes":[68,69,70,65,85,76,84],"value":"DEFAULT"},
 {"hash":32,"name":"tdlgserverproperties.lbplaceholder1.caption","sourcebytes":[32],"value":" "},
-{"hash":243694830,"name":"tdlgserverproperties.lbinfoseedtype.caption","sourcebytes":[83,101,101,100,32,97,110,100,32,108,101,118,101,108,32,116,121,112,101,32,97,114,101,32,111,110,108,121,32,97,102,102,101,99,116,115,32,110,101,119,108,121,32,103,101,110,101,114,97,116,101,100,32,119,111,114,108,100,115,46],"value":"Seed and level type are only affects newly generated worlds."}
+{"hash":243694830,"name":"tdlgserverproperties.lbinfoseedtype.caption","sourcebytes":[83,101,101,100,32,97,110,100,32,108,101,118,101,108,32,116,121,112,101,32,97,114,101,32,111,110,108,121,32,97,102,102,101,99,116,115,32,110,101,119,108,121,32,103,101,110,101,114,97,116,101,100,32,119,111,114,108,100,115,46],"value":"Seed and level type are only affects newly generated worlds."},
+{"hash":197676484,"name":"tdlgserverproperties.pgadvanced.hint","sourcebytes":[65,100,118,97,110,99,101,100],"value":"Advanced"},
+{"hash":197682116,"name":"tdlgserverproperties.gbadvanced.caption","sourcebytes":[38,65,100,118,97,110,99,101,100],"value":"&Advanced"},
+{"hash":173988,"name":"tdlgserverproperties.btnveadd.caption","sourcebytes":[38,65,100,100],"value":"&Add"},
+{"hash":179055749,"name":"tdlgserverproperties.btnvedelete.caption","sourcebytes":[38,68,101,108,101,116,101],"value":"&Delete"},
+{"hash":44706690,"name":"tdlgserverproperties.btnveclear.caption","sourcebytes":[38,67,108,101,97,114],"value":"&Clear"}
 ]}

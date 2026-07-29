@@ -22,10 +22,10 @@ type
   private
     Defaults: TStringList;
   public
-    function ReadString(const AField: string): string;
-    function ReadBoolean(const AField: string): boolean;
-    function ReadInteger(const AField: string): integer;
-    function ReadFloat(const AField: string): single;
+    function ReadString(const AField: string; const ReadAndDelete: boolean): string;
+    function ReadBoolean(const AField: string; const ReadAndDelete: boolean): boolean;
+    function ReadInteger(const AField: string; const ReadAndDelete: boolean): integer;
+    function ReadFloat(const AField: string; const ReadAndDelete: boolean): single;
 
     procedure WriteString(const AField: string; const AValue: string);
     procedure WriteBoolean(const AField: string; const AValue: boolean);
@@ -42,30 +42,38 @@ implementation
 
 { TServerProperties }
 
-function TServerProperties.ReadString(const AField: string): string;
+function TServerProperties.ReadString(const AField: string;
+  const ReadAndDelete: boolean): string;
 begin
   if IndexOfName(AField) = -1 then
     Result := Defaults.Values[AField]
-  else
+  else begin
     Result := Self.Values[AField];
+
+    if ReadAndDelete then // so we can dump to a table every unused entry...
+      Self.Delete(IndexOfName(AField));
+  end;
 end;
 
-function TServerProperties.ReadBoolean(const AField: string): boolean;
+function TServerProperties.ReadBoolean(const AField: string;
+  const ReadAndDelete: boolean): boolean;
 var
   S: string;
 begin
-  S      := ReadString(AField);
+  S      := ReadString(AField, ReadAndDelete);
   Result := (LowerCase(S) = 'true') or (S = '1');
 end;
 
-function TServerProperties.ReadInteger(const AField: string): integer;
+function TServerProperties.ReadInteger(const AField: string;
+  const ReadAndDelete: boolean): integer;
 begin
-  Result := StrToInt(ReadString(AField));
+  Result := StrToInt(ReadString(AField, ReadAndDelete));
 end;
 
-function TServerProperties.ReadFloat(const AField: string): single;
+function TServerProperties.ReadFloat(const AField: string;
+  const ReadAndDelete: boolean): single;
 begin
-  Result := StrToFloat(ReadString(AField));
+  Result := StrToFloat(ReadString(AField, ReadAndDelete));
 end;
 
 procedure TServerProperties.WriteString(const AField: string;
