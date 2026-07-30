@@ -111,3 +111,6 @@ GTAGS
 
 # Optional symbolic links for easier use
 locale
+*.res
+*.lps
+*.lrj

@@ -1,4 +1,4 @@
-# szStart
+# mcStart
 
 > The project is in initial state, therefore no ready-to-go binaries, or even working builds.
 

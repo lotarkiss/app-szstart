@@ -1,4 +1,4 @@
-program szStart;
+program mcStart;
 
 {$mode objfpc}{$H+}
 
@@ -18,7 +18,7 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TszStartMain, szStartMain);
+  Application.CreateForm(TmcStartMain, mcStartMain);
   Application.CreateForm(TdlgServerProperties, dlgServerProperties);
   Application.Run;
 end.
