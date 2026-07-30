@@ -1,7 +1,7 @@
 .PHONY: all clean deps copy-libs build-app locales
 
-APP=mcStart
-LPI=mcStart.lpi
+APP=mcServerium
+LPI=mcServerium.lpi
 
 ARCH := $(shell fpc -iTP)
 OS   := $(shell fpc -iTO)

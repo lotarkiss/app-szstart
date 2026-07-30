@@ -1,9 +1,9 @@
-object mcStartMain: TmcStartMain
+object mcServeriumMain: TmcServeriumMain
   Left = 843
   Height = 424
   Top = 293
   Width = 690
-  Caption = 'mcStart'
+  Caption = 'mcServerium'
   ClientHeight = 424
   ClientWidth = 690
   Menu = mnuMain
@@ -42,7 +42,7 @@ object mcStartMain: TmcStartMain
         Top = 20
         Width = 442
         Align = alTop
-        Caption = 'Welcome to mcStart!'
+        Caption = 'Welcome to mcServerium!'
         Font.Height = -19
         ParentFont = False
       end

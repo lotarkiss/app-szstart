@@ -37,11 +37,11 @@ end;
 function GetAppDataPath(const CanCreate: boolean): string;
 begin
   {$IF defined(DARWIN)}
-    Result := GetHomePath() + 'Library/Application Support/com.lotarkiss.mcStart/';
+    Result := GetHomePath() + 'Library/Application Support/com.lotarkiss.mcServerium/';
   {$ELSEIF defined(UNIX)}
-    Result := GetHomePath() + '.local/share/mcStart/';
+    Result := GetHomePath() + '.local/share/mcServerium/';
   {$ELSEIF defined(MSWINDOWS)}
-    Result := IncludeTrailingPathDelimiter(GetEnvironmentVariable('APPDATA')) + 'mcStart/';
+    Result := IncludeTrailingPathDelimiter(GetEnvironmentVariable('APPDATA')) + 'mcServerium/';
   {$ELSE}
     Result := ?;
   {$ENDIF}
