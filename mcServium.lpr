@@ -1,4 +1,4 @@
-program mcServerium;
+program mcServium;
 
 {$mode objfpc}{$H+}
 
@@ -18,7 +18,7 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TmcServeriumMain, mcServeriumMain);
+  Application.CreateForm(TmcServiumMain, mcServiumMain);
   Application.CreateForm(TdlgServerProperties, dlgServerProperties);
   Application.Run;
 end.

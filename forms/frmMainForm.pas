@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TmcServeriumMain }
+  { TmcServiumMain }
 
-  TmcServeriumMain = class(TForm)
+  TmcServiumMain = class(TForm)
     acActions: TActionList;
     acServerProperties: TAction;
     acExit: TAction;
@@ -44,7 +44,7 @@ type
   end;
 
 var
-  mcServeriumMain: TmcServeriumMain;
+  mcServiumMain: TmcServiumMain;
 
 implementation
 
@@ -52,9 +52,9 @@ implementation
 
 uses uPlatform, uExamples, dlgServerProps, LCLType;
 
-{ TmcServeriumMain }
+{ TmcServiumMain }
 
-procedure TmcServeriumMain.FormCreate(Sender: TObject);
+procedure TmcServiumMain.FormCreate(Sender: TObject);
 begin
   InitSQLite();
   UpdateMenuKeys(mnuMain.Items);
@@ -67,7 +67,7 @@ begin
   IconColor := random($FFFFFF + 1); // for debugging
 end;
 
-procedure TmcServeriumMain.FormDestroy(Sender: TObject);
+procedure TmcServiumMain.FormDestroy(Sender: TObject);
 begin
   lbxServers.Clear; // clear references to Servers IList<>
   Servers := nil;   // free the list itself
@@ -75,7 +75,7 @@ begin
   FreeSQLite();
 end;
 
-procedure TmcServeriumMain.lbxServersDrawItem(Control: TWinControl; Index: Integer;
+procedure TmcServiumMain.lbxServersDrawItem(Control: TWinControl; Index: Integer;
   ARect: TRect; State: TOwnerDrawState);
 var
   Style: TTextStyle;
@@ -134,7 +134,7 @@ begin
   end;
 end;
 
-procedure TmcServeriumMain.edtSearchChange(Sender: TObject);
+procedure TmcServiumMain.edtSearchChange(Sender: TObject);
 var
   Server: TOrmServerEntry;
   Result: boolean;
@@ -150,7 +150,7 @@ begin
       lbxServers.Items.AddObject(Server.Name, Server);
 end;
 
-procedure TmcServeriumMain.acServerPropertiesExecute(Sender: TObject);
+procedure TmcServiumMain.acServerPropertiesExecute(Sender: TObject);
 var
   Server: TOrmServerEntry;
 begin

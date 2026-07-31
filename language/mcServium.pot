@@ -81,7 +81,6 @@ msgid "&Description:"
 msgstr ""
 
 #: tdlgserverproperties.lbinfoseedtype.caption
-msgctxt "tdlgserverproperties.lbinfoseedtype.caption"
 msgid "Seed and level type are only affects newly generated worlds."
 msgstr ""
 
@@ -117,24 +116,23 @@ msgstr ""
 msgid "World"
 msgstr ""
 
-#: tmcServiummain.acexit.caption
-msgctxt "tmcServiummain.acexit.caption"
+#: tmcstartmain.acexit.caption
 msgid "E&xit"
 msgstr ""
 
-#: tmcServiummain.acserverproperties.caption
+#: tmcstartmain.acserverproperties.caption
 msgid "&Properties..."
 msgstr ""
 
-#: tmcServiummain.caption
-msgid "mcServium"
+#: tmcstartmain.caption
+msgid "szStart"
 msgstr ""
 
-#: tmcServiummain.lblwelcomeheader.caption
-msgid "Welcome to mcServium!"
+#: tmcstartmain.lblwelcomeheader.caption
+msgid "Welcome to szStart!"
 msgstr ""
 
-#: tmcServiummain.lblwelcometext.caption
+#: tmcstartmain.lblwelcometext.caption
 msgid ""
 "To start playing Minecraft multiplayer with friends,\n"
 "\n"
@@ -144,7 +142,7 @@ msgid ""
 "For more information use our Getting Started guide."
 msgstr ""
 
-#: tmcServiummain.menuitem1.caption
+#: tmcstartmain.menuitem1.caption
 msgid "&File"
 msgstr ""
 
