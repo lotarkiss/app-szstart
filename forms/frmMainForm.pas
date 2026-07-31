@@ -146,8 +146,11 @@ begin
     Result := QueryServersByName(edtSearch.Text, Servers);
 
   if Result then
-    for Server in Servers do
-      lbxServers.Items.AddObject(Server.Name, Server);
+    for Server in Servers do begin
+      WriteLn(Server.Path);
+      if DirectoryExists(Server.Path) then
+        lbxServers.Items.AddObject(Server.Name, Server);
+    end;
 end;
 
 procedure TmcServiumMain.acServerPropertiesExecute(Sender: TObject);

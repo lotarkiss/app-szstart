@@ -40,8 +40,16 @@ msgstr ""
 msgid "&Select..."
 msgstr ""
 
+#: tdlgserverproperties.btnmove.caption
+msgid "&Move files..."
+msgstr ""
+
 #: tdlgserverproperties.btnok.caption
 msgid "&OK"
+msgstr ""
+
+#: tdlgserverproperties.btnopen.caption
+msgid "&Open folder..."
 msgstr ""
 
 #: tdlgserverproperties.btnveadd.caption
@@ -60,8 +68,52 @@ msgstr ""
 msgid "dlgServerProperties"
 msgstr ""
 
+#: tdlgserverproperties.cballownether.caption
+msgid "Allow net&her"
+msgstr ""
+
+#: tdlgserverproperties.cbdifficulty.text
+msgid "survival"
+msgstr ""
+
+#: tdlgserverproperties.cbforcegmode.caption
+msgid "&Enforce selected gamemode to all players"
+msgstr ""
+
+#: tdlgserverproperties.cbgamemode.text
+msgid "peaceful"
+msgstr ""
+
+#: tdlgserverproperties.cbgenstruct.caption
+msgid "Generate &structures"
+msgstr ""
+
+#: tdlgserverproperties.cbhardcore.caption
+msgid "Hardcore mode "
+msgstr ""
+
 #: tdlgserverproperties.cbleveltype.text
 msgid "DEFAULT"
+msgstr ""
+
+#: tdlgserverproperties.cbonlinemode.caption
+msgid "Online-mode (enforce official Minecraft clients)"
+msgstr ""
+
+#: tdlgserverproperties.cbspawnanimals.caption
+msgid "Spawn &animals"
+msgstr ""
+
+#: tdlgserverproperties.cbspawnmonsters.caption
+msgid "&Spawn monsters"
+msgstr ""
+
+#: tdlgserverproperties.cbspawnnpcs.caption
+msgid "&Spawn NPCs"
+msgstr ""
+
+#: tdlgserverproperties.edgensettings.text
+msgid "edGenSettings"
 msgstr ""
 
 #: tdlgserverproperties.edjava.text
@@ -80,21 +132,68 @@ msgstr ""
 msgid "&General"
 msgstr ""
 
+#: tdlgserverproperties.gbgameplay.caption
+msgctxt "tdlgserverproperties.gbgameplay.caption"
+msgid "Gameplay"
+msgstr ""
+
 #: tdlgserverproperties.gbjava.caption
 msgctxt "tdlgserverproperties.gbjava.caption"
 msgid "JRE settings"
+msgstr ""
+
+#: tdlgserverproperties.gbjavaonly1.caption
+msgid "Spawn"
+msgstr ""
+
+#: tdlgserverproperties.gbjavaonly2.caption
+msgid "Generation"
 msgstr ""
 
 #: tdlgserverproperties.gblevel.caption
 msgid "&World"
 msgstr ""
 
+#: tdlgserverproperties.gbnetwork.caption
+msgctxt "tdlgserverproperties.gbnetwork.caption"
+msgid "Network"
+msgstr ""
+
+#: tdlgserverproperties.gbserver.caption
+msgctxt "tdlgserverproperties.gbserver.caption"
+msgid "Server"
+msgstr ""
+
 #: tdlgserverproperties.lbdescription.caption
 msgid "&Description:"
 msgstr ""
 
+#: tdlgserverproperties.lbdifficulty.caption
+msgid "&Difficulty:"
+msgstr ""
+
+#: tdlgserverproperties.lbeula1.caption
+msgid "I accept the "
+msgstr ""
+
+#: tdlgserverproperties.lbeula2.caption
+msgid "Terms and Agreements"
+msgstr ""
+
+#: tdlgserverproperties.lbeula3.caption
+msgid "of Mojang / Microsoft"
+msgstr ""
+
+#: tdlgserverproperties.lbgamemode.caption
+msgid "&Gamemode:"
+msgstr ""
+
+#: tdlgserverproperties.lbgensettings.caption
+msgid "Generator &settings:"
+msgstr ""
+
 #: tdlgserverproperties.lbinfoseedtype.caption
-msgid "Seed and level type are only affects newly generated worlds."
+msgid "Seed, level type, and generation are only affects newly generated worlds."
 msgstr ""
 
 #: tdlgserverproperties.lbjava.caption
@@ -121,12 +220,36 @@ msgstr ""
 msgid "Level &type:"
 msgstr ""
 
+#: tdlgserverproperties.lbmaxplayers.caption
+msgid "Maximum& players:"
+msgstr ""
+
+#: tdlgserverproperties.lbmotd.caption
+msgid "&Message of the day:"
+msgstr ""
+
 #: tdlgserverproperties.lbname.caption
 msgid "&Name:"
 msgstr ""
 
+#: tdlgserverproperties.lbpath.caption
+msgid "lbPath"
+msgstr ""
+
+#: tdlgserverproperties.lbpathtitle.caption
+msgid "Path:"
+msgstr ""
+
 #: tdlgserverproperties.lbplaceholder1.caption
 msgid " "
+msgstr ""
+
+#: tdlgserverproperties.lbspawnprot.caption
+msgid "Spawn &protection:"
+msgstr ""
+
+#: tdlgserverproperties.lbviewdistance.caption
+msgid "Maximum &render distance:"
 msgstr ""
 
 #: tdlgserverproperties.lbxms.caption
@@ -141,6 +264,11 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
+#: tdlgserverproperties.pggameplay.hint
+msgctxt "tdlgserverproperties.pggameplay.hint"
+msgid "Gameplay"
+msgstr ""
+
 #: tdlgserverproperties.pggeneral.hint
 msgid "General"
 msgstr ""
@@ -148,6 +276,16 @@ msgstr ""
 #: tdlgserverproperties.pgjava.hint
 msgctxt "tdlgserverproperties.pgjava.hint"
 msgid "JRE settings"
+msgstr ""
+
+#: tdlgserverproperties.pgnetwork.hint
+msgctxt "tdlgserverproperties.pgnetwork.hint"
+msgid "Network"
+msgstr ""
+
+#: tdlgserverproperties.pgserver.hint
+msgctxt "tdlgserverproperties.pgserver.hint"
+msgid "Server"
 msgstr ""
 
 #: tdlgserverproperties.pgworld.hint

@@ -11,7 +11,8 @@ const
   spDefaultsJava    = 'SERVER-JAVA';
   spDefaultsBedrock = 'SERVER-BEDROCK';
 
-  spPathProperties  = 'server.properties';
+  spPathProperties  = 'server.properties';  
+  spPathEula        = 'eula.txt';
   spPathIcon        = 'server-icon.png';
 
 type
@@ -22,6 +23,9 @@ type
   private
     Defaults: TStringList;
   public
+    class function UnescapeString(const AText: string): string;
+    class function EscapeString(const AText: string): string;
+
     function ReadString(const AField: string; const ReadAndDelete: boolean): string;
     function ReadBoolean(const AField: string; const ReadAndDelete: boolean): boolean;
     function ReadInteger(const AField: string; const ReadAndDelete: boolean): integer;
@@ -40,15 +44,36 @@ type
 
 implementation
 
+const
+  propsSpecialChar: array of char = (':'); // it seems these are prepended with \
+
 { TServerProperties }
+
+class function TServerProperties.UnescapeString(const AText: string): string;
+var
+  C: char;
+begin
+  Result := AText;
+  for C in propsSpecialChar do
+    Result := StringReplace(Result, '\' + C, C, [rfReplaceAll]);
+end;
+
+class function TServerProperties.EscapeString(const AText: string): string;
+var
+  C: char;
+begin
+  Result := AText;
+  for C in propsSpecialChar do
+    Result := StringReplace(Result, C, '\' + C, [rfReplaceAll]);
+end;
 
 function TServerProperties.ReadString(const AField: string;
   const ReadAndDelete: boolean): string;
 begin
   if IndexOfName(AField) = -1 then
-    Result := Defaults.Values[AField]
+    Result := UnescapeString(Defaults.Values[AField])
   else begin
-    Result := Self.Values[AField];
+    Result := UnescapeString(Self.Values[AField]);
 
     if ReadAndDelete then // so we can dump to a table every unused entry...
       Self.Delete(IndexOfName(AField));
@@ -79,7 +104,7 @@ end;
 procedure TServerProperties.WriteString(const AField: string;
   const AValue: string);
 begin
-  Values[AField] := AValue;
+  Values[AField] := EscapeString(AValue);
 end;
 
 procedure TServerProperties.WriteBoolean(const AField: string;
@@ -87,19 +112,19 @@ procedure TServerProperties.WriteBoolean(const AField: string;
 const
   boolNames: array [boolean] of string = ('false', 'true');
 begin
-  Values[AField] := boolNames[AValue];
+  WriteString(AField, boolNames[AValue]);
 end;
 
 procedure TServerProperties.WriteInteger(const AField: string;
   const AValue: integer);
 begin
-  Values[AField] := IntToStr(AValue);
+  WriteString(AField, IntToStr(AValue));
 end;
 
 procedure TServerProperties.WriteFloat(const AField: string;
   const AValue: single);
 begin     
-  Values[AField] := FloatToStr(AValue);
+  WriteString(AField, FloatToStr(AValue));
 end;
 
 procedure TServerProperties.Optimize();
@@ -117,8 +142,8 @@ var
 begin
   inherited Create;
 
-  Duplicates := dupIgnore;
-  Sorted     := true;
+  //Duplicates := dupIgnore;
+  //Sorted     := true;
 
   Defaults := TStringList.Create;
     if ADefValues <> '' then begin

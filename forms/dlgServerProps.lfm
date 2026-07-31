@@ -1,18 +1,18 @@
 object dlgServerProperties: TdlgServerProperties
   Left = 327
-  Height = 395
+  Height = 418
   Top = 250
   Width = 640
   BorderStyle = bsDialog
   Caption = 'dlgServerProperties'
-  ClientHeight = 395
+  ClientHeight = 418
   ClientWidth = 640
   Position = poMainFormCenter
   LCLVersion = '4.6.0.0'
   object pnBottom: TPanel
     Left = 0
     Height = 49
-    Top = 346
+    Top = 369
     Width = 640
     Align = alBottom
     BevelOuter = bvLowered
@@ -46,10 +46,10 @@ object dlgServerProperties: TdlgServerProperties
   end
   object pgNotebook: TNotebook
     Left = 136
-    Height = 346
+    Height = 369
     Top = 0
     Width = 504
-    PageIndex = 2
+    PageIndex = 0
     Align = alClient
     TabOrder = 1
     object pgGeneral: TPage
@@ -62,59 +62,383 @@ object dlgServerProperties: TdlgServerProperties
       ChildSizing.VerticalSpacing = 20
       ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
       ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
-      ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
       object gbEntry: TGroupBox
         Left = 20
-        Height = 307
+        Height = 207
         Top = 20
         Width = 464
+        Align = alTop
+        AutoSize = True
         Caption = '&General'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
-        ChildSizing.HorizontalSpacing = 20
+        ChildSizing.HorizontalSpacing = 2
         ChildSizing.VerticalSpacing = 20
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
-        ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 281
+        ClientHeight = 181
         ClientWidth = 460
         TabOrder = 0
         object lbName: TLabel
           Left = 20
           Height = 29
           Top = 20
-          Width = 160
+          Width = 52
+          AutoSize = False
           Caption = '&Name:'
           FocusControl = edName
           Layout = tlCenter
         end
         object edName: TEdit
-          Left = 200
+          Left = 72
           Height = 29
           Top = 20
-          Width = 240
+          Width = 248
+          Anchors = [akTop, akLeft, akRight]
           TabOrder = 0
           Text = 'edName'
         end
         object lbDescription: TLabel
           Left = 20
-          Height = 192
-          Top = 69
-          Width = 160
+          Height = 16
+          Top = 64
+          Width = 70
           Caption = '&Description:'
           FocusControl = mmDescription
         end
         object mmDescription: TMemo
-          Left = 200
-          Height = 192
-          Top = 69
-          Width = 240
+          Left = 96
+          Height = 40
+          Top = 64
+          Width = 224
+          Anchors = [akTop, akLeft, akRight]
           Lines.Strings = (
             'mmDescription'
           )
           TabOrder = 1
+        end
+        object btnOpen: TButton
+          Tag = 1
+          Left = 328
+          Height = 33
+          Top = 88
+          Width = 112
+          Anchors = [akTop, akRight]
+          Caption = '&Open folder...'
+          TabOrder = 2
+          OnClick = btnOpenClick
+        end
+        object btnMove: TButton
+          Left = 328
+          Height = 33
+          Top = 128
+          Width = 112
+          Caption = '&Move files...'
+          Enabled = False
+          TabOrder = 3
+        end
+        object lbPathTitle: TLabel
+          Left = 20
+          Height = 16
+          Top = 120
+          Width = 29
+          Caption = 'Path:'
+        end
+        object lbPath: TLabel
+          Left = 64
+          Height = 16
+          Top = 120
+          Width = 37
+          Caption = 'lbPath'
+        end
+      end
+    end
+    object pgServer: TPage
+      Hint = 'Server'
+      HelpType = htKeyword
+      HelpKeyword = 'java|bedrock'
+      ChildSizing.LeftRightSpacing = 20
+      ChildSizing.TopBottomSpacing = 20
+      object gbServer: TGroupBox
+        Left = 20
+        Height = 246
+        Top = 20
+        Width = 464
+        Align = alTop
+        AutoSize = True
+        Caption = 'Server'
+        ChildSizing.LeftRightSpacing = 20
+        ChildSizing.TopBottomSpacing = 20
+        ClientHeight = 220
+        ClientWidth = 460
+        TabOrder = 0
+        object lbMotd: TLabel
+          Left = 20
+          Height = 16
+          Top = 20
+          Width = 115
+          Caption = '&Message of the day:'
+          FocusControl = mmMotd
+        end
+        object mmMotd: TMemo
+          Left = 20
+          Height = 64
+          Top = 44
+          Width = 260
+          Anchors = [akTop, akLeft, akRight]
+          Lines.Strings = (
+            'mmMotd'
+          )
+          TabOrder = 0
+        end
+        object lbEula1: TLabel
+          AnchorSideLeft.Control = cbEula
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbEula
+          AnchorSideTop.Side = asrCenter
+          Left = 45
+          Height = 16
+          Top = 162
+          Width = 70
+          Caption = 'I accept the '
+          Layout = tlCenter
+        end
+        object cbEula: TCheckBox
+          Left = 20
+          Height = 20
+          Top = 160
+          Width = 20
+          BorderSpacing.Right = 5
+          TabOrder = 1
+        end
+        object lbEula2: TLabel
+          Tag = 2
+          AnchorSideLeft.Control = lbEula1
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = lbEula1
+          AnchorSideTop.Side = asrCenter
+          Cursor = crHandPoint
+          Left = 115
+          Height = 16
+          Top = 162
+          Width = 134
+          Caption = 'Terms and Agreements'
+          Font.Color = clHighlight
+          Font.Style = [fsUnderline]
+          ParentFont = False
+          OnClick = btnOpenClick
+        end
+        object lbEula3: TLabel
+          AnchorSideLeft.Control = lbEula2
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = lbEula2
+          AnchorSideTop.Side = asrCenter
+          Left = 249
+          Height = 16
+          Top = 162
+          Width = 122
+          Caption = 'of Mojang / Microsoft'
+        end
+        object bvIcon1: TBevel
+          Left = 344
+          Height = 82
+          Top = 20
+          Width = 88
+          Anchors = [akTop, akRight]
+        end
+        object lbMaxPlayers: TLabel
+          Left = 20
+          Height = 16
+          Top = 124
+          Width = 104
+          Caption = 'Maximum& players:'
+        end
+        object seMaxPlayers: TSpinEdit
+          Left = 152
+          Height = 29
+          Top = 116
+          Width = 106
+          MaxValue = 99
+          MinValue = 1
+          TabOrder = 2
+          Value = 20
+        end
+        object cbOnlineMode: TCheckBox
+          Left = 20
+          Height = 20
+          Top = 180
+          Width = 295
+          Caption = 'Online-mode (enforce official Minecraft clients)'
+          TabOrder = 3
+        end
+      end
+    end
+    object pgGameplay: TPage
+      Hint = 'Gameplay'
+      HelpType = htKeyword
+      HelpKeyword = 'java|bedrock'
+      ChildSizing.LeftRightSpacing = 20
+      ChildSizing.TopBottomSpacing = 20
+      ChildSizing.VerticalSpacing = 20
+      object gbGameplay: TGroupBox
+        Left = 20
+        Height = 166
+        Top = 20
+        Width = 464
+        Align = alTop
+        AutoSize = True
+        Caption = 'Gameplay'
+        ChildSizing.LeftRightSpacing = 20
+        ChildSizing.TopBottomSpacing = 20
+        ClientHeight = 140
+        ClientWidth = 460
+        TabOrder = 0
+        object lbGameMode: TLabel
+          Left = 20
+          Height = 16
+          Top = 28
+          Width = 70
+          Caption = '&Gamemode:'
+        end
+        object cbGameMode: TComboBox
+          Left = 128
+          Height = 32
+          Top = 60
+          Width = 168
+          ItemHeight = 22
+          ItemIndex = 0
+          Items.Strings = (
+            'peaceful'
+            'normal'
+            'easy'
+            'hard'
+          )
+          TabOrder = 0
+          Text = 'peaceful'
+        end
+        object lbDifficulty: TLabel
+          Left = 20
+          Height = 16
+          Top = 68
+          Width = 55
+          Caption = '&Difficulty:'
+        end
+        object cbDifficulty: TComboBox
+          Left = 128
+          Height = 32
+          Top = 20
+          Width = 168
+          ItemHeight = 22
+          ItemIndex = 0
+          Items.Strings = (
+            'survival'
+            'creative'
+            'adventure'
+            'spectator'
+          )
+          TabOrder = 1
+          Text = 'survival'
+        end
+        object cbForceGMode: TCheckBox
+          Left = 20
+          Height = 20
+          Top = 100
+          Width = 262
+          Caption = '&Enforce selected gamemode to all players'
+          TabOrder = 2
+        end
+        object cbHardcore: TCheckBox
+          Left = 296
+          Height = 20
+          Top = 100
+          Width = 115
+          Caption = 'Hardcore mode '
+          TabOrder = 3
+        end
+      end
+      object gbJavaOnly1: TGroupBox
+        Left = 20
+        Height = 126
+        Top = 206
+        Width = 464
+        Align = alTop
+        AutoSize = True
+        Caption = 'Spawn'
+        ChildSizing.LeftRightSpacing = 20
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.HorizontalSpacing = 20
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 100
+        ClientWidth = 460
+        TabOrder = 1
+        object cbSpawnAnimals: TCheckBox
+          Left = 20
+          Height = 20
+          Top = 50
+          Width = 195
+          BorderSpacing.Top = 50
+          Caption = 'Spawn &animals'
+          TabOrder = 0
+        end
+        object cbSpawnMonsters: TCheckBox
+          Left = 235
+          Height = 20
+          Top = 50
+          Width = 205
+          Caption = '&Spawn monsters'
+          TabOrder = 1
+        end
+        object cbSpawnNPCs: TCheckBox
+          Left = 20
+          Height = 20
+          Top = 70
+          Width = 195
+          Caption = '&Spawn NPCs'
+          TabOrder = 2
+        end
+        object pnSpawnProt: TPanel
+          Left = 20
+          Height = 29
+          Top = 10
+          Width = 420
+          Align = alTop
+          AutoSize = True
+          BevelOuter = bvNone
+          ClientHeight = 29
+          ClientWidth = 420
+          TabOrder = 3
+          object lbSpawnProt: TLabel
+            Left = 0
+            Height = 29
+            Top = 0
+            Width = 104
+            Align = alLeft
+            BorderSpacing.Right = 15
+            Caption = 'Spawn &protection:'
+            FocusControl = seSpawnProt
+            Layout = tlCenter
+          end
+          object seSpawnProt: TSpinEdit
+            Left = 119
+            Height = 29
+            Top = 0
+            Width = 50
+            Align = alLeft
+            TabOrder = 0
+          end
+        end
+        object cbAllowNether: TCheckBox
+          Left = 235
+          Height = 20
+          Top = 70
+          Width = 205
+          Caption = 'Allow net&her'
+          TabOrder = 4
         end
       end
     end
@@ -124,25 +448,26 @@ object dlgServerProperties: TdlgServerProperties
       HelpKeyword = 'java|bedrock'
       ChildSizing.LeftRightSpacing = 20
       ChildSizing.TopBottomSpacing = 20
+      ChildSizing.VerticalSpacing = 20
       ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
       object gbLevel: TGroupBox
         Left = 20
-        Height = 235
+        Height = 190
         Top = 20
         Width = 464
         Caption = '&World'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
         ChildSizing.HorizontalSpacing = 20
-        ChildSizing.VerticalSpacing = 20
+        ChildSizing.VerticalSpacing = 5
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 223
-        ClientWidth = 452
+        ClientHeight = 164
+        ClientWidth = 460
         TabOrder = 0
         object lbLevelName: TLabel
           Left = 20
@@ -164,7 +489,7 @@ object dlgServerProperties: TdlgServerProperties
         object lbLevelSeed: TLabel
           Left = 20
           Height = 29
-          Top = 72
+          Top = 57
           Width = 184
           Caption = 'Level &seed:'
           FocusControl = edLevelSeed
@@ -173,14 +498,14 @@ object dlgServerProperties: TdlgServerProperties
         object edLevelSeed: TEdit
           Left = 224
           Height = 29
-          Top = 72
+          Top = 57
           Width = 216
           TabOrder = 1
         end
         object lbLevelType: TLabel
           Left = 20
           Height = 32
-          Top = 121
+          Top = 91
           Width = 184
           Caption = 'Level &type:'
           FocusControl = cbLevelType
@@ -189,7 +514,7 @@ object dlgServerProperties: TdlgServerProperties
         object cbLevelType: TComboBox
           Left = 224
           Height = 32
-          Top = 121
+          Top = 91
           Width = 216
           ItemHeight = 22
           ItemIndex = 0
@@ -214,18 +539,98 @@ object dlgServerProperties: TdlgServerProperties
         object lbPlaceholder1: TLabel
           Left = 20
           Height = 16
-          Top = 173
+          Top = 128
           Width = 184
           Caption = ' '
         end
         object lbInfoSeedType: TLabel
           Left = 20
           Height = 16
-          Top = 173
+          Top = 128
           Width = 420
           Align = alBottom
           Alignment = taCenter
-          Caption = 'Seed and level type are only affects newly generated worlds.'
+          Caption = 'Seed, level type, and generation are only affects newly generated worlds.'
+        end
+      end
+      object gbJavaOnly2: TGroupBox
+        Left = 20
+        Height = 121
+        Top = 230
+        Width = 464
+        Caption = 'Generation'
+        ChildSizing.LeftRightSpacing = 20
+        ChildSizing.TopBottomSpacing = 10
+        ChildSizing.HorizontalSpacing = 20
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 3
+        ClientHeight = 95
+        ClientWidth = 460
+        TabOrder = 1
+        object cbGenStruct: TCheckBox
+          Left = 20
+          Height = 20
+          Top = 65
+          Width = 140
+          BorderSpacing.Top = 65
+          Caption = 'Generate &structures'
+          TabOrder = 0
+        end
+        object lbGenSettings: TLabel
+          Left = 20
+          Height = 16
+          Top = 10
+          Width = 420
+          Align = alTop
+          Caption = 'Generator &settings:'
+          FocusControl = edGenSettings
+        end
+        object edGenSettings: TEdit
+          Left = 20
+          Height = 29
+          Top = 26
+          Width = 420
+          Align = alTop
+          TabOrder = 1
+          Text = 'edGenSettings'
+        end
+      end
+    end
+    object pgNetwork: TPage
+      Hint = 'Network'
+      HelpType = htKeyword
+      HelpKeyword = 'java|bedrock'
+      ChildSizing.LeftRightSpacing = 20
+      ChildSizing.TopBottomSpacing = 20
+      object gbNetwork: TGroupBox
+        Left = 20
+        Height = 95
+        Top = 20
+        Width = 464
+        Align = alTop
+        AutoSize = True
+        Caption = 'Network'
+        ChildSizing.LeftRightSpacing = 20
+        ChildSizing.TopBottomSpacing = 20
+        ClientHeight = 69
+        ClientWidth = 460
+        TabOrder = 0
+        object lbViewDistance: TLabel
+          Left = 20
+          Height = 16
+          Top = 28
+          Width = 152
+          Caption = 'Maximum &render distance:'
+        end
+        object seViewDistance: TSpinEdit
+          Left = 196
+          Height = 29
+          Top = 20
+          Width = 100
+          MaxValue = 999
+          MinValue = 1
+          TabOrder = 0
+          Value = 1
         end
       end
     end
@@ -239,7 +644,7 @@ object dlgServerProperties: TdlgServerProperties
       ChildSizing.VerticalSpacing = 20
       object gbJava: TGroupBox
         Left = 20
-        Height = 306
+        Height = 375
         Top = 20
         Width = 464
         Align = alClient
@@ -251,7 +656,7 @@ object dlgServerProperties: TdlgServerProperties
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 280
+        ClientHeight = 349
         ClientWidth = 460
         TabOrder = 0
         object pnJavaXm: TPanel
@@ -371,7 +776,7 @@ object dlgServerProperties: TdlgServerProperties
         end
         object mmJVM: TMemo
           Left = 20
-          Height = 47
+          Height = 116
           Top = 213
           Width = 420
           Align = alClient
@@ -391,19 +796,19 @@ object dlgServerProperties: TdlgServerProperties
       ChildSizing.TopBottomSpacing = 20
       object gbAdvanced: TGroupBox
         Left = 20
-        Height = 306
+        Height = 375
         Top = 20
         Width = 464
         Align = alClient
         Caption = '&Advanced'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
-        ClientHeight = 294
-        ClientWidth = 452
+        ClientHeight = 349
+        ClientWidth = 460
         TabOrder = 0
         object veAdvanced: TValueListEditor
           Left = 20
-          Height = 190
+          Height = 259
           Top = 20
           Width = 420
           Align = alClient
@@ -418,7 +823,7 @@ object dlgServerProperties: TdlgServerProperties
         object pnAdvanced: TPanel
           Left = 20
           Height = 50
-          Top = 210
+          Top = 279
           Width = 420
           Align = alBottom
           BevelOuter = bvNone
@@ -465,7 +870,7 @@ object dlgServerProperties: TdlgServerProperties
   end
   object lbPages: TListBox
     Left = 0
-    Height = 346
+    Height = 369
     Top = 0
     Width = 131
     Align = alLeft
@@ -476,7 +881,7 @@ object dlgServerProperties: TdlgServerProperties
   end
   object spSplitter: TSplitter
     Left = 131
-    Height = 346
+    Height = 369
     Top = 0
     Width = 5
   end
