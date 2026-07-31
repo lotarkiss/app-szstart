@@ -35,6 +35,7 @@ type
     procedure edtSearchChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormResize(Sender: TObject);
     procedure lbxServersDrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
   private
@@ -73,6 +74,12 @@ begin
   Servers := nil;   // free the list itself
 
   FreeSQLite();
+end;
+
+procedure TmcServiumMain.FormResize(Sender: TObject);
+begin
+  pnlLeft.Constraints.MaxWidth := ClientWidth * 3 div 10;
+  pnlLeft.Constraints.MinWidth := ClientWidth * 1 div 10;
 end;
 
 procedure TmcServiumMain.lbxServersDrawItem(Control: TWinControl; Index: Integer;

@@ -6,17 +6,17 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  StdCtrls, ValEdit, Spin, uDatabase, uJRE;
+  StdCtrls, ValEdit, Spin, Buttons, uDatabase, uJRE;
 
 type
 
   { TdlgServerProperties }
 
   TdlgServerProperties = class(TForm)
-    btnOpen: TButton;
+    btnOK: TBitBtn;
+    btnCancel: TBitBtn;
     btnMove: TButton;
-    btnCancel: TButton;
-    btnOK: TButton;
+    btnOpen: TButton;
     btnVeClear: TButton;
     btnVeAdd: TButton;
     btnVeDelete: TButton;
@@ -98,6 +98,7 @@ type
     veAdvanced: TValueListEditor;
     procedure btnOpenClick(Sender: TObject);
     procedure btnVeAddClick(Sender: TObject);
+    procedure FormResize(Sender: TObject);
     procedure lbPagesClick(Sender: TObject);
   public
     procedure Load(AServer: TOrmServerEntry);
@@ -164,6 +165,12 @@ begin
     else
       raise Exception.Create('Operation not implemented');
   end;
+end;
+
+procedure TdlgServerProperties.FormResize(Sender: TObject);
+begin
+  lbPages.Constraints.MaxWidth := ClientWidth * 3 div 10;
+  lbPages.Constraints.MinWidth := ClientWidth * 1 div 10;
 end;
 
 procedure TdlgServerProperties.btnOpenClick(Sender: TObject);

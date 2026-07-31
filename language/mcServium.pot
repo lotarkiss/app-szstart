@@ -33,6 +33,7 @@ msgid "value%d"
 msgstr ""
 
 #: tdlgserverproperties.btncancel.caption
+msgctxt "tdlgserverproperties.btncancel.caption"
 msgid "&Cancel"
 msgstr ""
 
@@ -45,6 +46,7 @@ msgid "&Move files..."
 msgstr ""
 
 #: tdlgserverproperties.btnok.caption
+msgctxt "tdlgserverproperties.btnok.caption"
 msgid "&OK"
 msgstr ""
 
