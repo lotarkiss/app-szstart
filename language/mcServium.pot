@@ -116,23 +116,26 @@ msgstr ""
 msgid "World"
 msgstr ""
 
-#: tmcstartmain.acexit.caption
+#: tmcserviummain.acexit.caption
+msgctxt "tmcserviummain.acexit.caption"
 msgid "E&xit"
 msgstr ""
 
-#: tmcstartmain.acserverproperties.caption
+#: tmcserviummain.acserverproperties.caption
+msgctxt "tmcserviummain.acserverproperties.caption"
 msgid "&Properties..."
 msgstr ""
 
-#: tmcstartmain.caption
-msgid "szStart"
+#: tmcserviummain.caption
+msgid "mcServium"
 msgstr ""
 
-#: tmcstartmain.lblwelcomeheader.caption
-msgid "Welcome to szStart!"
+#: tmcserviummain.lblwelcomeheader.caption
+msgid "Welcome to mcServium!"
 msgstr ""
 
-#: tmcstartmain.lblwelcometext.caption
+#: tmcserviummain.lblwelcometext.caption
+msgctxt "tmcserviummain.lblwelcometext.caption"
 msgid ""
 "To start playing Minecraft multiplayer with friends,\n"
 "\n"
@@ -142,7 +145,8 @@ msgid ""
 "For more information use our Getting Started guide."
 msgstr ""
 
-#: tmcstartmain.menuitem1.caption
+#: tmcserviummain.menuitem1.caption
+msgctxt "tmcserviummain.menuitem1.caption"
 msgid "&File"
 msgstr ""
 

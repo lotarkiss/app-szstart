@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  StdCtrls, ValEdit, uDatabase;
+  StdCtrls, ValEdit, uDatabase, uJRE;
 
 type
 
@@ -43,8 +43,12 @@ type
     spSplitter: TSplitter;
     veAdvanced: TValueListEditor;
     procedure btnVeAddClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure lbPagesClick(Sender: TObject);
-  public
+    procedure pnBottomClick(Sender: TObject);
+  public                                     
+    JreBinaries: TJavaBinaries;
     procedure Load(AServer: TOrmServerEntry);
     procedure Save(AServer: TOrmServerEntry);
   end;
@@ -79,6 +83,11 @@ begin
     pgNotebook.PageIndex := (lbPages.Items.Objects[lbPages.ItemIndex] as TPage).PageIndex;
 end;
 
+procedure TdlgServerProperties.pnBottomClick(Sender: TObject);
+begin
+  ShowMessage(JreBinaries.ToString);
+end;
+
 procedure TdlgServerProperties.btnVeAddClick(Sender: TObject);
 var
   Result: array of string;
@@ -105,6 +114,16 @@ begin
     else
       raise Exception.Create('Operation not implemented');
   end;
+end;
+
+procedure TdlgServerProperties.FormCreate(Sender: TObject);
+begin
+  JreBinaries := FindJavaBinaries();
+end;
+
+procedure TdlgServerProperties.FormDestroy(Sender: TObject);
+begin
+  JreBinaries.Free;
 end;
 
 procedure TdlgServerProperties.Load(AServer: TOrmServerEntry);

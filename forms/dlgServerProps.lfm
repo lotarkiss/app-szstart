@@ -9,6 +9,8 @@ object dlgServerProperties: TdlgServerProperties
   ClientWidth = 640
   Position = poMainFormCenter
   LCLVersion = '4.6.0.0'
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   object pnBottom: TPanel
     Left = 0
     Height = 49
@@ -22,6 +24,7 @@ object dlgServerProperties: TdlgServerProperties
     ClientHeight = 49
     ClientWidth = 640
     TabOrder = 0
+    OnClick = pnBottomClick
     object btnCancel: TButton
       Left = 549
       Height = 33
@@ -49,7 +52,7 @@ object dlgServerProperties: TdlgServerProperties
     Height = 346
     Top = 0
     Width = 504
-    PageIndex = 2
+    PageIndex = 0
     Align = alClient
     TabOrder = 1
     object pgGeneral: TPage
@@ -78,8 +81,8 @@ object dlgServerProperties: TdlgServerProperties
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 295
-        ClientWidth = 452
+        ClientHeight = 281
+        ClientWidth = 460
         TabOrder = 0
         object lbName: TLabel
           Left = 20
@@ -240,8 +243,8 @@ object dlgServerProperties: TdlgServerProperties
         Caption = '&Advanced'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
-        ClientHeight = 280
-        ClientWidth = 460
+        ClientHeight = 294
+        ClientWidth = 452
         TabOrder = 0
         object veAdvanced: TValueListEditor
           Left = 20
