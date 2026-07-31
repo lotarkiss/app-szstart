@@ -9,8 +9,6 @@ object dlgServerProperties: TdlgServerProperties
   ClientWidth = 640
   Position = poMainFormCenter
   LCLVersion = '4.6.0.0'
-  OnCreate = FormCreate
-  OnDestroy = FormDestroy
   object pnBottom: TPanel
     Left = 0
     Height = 49
@@ -24,7 +22,6 @@ object dlgServerProperties: TdlgServerProperties
     ClientHeight = 49
     ClientWidth = 640
     TabOrder = 0
-    OnClick = pnBottomClick
     object btnCancel: TButton
       Left = 549
       Height = 33
@@ -52,7 +49,7 @@ object dlgServerProperties: TdlgServerProperties
     Height = 346
     Top = 0
     Width = 504
-    PageIndex = 0
+    PageIndex = 2
     Align = alClient
     TabOrder = 1
     object pgGeneral: TPage
@@ -91,6 +88,7 @@ object dlgServerProperties: TdlgServerProperties
           Width = 160
           Caption = '&Name:'
           FocusControl = edName
+          Layout = tlCenter
         end
         object edName: TEdit
           Left = 200
@@ -153,6 +151,7 @@ object dlgServerProperties: TdlgServerProperties
           Width = 184
           Caption = 'Level &name:'
           FocusControl = cbLevelName
+          Layout = tlCenter
         end
         object cbLevelName: TComboBox
           Left = 224
@@ -169,6 +168,7 @@ object dlgServerProperties: TdlgServerProperties
           Width = 184
           Caption = 'Level &seed:'
           FocusControl = edLevelSeed
+          Layout = tlCenter
         end
         object edLevelSeed: TEdit
           Left = 224
@@ -184,6 +184,7 @@ object dlgServerProperties: TdlgServerProperties
           Width = 184
           Caption = 'Level &type:'
           FocusControl = cbLevelType
+          Layout = tlCenter
         end
         object cbLevelType: TComboBox
           Left = 224
@@ -225,6 +226,160 @@ object dlgServerProperties: TdlgServerProperties
           Align = alBottom
           Alignment = taCenter
           Caption = 'Seed and level type are only affects newly generated worlds.'
+        end
+      end
+    end
+    object pgJava: TPage
+      Hint = 'JRE settings'
+      HelpType = htKeyword
+      HelpKeyword = 'java'
+      ChildSizing.LeftRightSpacing = 20
+      ChildSizing.TopBottomSpacing = 20
+      ChildSizing.HorizontalSpacing = 20
+      ChildSizing.VerticalSpacing = 20
+      object gbJava: TGroupBox
+        Left = 20
+        Height = 306
+        Top = 20
+        Width = 464
+        Align = alClient
+        Caption = 'JRE settings'
+        ChildSizing.LeftRightSpacing = 20
+        ChildSizing.TopBottomSpacing = 20
+        ChildSizing.HorizontalSpacing = 20
+        ChildSizing.VerticalSpacing = 5
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 280
+        ClientWidth = 460
+        TabOrder = 0
+        object pnJavaXm: TPanel
+          Left = 20
+          Height = 63
+          Top = 114
+          Width = 420
+          Align = alTop
+          AutoSize = True
+          BorderSpacing.Bottom = 15
+          BevelOuter = bvNone
+          ChildSizing.HorizontalSpacing = 20
+          ChildSizing.VerticalSpacing = 5
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 63
+          ClientWidth = 420
+          TabOrder = 0
+          object lbXms: TLabel
+            Left = 0
+            Height = 29
+            Top = 0
+            Width = 265
+            Caption = 'Start memory (-Xm&s, MiB):'
+            FocusControl = seXms
+            Layout = tlCenter
+          end
+          object seXms: TSpinEdit
+            Left = 285
+            Height = 29
+            Top = 0
+            Width = 135
+            MaxValue = 99999
+            MinValue = 1
+            TabOrder = 0
+            Value = 1
+          end
+          object lbXmx: TLabel
+            Left = 0
+            Height = 29
+            Top = 34
+            Width = 265
+            Caption = 'Maximum memory (-Xm&x, MiB):'
+            FocusControl = seXmx
+            Layout = tlCenter
+          end
+          object seXmx: TSpinEdit
+            Left = 285
+            Height = 29
+            Top = 34
+            Width = 135
+            MaxValue = 99999
+            MinValue = 1
+            TabOrder = 1
+            Value = 1
+          end
+        end
+        object pnJava: TPanel
+          Left = 20
+          Height = 32
+          Top = 41
+          Width = 420
+          Align = alTop
+          AutoSize = True
+          BevelOuter = bvNone
+          ChildSizing.HorizontalSpacing = 5
+          ClientHeight = 32
+          ClientWidth = 420
+          TabOrder = 1
+          object edJava: TEdit
+            Left = 0
+            Height = 32
+            Top = 0
+            Width = 324
+            Align = alClient
+            TabOrder = 0
+            Text = 'edJava'
+          end
+          object btnJava: TButton
+            Left = 329
+            Height = 32
+            Top = 0
+            Width = 91
+            Align = alRight
+            Caption = '&Select...'
+            TabOrder = 1
+          end
+        end
+        object lbJava: TLabel
+          Left = 20
+          Height = 16
+          Top = 20
+          Width = 420
+          Align = alTop
+          Caption = '&JRE binary path:'
+          FocusControl = edJava
+        end
+        object lbJREVersion: TLabel
+          Left = 20
+          Height = 16
+          Top = 78
+          Width = 420
+          Align = alTop
+          BorderSpacing.Bottom = 20
+          Caption = 'lbJREVersion'
+        end
+        object lbJVM: TLabel
+          Left = 20
+          Height = 16
+          Top = 192
+          Width = 420
+          Align = alTop
+          Caption = 'J&VM arguments:'
+          FocusControl = mmJVM
+        end
+        object mmJVM: TMemo
+          Left = 20
+          Height = 47
+          Top = 213
+          Width = 420
+          Align = alClient
+          Lines.Strings = (
+            'mmJVM'
+          )
+          TabOrder = 2
+          WantReturns = False
         end
       end
     end

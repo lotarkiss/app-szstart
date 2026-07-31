@@ -23,15 +23,13 @@ type
 
   TOrmServerEntry = class(TOrm)
   private
-    FArguments: TStrings;
+    FArguments: RawUtf8;
     FDescription: RawUtf8;
-    FJavaArgs: TStrings;
+    FJavaArgs: RawUtf8;
     FJavaJar: RawUtf8;
     FJavaJre: RawUtf8;
-    FJavaXms: dword;
-    FJavaXmx: dword;
-    FJvmXms: dword;
-    FJvmXmx: dword;
+    FJavaXms: Integer;
+    FJavaXmx: Integer;
     FKind: RawUtf8;
     FName: RawUtf8;
     FPath: RawUtf8;
@@ -45,14 +43,14 @@ type
     property Name: RawUtf8 read FName write FName;
     property Description: RawUtf8 read FDescription write FDescription;
     property Protected: boolean read FProtected write FProtected;
-    property Arguments: TStrings read FArguments write FArguments;
+    property Arguments: RawUtf8 read FArguments write FArguments;
 
     // Kind = 'java'
     property java_jrePath: RawUtf8 read FJavaJre write FJavaJre;
     property java_jarName: RawUtf8 read FJavaJar write FJavaJar;
-    property java_jvmXMS: dword read FJavaXms write FJvmXms;
-    property java_jvmXMX: dword read FJavaXmx write FJvmXmx;
-    property java_jvmArgs: TStrings read FJavaArgs write FJavaArgs;
+    property java_jvmXMS: Integer read FJavaXms write FJavaXms;
+    property java_jvmXMX: Integer read FJavaXmx write FJavaXmx;
+    property java_jvmArgs: RawUtf8 read FJavaArgs write FJavaArgs;
 
     // Kind = 'bedrock'
     // - empty -

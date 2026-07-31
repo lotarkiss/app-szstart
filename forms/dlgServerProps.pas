@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  StdCtrls, ValEdit, uDatabase, uJRE;
+  StdCtrls, ValEdit, Spin, uDatabase, uJRE;
 
 type
 
@@ -18,14 +18,22 @@ type
     btnVeClear: TButton;
     btnVeAdd: TButton;
     btnVeDelete: TButton;
+    btnJava: TButton;
     cbLevelName: TComboBox;
     cbLevelType: TComboBox;
+    edJava: TEdit;
     edLevelSeed: TEdit;
     edName: TEdit;
     gbLevel: TGroupBox;
     gbEntry: TGroupBox;
     gbAdvanced: TGroupBox;
+    gbJava: TGroupBox;
+    lbXms: TLabel;
+    lbXmx: TLabel;
+    lbJREVersion: TLabel;
+    lbJVM: TLabel;
     lbInfoSeedType: TLabel;
+    lbJava: TLabel;
     lbPlaceholder1: TLabel;
     lbLevelName: TLabel;
     lbLevelSeed: TLabel;
@@ -33,22 +41,24 @@ type
     lbName: TLabel;
     lbDescription: TLabel;
     lbPages: TListBox;
+    mmJVM: TMemo;
     mmDescription: TMemo;
+    pnJavaXm: TPanel;
+    pnJava: TPanel;
+    pgJava: TPage;
     pnAdvanced: TPanel;
     pgAdvanced: TPage;
     pgWorld: TPage;
     pgGeneral: TPage;
     pgNotebook: TNotebook;
     pnBottom: TPanel;
+    seXms: TSpinEdit;
+    seXmx: TSpinEdit;
     spSplitter: TSplitter;
     veAdvanced: TValueListEditor;
     procedure btnVeAddClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
     procedure lbPagesClick(Sender: TObject);
-    procedure pnBottomClick(Sender: TObject);
-  public                                     
-    JreBinaries: TJavaBinaries;
+  public
     procedure Load(AServer: TOrmServerEntry);
     procedure Save(AServer: TOrmServerEntry);
   end;
@@ -83,11 +93,6 @@ begin
     pgNotebook.PageIndex := (lbPages.Items.Objects[lbPages.ItemIndex] as TPage).PageIndex;
 end;
 
-procedure TdlgServerProperties.pnBottomClick(Sender: TObject);
-begin
-  ShowMessage(JreBinaries.ToString);
-end;
-
 procedure TdlgServerProperties.btnVeAddClick(Sender: TObject);
 var
   Result: array of string;
@@ -116,16 +121,6 @@ begin
   end;
 end;
 
-procedure TdlgServerProperties.FormCreate(Sender: TObject);
-begin
-  JreBinaries := FindJavaBinaries();
-end;
-
-procedure TdlgServerProperties.FormDestroy(Sender: TObject);
-begin
-  JreBinaries.Free;
-end;
-
 procedure TdlgServerProperties.Load(AServer: TOrmServerEntry);
 var
   I: integer;
@@ -148,6 +143,13 @@ begin
   edName.Text := AServer.Name;
   mmDescription.Text := AServer.Description;
 
+  // Java
+  edJava.Text := AServer.java_jrePath;
+  lbJREVersion.Caption := GetJavaVersion(AServer.java_jrePath);
+  seXms.Value := AServer.java_jvmXMS;
+  seXmx.Value := AServer.java_jvmXMX;
+  mmJVM.Lines.Text := AServer.java_jvmArgs;
+
   // Props
   if AServer.Kind = 'bedrock' then
     Props := TServerProperties.Create(spDefaultsBedrock)
@@ -162,6 +164,7 @@ begin
       if FileExists(Path) then
         LoadFromFile(Path);
 
+      // Level
       cbLevelType.Text := ReadString('level-type', true);
       edLevelSeed.Text := ReadString('level-seed', true);
       cbLevelName.Text := ReadString('level-name', true);
@@ -182,6 +185,12 @@ begin
   AServer.Name := edName.Text;
   AServer.Description := mmDescription.Text;
 
+  // Java
+  AServer.java_jrePath := edJava.Text;
+  AServer.java_jvmXMS  := seXms.Value;
+  AServer.java_jvmXMX  := seXmx.Value;
+  AServer.java_jvmArgs := mmJVM.Lines.Text;
+
   // Db
   Server.Orm.Update(AServer);
 
@@ -197,6 +206,7 @@ begin
     try
       AddStrings(veAdvanced.Strings);
 
+      // Level
       WriteString('level-type', cbLevelType.Text);
       WriteString('level-seed', edLevelSeed.Text);
       WriteString('level-name', cbLevelName.Text);

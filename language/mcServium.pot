@@ -36,6 +36,10 @@ msgstr ""
 msgid "&Cancel"
 msgstr ""
 
+#: tdlgserverproperties.btnjava.caption
+msgid "&Select..."
+msgstr ""
+
 #: tdlgserverproperties.btnok.caption
 msgid "&OK"
 msgstr ""
@@ -60,6 +64,10 @@ msgstr ""
 msgid "DEFAULT"
 msgstr ""
 
+#: tdlgserverproperties.edjava.text
+msgid "edJava"
+msgstr ""
+
 #: tdlgserverproperties.edname.text
 msgid "edName"
 msgstr ""
@@ -72,6 +80,11 @@ msgstr ""
 msgid "&General"
 msgstr ""
 
+#: tdlgserverproperties.gbjava.caption
+msgctxt "tdlgserverproperties.gbjava.caption"
+msgid "JRE settings"
+msgstr ""
+
 #: tdlgserverproperties.gblevel.caption
 msgid "&World"
 msgstr ""
@@ -82,6 +95,18 @@ msgstr ""
 
 #: tdlgserverproperties.lbinfoseedtype.caption
 msgid "Seed and level type are only affects newly generated worlds."
+msgstr ""
+
+#: tdlgserverproperties.lbjava.caption
+msgid "&JRE binary path:"
+msgstr ""
+
+#: tdlgserverproperties.lbjreversion.caption
+msgid "lbJREVersion"
+msgstr ""
+
+#: tdlgserverproperties.lbjvm.caption
+msgid "J&VM arguments:"
 msgstr ""
 
 #: tdlgserverproperties.lblevelname.caption
@@ -104,12 +129,25 @@ msgstr ""
 msgid " "
 msgstr ""
 
+#: tdlgserverproperties.lbxms.caption
+msgid "Start memory (-Xm&s, MiB):"
+msgstr ""
+
+#: tdlgserverproperties.lbxmx.caption
+msgid "Maximum memory (-Xm&x, MiB):"
+msgstr ""
+
 #: tdlgserverproperties.pgadvanced.hint
 msgid "Advanced"
 msgstr ""
 
 #: tdlgserverproperties.pggeneral.hint
 msgid "General"
+msgstr ""
+
+#: tdlgserverproperties.pgjava.hint
+msgctxt "tdlgserverproperties.pgjava.hint"
+msgid "JRE settings"
 msgstr ""
 
 #: tdlgserverproperties.pgworld.hint

@@ -21,6 +21,7 @@ type
   end;
 
 function FindJavaBinaries(): TJavaBinaries;
+function GetJavaVersion(const APath: string): string;
 
 implementation
 
@@ -115,6 +116,20 @@ begin
   finally
     Paths.Free;
   end;
+end;
+
+function GetJavaVersion(const APath: string): string;
+var
+  VerStr: string;
+begin
+  if FileExists(APath) and
+     {$IFDEF UNIX}
+     (fpAccess(PChar(APath), X_OK) = 0) and
+     {$ENDIF}
+     RunCommand(APath + ' --version', VerStr) then
+    Result := VerStr
+  else
+    Result := '';
 end;
 
 { TJavaBinaries }
