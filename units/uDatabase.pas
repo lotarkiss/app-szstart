@@ -63,7 +63,6 @@ type
     // Kind = 'rcon'
     property rcon_remoteHost: RawUtf8 read FRconHost write FRconHost;
     property rcon_remotePort: word read FRconPort write FRconPort;
-    property rcon_remoteUser: RawUtf8 read FRconUser write FRconUser;
     // ... just do not store password currently ...
   end;
 

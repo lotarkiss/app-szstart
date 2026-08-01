@@ -36,6 +36,7 @@ type
     cbSpawnNPCs: TCheckBox;
     cbAllowNether: TCheckBox;
     edGenSettings: TEdit;
+    edRconHostname: TEdit;
     edJava: TEdit;
     edLevelSeed: TEdit;
     edName: TEdit;
@@ -48,6 +49,9 @@ type
     gbGameplay: TGroupBox;
     gbNetwork: TGroupBox;
     gbJavaOnly1: TGroupBox;
+    gbServer1: TGroupBox;
+    lbRconPort: TLabel;
+    lbRconHostname: TLabel;
     lbGenSettings: TLabel;
     lbSpawnProt: TLabel;
     lbGameMode: TLabel;
@@ -76,6 +80,7 @@ type
     mmJVM: TMemo;
     mmDescription: TMemo;
     mmMotd: TMemo;
+    pgRCON: TPage;
     pnSpawnProt: TPanel;
     pgNetwork: TPage;
     pgGameplay: TPage;
@@ -94,6 +99,7 @@ type
     seXmx: TSpinEdit;
     seMaxPlayers: TSpinEdit;
     seSpawnProt: TSpinEdit;
+    seRconPort: TSpinEdit;
     spSplitter: TSplitter;
     veAdvanced: TValueListEditor;
     procedure btnOpenClick(Sender: TObject);
@@ -213,6 +219,10 @@ begin
   seXmx.Value := AServer.java_jvmXMX;
   mmJVM.Lines.Text := AServer.java_jvmArgs;
 
+  // RCON
+  edRconHostname.Text := AServer.rcon_remoteHost;
+  seRconPort.Value := AServer.rcon_remotePort;
+
   // Props
   if AServer.Kind = 'bedrock' then
     Props := TServerProperties.Create(spDefaultsBedrock)
@@ -294,6 +304,10 @@ begin
   AServer.java_jvmXMS  := seXms.Value;
   AServer.java_jvmXMX  := seXmx.Value;
   AServer.java_jvmArgs := mmJVM.Lines.Text;
+
+  // RCON
+  AServer.rcon_remoteHost := edRconHostname.Text;
+  AServer.rcon_remotePort := seRconPort.Value;
 
   // Db
   Server.Orm.Update(AServer);
