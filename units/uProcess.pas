@@ -45,6 +45,8 @@ type
 
 implementation
 
+uses Math;
+
 { TProcessServer }
 
 constructor TProcessServer.Create(AServer: TOrmServerEntry);
@@ -55,22 +57,22 @@ end;
 
 procedure TProcessServer.Run();
 const
-  BufSize = 65536;
+  BufSize = 2048;
 var
-  Buffer: array [0..BufSize] of char;
+  Buffer: string;
   BytesRead: integer;
 begin
-  WriteLn('run1', Assigned(FProcess), ' ', (FProcess.Running));
+  {$ifdef FPC_HAS_FEATURE_ANSISTRINGS}
   if Assigned(FProcess) and (FProcess.Running) then begin
-    WriteLn('run2');
-    repeat
-      BytesRead := FProcess.Output.Read(Buffer[0], BufSize);
-      Buffer[BytesRead] := #0;
-      Log.Text := Log.Text + PChar(@(Buffer[0]));
-    until BytesRead = 0;
-    WriteLn(Log.Text);
-    WriteLn('run3');
+
+    SetLength(Buffer, BufSize + 1);
+    BytesRead := FProcess.Output.Read(Buffer[1], Min(BufSize, FProcess.Output.NumBytesAvailable));
+    SetLength(Buffer, BytesRead); //assume sizeof(char) = 1
+    Log.Text := Log.Text + buffer;
+    if Assigned(OnServerResponse) then
+      OnServerResponse(Self, Buffer);
   end;
+  {$endif}
 end;
 
 procedure TProcessServer.Kill(const AExitCode: integer);
@@ -102,6 +104,12 @@ end;
 procedure TProcessServer.Prepare();
 begin
   inherited Prepare();
+
+  // check for dead process
+  if Assigned(FProcess) and (not FProcess.Running) then
+    FreeAndNil(FProcess);
+
+  // now that we cleaned up...
   Assert(not Assigned(FProcess), 'The process is exists, maybe already running?');
 
   FProcess := TProcess.Create(nil);

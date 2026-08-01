@@ -34,6 +34,7 @@ type
     FServer: TCustomServer;
   public
     procedure UpdateFrame(const AServer: TCustomServer);
+    procedure DoServerResponse(Sender: TObject; const Data: string);
 
     property Server: TCustomServer read FServer write FServer;
   end;
@@ -87,6 +88,12 @@ begin
     btnOpen.Hint := '';
     mmLog.Clear;
   end;
+end;
+
+procedure TframeServerLog.DoServerResponse(Sender: TObject; const Data: string);
+begin
+  if Sender = Server then
+    mmLog.Lines.Text := mmLog.Lines.Text + Data;
 end;
 
 end.

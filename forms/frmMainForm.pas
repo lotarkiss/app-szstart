@@ -127,7 +127,8 @@ begin
       nbtPages.PageIndex := pgServer.PageIndex;
       Logs.UpdateFrame(
         Servers.CreateOrFind(
-          lbxServers.Items.Objects[lbxServers.ItemIndex] as TOrmServerEntry
+          lbxServers.Items.Objects[lbxServers.ItemIndex] as TOrmServerEntry,
+          @(Logs.DoServerResponse)
         )
       );
     end;
@@ -234,9 +235,6 @@ begin
 
   lbxServers.Invalidate(); // ask for repaint
 
-  // Update frame
-  Logs.UpdateFrame(Logs.Server);
-
   // Then buttons
   if Assigned(Logs.Server) then begin
     btnStart.Enabled := not Logs.Server.IsRunning;
@@ -274,7 +272,7 @@ begin
     Servers.FindRefByUUID(Query); // assign entries to new indices
     for Server in Query do begin
       WriteLn(Server.Path);
-      if DirectoryExists(Server.Path) then
+      if (Server.Kind = 'rcon') or DirectoryExists(Server.Path) then
         lbxServers.Items.AddObject(Server.UUID + '=' + serverStopped, Server);
     end
   end

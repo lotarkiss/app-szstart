@@ -119,6 +119,7 @@ var
   Payload: PRconPayload;
   pDest: PByte;
   Size, Tmp, TotalRead: dword;
+  Data: string;
 begin
   {$ifdef FPC_HAS_FEATURE_ANSISTRINGS} // assume sizeof(char) = sizeof(byte)     
   if Assigned(FSocket) then begin
@@ -147,7 +148,10 @@ begin
 
           // Fix ending and cstr null terminator, just in case...
           FillChar(PByte(Payload)[dwLength + SizeOf(dword) - RconFooter], RconFooter, #0);
-          Log.Text := Log.Text + PChar(@szData[0]);
+          Data := PChar(@szData[0]);
+          Log.Text := Log.Text + Data;
+          if Assigned(OnServerResponse) then
+            OnServerResponse(Self, Data);
         end;
       finally
         FreeMem(Payload);

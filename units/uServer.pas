@@ -9,6 +9,9 @@ uses
 
 type
 
+  // to avoid reloading full memo every time...
+  TServerResponseEvent = procedure (Sender: TObject; const Data: string) of object;
+
   { TCustomServer }
 
   TCustomServer = class abstract
@@ -16,6 +19,7 @@ type
     FLog: TStrings;
     FName: string;
     FServer: TOrmServerEntry;
+    FServerResponse: TServerResponseEvent;
     FUUID: string;
   protected
     procedure Prepare(); virtual;     
@@ -37,6 +41,7 @@ type
     property Server: TOrmServerEntry read FServer;
     property Log: TStrings read FLog;
     property IsRunning: boolean read GetRunning;
+    property OnServerResponse: TServerResponseEvent read FServerResponse write FServerResponse;
   end;
 
   { TServerList }
@@ -46,7 +51,7 @@ type
     procedure FindRefByUUID(const List: IOrmServerEntries);
 
     function Find(const Server: TOrmServerEntry; out Entry: TCustomServer): boolean;
-    function CreateOrFind(const Server: TOrmServerEntry): TCustomServer;
+    function CreateOrFind(const Server: TOrmServerEntry; Event: TServerResponseEvent = nil): TCustomServer;
   end;
               
   TServerClass   = class of TCustomServer;
@@ -127,7 +132,8 @@ begin
     end;
 end;
 
-function TServerList.CreateOrFind(const Server: TOrmServerEntry): TCustomServer;
+function TServerList.CreateOrFind(const Server: TOrmServerEntry;
+  Event: TServerResponseEvent): TCustomServer;
 var
   I: integer;
   C: TServerClass;
@@ -139,8 +145,10 @@ begin
     exit; // found, exit...
 
   // Create
-  if ServerClasses.TryGetValue(Server.Kind, C) then
+  if ServerClasses.TryGetValue(Server.Kind, C) then begin
     Result := Items[Add(C.Create(Server))];
+    Result.OnServerResponse := Event;
+  end;
 end;
 
 initialization
