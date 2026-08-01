@@ -24,6 +24,7 @@ type
   TOrmServerEntry = class(TOrm)
   private
     FArguments: RawUtf8;
+    FBedrockExe: RawUtf8;
     FDescription: RawUtf8;
     FJavaArgs: RawUtf8;
     FJavaJar: RawUtf8;
@@ -32,6 +33,7 @@ type
     FJavaXmx: Integer;
     FKind: RawUtf8;
     FName: RawUtf8;
+    FNetworkMode: RawUtf8;
     FPath: RawUtf8;
     FProtected: boolean;
     FRconHost: RawUtf8;
@@ -44,6 +46,7 @@ type
     property Description: RawUtf8 read FDescription write FDescription;
     property Protected: boolean read FProtected write FProtected;
     property Arguments: RawUtf8 read FArguments write FArguments;
+    property NetworkMode: RawUtf8 read FNetworkMode write FNetworkMode;
 
     // Kind = 'java'
     property java_jrePath: RawUtf8 read FJavaJre write FJavaJre;
@@ -53,7 +56,7 @@ type
     property java_jvmArgs: RawUtf8 read FJavaArgs write FJavaArgs;
 
     // Kind = 'bedrock'
-    // - empty -
+    property bedrock_serverPath: RawUtf8 read FBedrockExe write FBedrockExe;
 
     // Kind = 'rcon'
     property rcon_remoteHost: RawUtf8 read FRconHost write FRconHost;
