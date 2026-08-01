@@ -21,16 +21,16 @@ object mcServiumMain: TmcServiumMain
   end
   object splSplitter: TSplitter
     Left = 213
-    Height = 348
-    Top = 56
+    Height = 356
+    Top = 48
     Width = 5
   end
   object nbtPages: TNotebook
     Left = 223
-    Height = 338
-    Top = 61
+    Height = 346
+    Top = 53
     Width = 462
-    PageIndex = 1
+    PageIndex = 0
     Align = alClient
     BorderSpacing.Around = 5
     TabOrder = 2
@@ -50,7 +50,7 @@ object mcServiumMain: TmcServiumMain
       end
       object lblWelcomeText: TLabel
         Left = 20
-        Height = 260
+        Height = 268
         Top = 58
         Width = 422
         Align = alClient
@@ -63,20 +63,59 @@ object mcServiumMain: TmcServiumMain
   end
   object pnlToolbar: TPanel
     Left = 0
-    Height = 56
+    Height = 48
     Top = 0
     Width = 690
     Align = alTop
+    AutoSize = True
+    ChildSizing.LeftRightSpacing = 10
+    ChildSizing.TopBottomSpacing = 10
+    ChildSizing.HorizontalSpacing = 10
+    ChildSizing.VerticalSpacing = 10
+    ChildSizing.Layout = cclTopToBottomThenLeftToRight
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 48
+    ClientWidth = 690
     TabOrder = 3
+    object btnStart: TSpeedButton
+      Tag = 1
+      Left = 11
+      Height = 26
+      Top = 11
+      Width = 40
+      Caption = '&Start'
+      Enabled = False
+      OnClick = btnStartClick
+    end
+    object btnStop: TSpeedButton
+      Tag = 2
+      Left = 61
+      Height = 26
+      Top = 11
+      Width = 37
+      Caption = '&Stop'
+      Enabled = False
+      OnClick = btnStartClick
+    end
+    object btnKill: TSpeedButton
+      Tag = 3
+      Left = 108
+      Height = 26
+      Top = 11
+      Width = 28
+      Caption = '&Kill'
+      Enabled = False
+      OnClick = btnStartClick
+    end
   end
   object pnlLeft: TPanel
     Left = 5
-    Height = 338
-    Top = 61
+    Height = 346
+    Top = 53
     Width = 203
     Align = alLeft
     BorderSpacing.Around = 5
-    ClientHeight = 338
+    ClientHeight = 346
     ClientWidth = 203
     TabOrder = 4
     object edtSearch: TEdit
@@ -86,10 +125,11 @@ object mcServiumMain: TmcServiumMain
       Width = 201
       Align = alTop
       TabOrder = 0
+      OnChange = edtSearchChange
     end
     object lbxServers: TListBox
       Left = 1
-      Height = 307
+      Height = 315
       Top = 30
       Width = 201
       Align = alClient
@@ -129,8 +169,22 @@ object mcServiumMain: TmcServiumMain
   object pmList: TPopupMenu
     Left = 352
     Top = 256
-    object MenuItem3: TMenuItem
+    object miProperties: TMenuItem
       Action = acServerProperties
     end
+  end
+  object tmDance: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = tmDanceTimer
+    Left = 288
+    Top = 256
+  end
+  object tmPoll: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = tmPollTimer
+    Left = 288
+    Top = 321
   end
 end

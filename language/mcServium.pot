@@ -32,6 +32,14 @@ msgstr ""
 msgid "value%d"
 msgstr ""
 
+#: frmmainform.serverrunning
+msgid "Running"
+msgstr ""
+
+#: frmmainform.serverstopped
+msgid "Stopped"
+msgstr ""
+
 #: tdlgserverproperties.btncancel.caption
 msgctxt "tdlgserverproperties.btncancel.caption"
 msgid "&Cancel"
@@ -298,10 +306,6 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: tframeserverlog.cbcommand.text
-msgid "cbCommand"
-msgstr ""
-
 #: tframeserverlog.lbcommand.caption
 msgid "Command:"
 msgstr ""
@@ -326,6 +330,21 @@ msgstr ""
 #: tmcserviummain.acserverproperties.caption
 msgctxt "tmcserviummain.acserverproperties.caption"
 msgid "&Properties..."
+msgstr ""
+
+#: tmcserviummain.btnkill.caption
+msgctxt "tmcserviummain.btnkill.caption"
+msgid "&Kill"
+msgstr ""
+
+#: tmcserviummain.btnstart.caption
+msgctxt "tmcserviummain.btnstart.caption"
+msgid "&Start"
+msgstr ""
+
+#: tmcserviummain.btnstop.caption
+msgctxt "tmcserviummain.btnstop.caption"
+msgid "&Stop"
 msgstr ""
 
 #: tmcserviummain.caption

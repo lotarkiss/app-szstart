@@ -48,6 +48,7 @@ type
     FSocket: TInetSocket;
   protected
     procedure Prepare(); override;
+    function GetRunning: boolean; override;
   public
     constructor Create(AServer: TOrmServerEntry); override;
     destructor Destroy; override;
@@ -91,7 +92,19 @@ begin
   // use Password := 'asd' before Start()!
   Assert(FPassword <> '', 'The RCON password is not set, please specify one.');
 
-  FSocket   := TInetSocket.Create(Server.rcon_remoteHost, Server.rcon_remotePort);
+  try
+    FSocket   := TInetSocket.Create(Server.rcon_remoteHost, Server.rcon_remotePort);
+  except
+    on E: Exception do begin
+      FreeAndNil(FSocket);
+      raise E;
+    end
+  end;
+end;
+
+function TRconServer.GetRunning: boolean;
+begin
+  Result := Assigned(FSocket);
 end;
 
 procedure TRconServer.Start();

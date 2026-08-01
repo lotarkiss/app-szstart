@@ -18,7 +18,8 @@ type
     FServer: TOrmServerEntry;
     FUUID: string;
   protected
-    procedure Prepare(); virtual;
+    procedure Prepare(); virtual;     
+    function GetRunning: boolean; virtual; abstract;
   public
     constructor Create(AServer: TOrmServerEntry); virtual; reintroduce;
 
@@ -28,20 +29,23 @@ type
     procedure Kill(const AExitCode: integer = 1); virtual; abstract;
     procedure Send(ACommand: string); virtual; abstract;
 
-    procedure RefreshByUUID(const List: IOrmServerEntries);
+    procedure FindRefByUUID(const List: IOrmServerEntries);
 
     destructor Destroy; override;
 
     property UUID: string read FUUID;
     property Server: TOrmServerEntry read FServer;
     property Log: TStrings read FLog;
+    property IsRunning: boolean read GetRunning;
   end;
 
   { TServerList }
 
   TServerList = class(specialize TObjectList<TCustomServer>)
   public
-    procedure RefreshByUUID(const List: IOrmServerEntries);
+    procedure FindRefByUUID(const List: IOrmServerEntries);
+
+    function Find(const Server: TOrmServerEntry; out Entry: TCustomServer): boolean;
     function CreateOrFind(const Server: TOrmServerEntry): TCustomServer;
   end;
               
@@ -58,8 +62,8 @@ implementation
 constructor TCustomServer.Create(AServer: TOrmServerEntry);
 begin
   inherited Create;          
-  WriteLn('TCustomServer.Create');
-  FServer   := AServer;
+  //WriteLn('TCustomServer.Create');
+  FServer  := AServer;
   FUUID    := AServer.UUID;
   FLog     := TStringList.Create;
 end;
@@ -79,31 +83,48 @@ begin
   Send('stop');
 end;
 
-procedure TCustomServer.RefreshByUUID(const List: IOrmServerEntries);
+procedure TCustomServer.FindRefByUUID(const List: IOrmServerEntries);
 var
   Entry: TOrmServerEntry;
 begin
-  FServer := nil;
-  for Entry in List do
-    if Entry.UUID = FUUID then
-      FServer := Entry;
+  FServer := nil;    
+  if Assigned(List) then
+    for Entry in List do
+      if Entry.UUID = FUUID then
+        FServer := Entry;
 end;
 
 destructor TCustomServer.Destroy;
 begin              
-  WriteLn('TCustomServer.Free');
+  //WriteLn('TCustomServer.Free');
   FLog.Free;
   inherited Destroy;
 end;
 
 { TServerList }
 
-procedure TServerList.RefreshByUUID(const List: IOrmServerEntries);
+procedure TServerList.FindRefByUUID(const List: IOrmServerEntries);
 var
   I: integer;
 begin
   for I := 0 to Count - 1 do
-    Items[I].RefreshByUUID(List);
+    Items[I].FindRefByUUID(List);
+end;
+
+function TServerList.Find(const Server: TOrmServerEntry; out
+  Entry: TCustomServer): boolean;
+var
+  I: integer;
+begin
+  Entry  := nil;
+  Result := false;
+  for I := 0 to Count - 1 do
+    if Server.UUID = Items[I].UUID then begin
+      //WriteLn(Server.UUID, ' is ServerList[', I, ']');
+      Entry  := Items[I];
+      Result := true;
+      break;
+    end;
 end;
 
 function TServerList.CreateOrFind(const Server: TOrmServerEntry): TCustomServer;
@@ -112,12 +133,10 @@ var
   C: TServerClass;
 begin
   Result := nil;
+
   // Find
-  for I := 0 to Count - 1 do
-    if Server.UUID = Items[I].UUID then begin
-      Result := Items[I];
-      exit; // found, exit...
-    end;
+  if Find(Server, Result) then
+    exit; // found, exit...
 
   // Create
   if ServerClasses.TryGetValue(Server.Kind, C) then

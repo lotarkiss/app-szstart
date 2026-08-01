@@ -109,6 +109,7 @@
         <Filename Value="frames/frmServerLog.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frameServerLog"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
       </Unit>
       <Unit>

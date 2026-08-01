@@ -26,15 +26,21 @@ type
     pnBottom: TPanel;
     pnClient: TPanel;
     spRight: TSplitter;
+    procedure btnCommandClick(Sender: TObject);
     procedure btnOpenClick(Sender: TObject);
+    procedure cbCommandKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
+      );
   private
-  public              
-    procedure UpdateFrame(const Server: TCustomServer);
+    FServer: TCustomServer;
+  public
+    procedure UpdateFrame(const AServer: TCustomServer);
+
+    property Server: TCustomServer read FServer write FServer;
   end;
 
 implementation
 
-uses LCLIntf;
+uses LCLType, LCLIntf;
 
 {$R *.lfm}
 
@@ -45,17 +51,42 @@ begin
   OpenDocument((Sender as TSpeedButton).Hint);
 end;
 
-procedure TframeServerLog.UpdateFrame(const Server: TCustomServer);
+procedure TframeServerLog.cbCommandKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
 begin
-  if Assigned(Server.Server) then begin
-    lbTitle.Caption := Server.Server.Name;
-    btnOpen.Hint := ExcludeTrailingPathDelimiter(Server.Server.Path);
+  if Key = VK_RETURN then
+    btnCommandClick(btnCommand);
+end;
+
+procedure TframeServerLog.btnCommandClick(Sender: TObject);
+begin
+  FServer.Send(cbCommand.Text);
+
+  cbCommand.Text := '';
+  cbCommand.SetFocus();
+end;
+
+procedure TframeServerLog.UpdateFrame(const AServer: TCustomServer);
+begin
+  FServer := AServer;
+
+  if Assigned(FServer) then begin
+    if Assigned(FServer.Server) then begin
+      lbTitle.Caption := FServer.Server.Name;
+      btnOpen.Hint := ExcludeTrailingPathDelimiter(FServer.Server.Path);
+    end
+    else begin
+      lbTitle.Caption := FServer.UUID;
+      btnOpen.Hint := '';
+    end;
+
+    mmLog.Lines.Assign(FServer.Log);
   end
-  else begin    
-    lbTitle.Caption := Server.UUID;
+  else begin
+    lbTitle.Caption := '';     
     btnOpen.Hint := '';
+    mmLog.Clear;
   end;
-  mmLog.Lines.Assign(Server.Log);
 end;
 
 end.
