@@ -92,15 +92,8 @@ begin
   // use Password := 'asd' before Start()!
   Assert(FPassword <> '', 'The RCON password is not set, please specify one.');
 
-  try
-    FSocket   := TInetSocket.Create(Server.rcon_remoteHost, Server.rcon_remotePort, 10);
-    FSocket.IOTimeout := 10;
-  except
-    on E: Exception do begin
-      FreeAndNil(FSocket);
-      raise E;
-    end
-  end;
+  FSocket   := TInetSocket.Create(Server.rcon_remoteHost, Server.rcon_remotePort, Server.rcon_connectTimeout);
+  FSocket.IOTimeout := Server.rcon_ioTimeout;
 end;
 
 function TRconServer.GetRunning: boolean;
@@ -207,7 +200,14 @@ begin
         dwType     := PayloadType;
         Move(ACommand[1], szData[0], length(ACommand)); // including null terminator, and bPad = 0
       end;
-      Socket.Write(Payload^, Size);
+      try
+        Socket.Write(Payload^, Size);
+      except
+        on E: ESocketError do begin
+          FreeAndNil(FSocket);
+          raise E;
+        end
+      end
     finally
       FreeMem(Payload);
     end;
