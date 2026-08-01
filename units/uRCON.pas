@@ -93,7 +93,8 @@ begin
   Assert(FPassword <> '', 'The RCON password is not set, please specify one.');
 
   try
-    FSocket   := TInetSocket.Create(Server.rcon_remoteHost, Server.rcon_remotePort);
+    FSocket   := TInetSocket.Create(Server.rcon_remoteHost, Server.rcon_remotePort, 10);
+    FSocket.IOTimeout := 10;
   except
     on E: Exception do begin
       FreeAndNil(FSocket);
@@ -118,12 +119,20 @@ procedure TRconServer.Run();
 var
   Payload: PRconPayload;
   pDest: PByte;
-  Size, Tmp, TotalRead: dword;
+  Tmp: integer;
+  Size, TotalRead: dword;
   Data: string;
 begin
   {$ifdef FPC_HAS_FEATURE_ANSISTRINGS} // assume sizeof(char) = sizeof(byte)     
   if Assigned(FSocket) then begin
     Tmp := Socket.Read(Size, sizeOf(dword));
+    if Tmp < 0 then // no data available yet
+      exit;
+    if Tmp = 0 then begin // server is down
+      FreeAndNil(FSocket);
+      exit;
+    end;
+
     if Size > RconSizeMaxReceive then // malformed packet
       exit;
 

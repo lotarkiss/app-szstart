@@ -134,6 +134,10 @@ msgstr ""
 msgid "edName"
 msgstr ""
 
+#: tdlgserverproperties.edrconhostname.text
+msgid "edRconHostname"
+msgstr ""
+
 #: tdlgserverproperties.gbadvanced.caption
 msgid "&Advanced"
 msgstr ""
@@ -171,6 +175,11 @@ msgstr ""
 
 #: tdlgserverproperties.gbserver.caption
 msgctxt "tdlgserverproperties.gbserver.caption"
+msgid "Server"
+msgstr ""
+
+#: tdlgserverproperties.gbserver1.caption
+msgctxt "tdlgserverproperties.gbserver1.caption"
 msgid "Server"
 msgstr ""
 
@@ -254,6 +263,14 @@ msgstr ""
 msgid " "
 msgstr ""
 
+#: tdlgserverproperties.lbrconhostname.caption
+msgid "Address / hostname (IPv4):"
+msgstr ""
+
+#: tdlgserverproperties.lbrconport.caption
+msgid "&Port:"
+msgstr ""
+
 #: tdlgserverproperties.lbspawnprot.caption
 msgid "Spawn &protection:"
 msgstr ""
@@ -291,6 +308,11 @@ msgstr ""
 #: tdlgserverproperties.pgnetwork.hint
 msgctxt "tdlgserverproperties.pgnetwork.hint"
 msgid "Network"
+msgstr ""
+
+#: tdlgserverproperties.pgrcon.hint
+msgctxt "tdlgserverproperties.pgrcon.hint"
+msgid "Server"
 msgstr ""
 
 #: tdlgserverproperties.pgserver.hint

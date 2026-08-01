@@ -223,6 +223,11 @@ begin
   edRconHostname.Text := AServer.rcon_remoteHost;
   seRconPort.Value := AServer.rcon_remotePort;
 
+  // when rcon is used we're done here...
+  if AServer.Kind = 'rcon' then
+    exit;
+  // otherwise we have server.properties and eula.txt
+
   // Props
   if AServer.Kind = 'bedrock' then
     Props := TServerProperties.Create(spDefaultsBedrock)
@@ -311,6 +316,11 @@ begin
 
   // Db
   Server.Orm.Update(AServer);
+
+  // when rcon is used we're done here...
+  if AServer.Kind = 'rcon' then
+    exit;                        
+  // otherwise we have server.properties and eula.txt
 
   // Props
   if AServer.Kind = 'bedrock' then

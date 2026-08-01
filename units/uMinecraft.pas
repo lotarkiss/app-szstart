@@ -92,13 +92,15 @@ end;
 function TServerProperties.ReadInteger(const AField: string;
   const ReadAndDelete: boolean): integer;
 begin
-  Result := StrToInt(ReadString(AField, ReadAndDelete));
+  if not TryStrToInt(ReadString(AField, ReadAndDelete), Result) then
+    Result := 0;
 end;
 
 function TServerProperties.ReadFloat(const AField: string;
   const ReadAndDelete: boolean): single;
 begin
-  Result := StrToFloat(ReadString(AField, ReadAndDelete));
+  if not TryStrToFloat(ReadString(AField, ReadAndDelete), Result) then
+    Result := 0;
 end;
 
 procedure TServerProperties.WriteString(const AField: string;

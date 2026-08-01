@@ -62,7 +62,7 @@ var
 
 implementation
 
-uses uPlatform, uExamples, dlgServerProps, LCLType;
+uses uPlatform, uExamples, dlgServerProps, LCLType, uRCON;
 
 {$R *.lfm}
 
@@ -210,7 +210,12 @@ procedure TmcServiumMain.btnStartClick(Sender: TObject);
 begin
   if Assigned(Logs.Server) then
     case (Sender as TComponent).Tag of
-      1: Logs.Server.Start();
+      1: begin
+           if Logs.Server is TRconServer then
+             (Logs.Server as TRconServer).Password := InputBox('foo', 'yes', 'asd123');
+
+           Logs.Server.Start();
+         end;
       2: Logs.Server.Stop();
       3: Logs.Server.Kill();
       else
