@@ -16,8 +16,9 @@ type
     FProcess: TProcess;
   protected
     procedure Prepare(); override;
+    function GetRunning: boolean; override;
   public
-    constructor Create(AServer: TOrmServerEntry); override;      
+    constructor Create(AServer: TOrmServerEntry); override;
     destructor Destroy; override;
 
     procedure Start(); override;
@@ -53,24 +54,29 @@ begin
 end;
 
 procedure TProcessServer.Run();
+const
+  BufSize = 65536;
 var
-  S: TStringStream;
+  Buffer: array [0..BufSize] of char;
+  BytesRead: integer;
 begin
-  if Assigned(FProcess) and (FProcess.Active) then begin
-    S := TStringStream.Create;
-    try
-      S.LoadFromStream(FProcess.Output);
-      Log.Text := Log.Text + S.DataString;
-    finally
-      S.Free;
-    end;
+  WriteLn('run1', Assigned(FProcess), ' ', (FProcess.Running));
+  if Assigned(FProcess) and (FProcess.Running) then begin
+    WriteLn('run2');
+    repeat
+      BytesRead := FProcess.Output.Read(Buffer[0], BufSize);
+      Buffer[BytesRead] := #0;
+      Log.Text := Log.Text + PChar(@(Buffer[0]));
+    until BytesRead = 0;
+    WriteLn(Log.Text);
+    WriteLn('run3');
   end;
 end;
 
 procedure TProcessServer.Kill(const AExitCode: integer);
 begin
   if Assigned(FProcess) then begin
-    if FProcess.Active then
+    if FProcess.Running then
       FProcess.Terminate(AExitCode);
 
     FreeAndNil(FProcess);
@@ -79,7 +85,7 @@ end;
 
 procedure TProcessServer.Send(ACommand: string);
 begin
-  if Assigned(FProcess) and (FProcess.Active) then begin
+  if Assigned(FProcess) and (FProcess.Running) then begin
     ACommand := ACommand + LineEnding;
     FProcess.Input.Write(ACommand[1], length(ACommand) * SizeOf(char));
   end;
@@ -99,18 +105,34 @@ begin
   Assert(not Assigned(FProcess), 'The process is exists, maybe already running?');
 
   FProcess := TProcess.Create(nil);
-  FProcess.Options := [poUsePipes, poWaitOnExit, poStderrToOutPut];
+  FProcess.Options := [poUsePipes, poStderrToOutPut];
+  FProcess.CurrentDirectory := Server.Path;
+end;
+
+function TProcessServer.GetRunning: boolean;
+begin
+  Result := Assigned(FProcess) and (FProcess.Running);
 end;
 
 procedure TProcessServer.Start();
 begin
   inherited Start();
-  FProcess.Execute;
+  try
+    FProcess.Execute;
+    WriteLn('The show has begun ', FProcess.Running);
+  except
+    on E: Exception do begin
+      FreeAndNil(FProcess);
+      raise E;
+    end;
+  end;
 end;
 
 { TJavaServer }
 
 procedure TJavaServer.Prepare;
+var
+  S: string;
 begin
   inherited Prepare();
   Process.Executable := Server.java_jrePath;
@@ -121,6 +143,10 @@ begin
   Process.Parameters.Add('-jar');
   Process.Parameters.Add(Server.java_jarName);                           
   CommandToList(Server.Arguments, Process.Parameters);
+
+  Write(Process.Executable, ' ');
+  for S in Process.Parameters do
+    Write(S, ' ');
 end;
 
 { TBedrockServer }
