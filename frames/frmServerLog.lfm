@@ -281,7 +281,7 @@ object frameServerLog: TframeServerLog
     end
     object mmLog: TMemo
       Left = 20
-      Height = 284
+      Height = 234
       Top = 41
       Width = 534
       Align = alClient
@@ -294,5 +294,31 @@ object frameServerLog: TframeServerLog
       ScrollBars = ssAutoBoth
       TabOrder = 0
     end
+    object cbTail: TCheckBox
+      Left = 20
+      Height = 20
+      Top = 280
+      Width = 534
+      Align = alBottom
+      Caption = 'Follow the &tail of the log'
+      Checked = True
+      State = cbChecked
+      TabOrder = 1
+    end
+    object cbSendMessage: TCheckBox
+      Left = 20
+      Height = 20
+      Top = 305
+      Width = 534
+      Align = alBottom
+      Caption = 'Send every line as &message to players'
+      TabOrder = 2
+    end
+  end
+  object tmTail: TTimer
+    Interval = 50
+    OnTimer = tmTailTimer
+    Left = 199
+    Top = 143
   end
 end

@@ -183,6 +183,10 @@ msgctxt "tdlgserverproperties.gbserver1.caption"
 msgid "Server"
 msgstr ""
 
+#: tdlgserverproperties.lbconntimeout.caption
+msgid "&Connection timeout (ms):"
+msgstr ""
+
 #: tdlgserverproperties.lbdescription.caption
 msgid "&Description:"
 msgstr ""
@@ -213,6 +217,10 @@ msgstr ""
 
 #: tdlgserverproperties.lbinfoseedtype.caption
 msgid "Seed, level type, and generation are only affects newly generated worlds."
+msgstr ""
+
+#: tdlgserverproperties.lbiotimeout.caption
+msgid "I/O timeout (ms):"
 msgstr ""
 
 #: tdlgserverproperties.lbjava.caption
@@ -328,6 +336,14 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
+#: tframeserverlog.cbsendmessage.caption
+msgid "Send every line as &message to players"
+msgstr ""
+
+#: tframeserverlog.cbtail.caption
+msgid "Follow the &tail of the log"
+msgstr ""
+
 #: tframeserverlog.lbcommand.caption
 msgid "Command:"
 msgstr ""
@@ -391,5 +407,14 @@ msgstr ""
 #: tmcserviummain.menuitem1.caption
 msgctxt "tmcserviummain.menuitem1.caption"
 msgid "&File"
+msgstr ""
+
+#: urcon.dlgrconpasswordcaption
+msgid "Specify RCON password"
+msgstr ""
+
+#: urcon.dlgrconpasswordprompt
+#, object-pascal-format
+msgid "Please specify the RCON password for %s:%d"
 msgstr ""
 

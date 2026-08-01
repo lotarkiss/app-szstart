@@ -44,7 +44,6 @@ type
   TRconServer = class(TCustomServer)
   private
     FClientID: dword;
-    FPassword: string;
     FSocket: TInetSocket;
   protected
     procedure Prepare(); override;
@@ -61,10 +60,15 @@ type
 
     property Socket: TInetSocket read FSocket;
     property ClientID: dword read FClientID;
-    property Password: string read FPassword write FPassword;
   end;
 
 implementation
+
+uses Dialogs;
+
+resourcestring
+  dlgRconPasswordCaption = 'Specify RCON password';
+  dlgRconPasswordPrompt  = 'Please specify the RCON password for %s:%d';
 
 { TRconServer }
 
@@ -89,9 +93,6 @@ begin
 
   Assert(not Assigned(FSocket), 'The socket is exists, maybe already connected?');
 
-  // use Password := 'asd' before Start()!
-  Assert(FPassword <> '', 'The RCON password is not set, please specify one.');
-
   FSocket   := TInetSocket.Create(Server.rcon_remoteHost, Server.rcon_remotePort, Server.rcon_connectTimeout);
   FSocket.IOTimeout := Server.rcon_ioTimeout;
 end;
@@ -102,10 +103,18 @@ begin
 end;
 
 procedure TRconServer.Start();
+var
+  APassword: string;
 begin
   inherited Start();
-  Send(FPassword, RconPayloadLogin); // send it to the server
-  FPassword := '';  // clear password from memory
+
+  APassword := '';
+  if InputQuery(dlgRconPasswordCaption,
+      format(dlgRconPasswordPrompt,
+            [Server.rcon_remoteHost, Server.rcon_remotePort]), true, APassword) then
+    Send(APassword, RconPayloadLogin) // send it to the server
+  else
+    FreeAndNil(FSocket);
 end;
 
 procedure TRconServer.Run();

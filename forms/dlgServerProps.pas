@@ -53,6 +53,8 @@ type
     lbRconPort: TLabel;
     lbRconHostname: TLabel;
     lbGenSettings: TLabel;
+    lbConnTimeout: TLabel;
+    lbIoTimeout: TLabel;
     lbSpawnProt: TLabel;
     lbGameMode: TLabel;
     lbDifficulty: TLabel;
@@ -94,6 +96,8 @@ type
     pgGeneral: TPage;
     pgNotebook: TNotebook;
     pnBottom: TPanel;
+    seConnTimeout: TSpinEdit;
+    seIoTimeout: TSpinEdit;
     seViewDistance: TSpinEdit;
     seXms: TSpinEdit;
     seXmx: TSpinEdit;
@@ -221,7 +225,9 @@ begin
 
   // RCON
   edRconHostname.Text := AServer.rcon_remoteHost;
-  seRconPort.Value := AServer.rcon_remotePort;
+  seRconPort.Value    := AServer.rcon_remotePort;
+  seConnTimeout.Value := AServer.rcon_connectTimeout;
+  seIoTimeout.Value   := AServer.rcon_ioTimeout;
 
   // when rcon is used we're done here...
   if AServer.Kind = 'rcon' then
@@ -311,8 +317,10 @@ begin
   AServer.java_jvmArgs := mmJVM.Lines.Text;
 
   // RCON
-  AServer.rcon_remoteHost := edRconHostname.Text;
-  AServer.rcon_remotePort := seRconPort.Value;
+  AServer.rcon_remoteHost     := edRconHostname.Text;
+  AServer.rcon_remotePort     := seRconPort.Value;
+  AServer.rcon_connectTimeout := seConnTimeout.Value;
+  AServer.rcon_ioTimeout      := seIoTimeout.Value;
 
   // Db
   Server.Orm.Update(AServer);

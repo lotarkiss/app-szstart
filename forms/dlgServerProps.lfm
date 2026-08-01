@@ -174,7 +174,7 @@ object dlgServerProperties: TdlgServerProperties
       ChildSizing.TopBottomSpacing = 20
       object gbServer1: TGroupBox
         Left = 20
-        Height = 135
+        Height = 211
         Top = 20
         Width = 451
         Align = alTop
@@ -182,7 +182,7 @@ object dlgServerProperties: TdlgServerProperties
         Caption = 'Server'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
-        ClientHeight = 109
+        ClientHeight = 185
         ClientWidth = 447
         TabOrder = 0
         object lbRconHostname: TLabel
@@ -203,7 +203,7 @@ object dlgServerProperties: TdlgServerProperties
           Text = 'edRconHostname'
         end
         object lbRconPort: TLabel
-          Left = 148
+          Left = 20
           Height = 16
           Top = 68
           Width = 27
@@ -218,6 +218,42 @@ object dlgServerProperties: TdlgServerProperties
           MaxValue = 65535
           MinValue = 1
           TabOrder = 1
+          Value = 1
+        end
+        object lbConnTimeout: TLabel
+          Left = 20
+          Height = 16
+          Top = 104
+          Width = 146
+          Caption = '&Connection timeout (ms):'
+          FocusControl = seConnTimeout
+        end
+        object seConnTimeout: TSpinEdit
+          Left = 212
+          Height = 29
+          Top = 96
+          Width = 130
+          MaxValue = 65535
+          MinValue = 1
+          TabOrder = 2
+          Value = 1
+        end
+        object lbIoTimeout: TLabel
+          Left = 20
+          Height = 16
+          Top = 144
+          Width = 96
+          Caption = 'I/O timeout (ms):'
+          FocusControl = seIoTimeout
+        end
+        object seIoTimeout: TSpinEdit
+          Left = 212
+          Height = 29
+          Top = 136
+          Width = 130
+          MaxValue = 65535
+          MinValue = 1
+          TabOrder = 3
           Value = 1
         end
       end

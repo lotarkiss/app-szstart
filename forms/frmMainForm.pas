@@ -210,12 +210,7 @@ procedure TmcServiumMain.btnStartClick(Sender: TObject);
 begin
   if Assigned(Logs.Server) then
     case (Sender as TComponent).Tag of
-      1: begin
-           if Logs.Server is TRconServer then
-             (Logs.Server as TRconServer).Password := InputBox('foo', 'yes', 'asd123');
-
-           Logs.Server.Start();
-         end;
+      1: Logs.Server.Start();
       2: Logs.Server.Stop();
       3: Logs.Server.Kill();
       else

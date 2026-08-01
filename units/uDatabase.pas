@@ -36,7 +36,9 @@ type
     FNetworkMode: RawUtf8;
     FPath: RawUtf8;
     FProtected: boolean;
+    FRconConnTimeout: integer;
     FRconHost: RawUtf8;
+    FRconIoTimeout: integer;
     FRconPort: word;
     FRconUser: RawUtf8;
     FUUID: RawUtf8;
@@ -62,7 +64,9 @@ type
 
     // Kind = 'rcon'
     property rcon_remoteHost: RawUtf8 read FRconHost write FRconHost;
-    property rcon_remotePort: word read FRconPort write FRconPort;
+    property rcon_remotePort: word read FRconPort write FRconPort;  
+    property rcon_connectTimeout: integer read FRconConnTimeout write FRconConnTimeout;
+    property rcon_ioTimeout: integer read FRconIoTimeout write FRconIoTimeout;
     // ... just do not store password currently ...
   end;
 
