@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls,
-  ComCtrls, ExtCtrls, ActnList, StdActns, uDatabase, Types;
+  ComCtrls, ExtCtrls, ActnList, StdActns, uDatabase, Types, frmServerLog;
 
 type
 
@@ -24,6 +24,7 @@ type
     MenuItem3: TMenuItem;
     mnuMain: TMainMenu;
     nbtPages: TNotebook;
+    pgServer: TPage;
     pnlLeft: TPanel;
     pnlToolbar: TPanel;
     pgWelcome: TPage;
@@ -36,12 +37,14 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormResize(Sender: TObject);
+    procedure lbxServersClick(Sender: TObject);
     procedure lbxServersDrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
   private
   public
     Servers: IOrmServerEntries;
     IconColor: TColor;
+    Logs: TframeServerLog;
   end;
 
 var
@@ -57,6 +60,10 @@ uses uPlatform, uExamples, dlgServerProps, LCLType;
 
 procedure TmcServiumMain.FormCreate(Sender: TObject);
 begin
+  Logs := TframeServerLog.Create(Self); // so will be freed automatically...
+  Logs.Parent := pgServer;
+  Logs.Align := alClient;
+
   InitSQLite();
   UpdateMenuKeys(mnuMain.Items);
   QueryServersAll(Servers);
@@ -80,6 +87,19 @@ procedure TmcServiumMain.FormResize(Sender: TObject);
 begin
   pnlLeft.Constraints.MaxWidth := ClientWidth * 3 div 10;
   pnlLeft.Constraints.MinWidth := ClientWidth * 1 div 10;
+end;
+
+procedure TmcServiumMain.lbxServersClick(Sender: TObject);
+begin
+  case lbxServers.ItemIndex of
+    -1: begin
+      nbtPages.PageIndex := pgWelcome.PageIndex;
+    end
+    else begin
+      nbtPages.PageIndex := pgServer.PageIndex;
+      Logs.UpdateFrame(lbxServers.Items.Objects[lbxServers.ItemIndex] as TOrmServerEntry);
+    end;
+  end;
 end;
 
 procedure TmcServiumMain.lbxServersDrawItem(Control: TWinControl; Index: Integer;

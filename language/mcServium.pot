@@ -294,6 +294,30 @@ msgstr ""
 msgid "World"
 msgstr ""
 
+#: tframeserverlog.btncommand.caption
+msgid "Send"
+msgstr ""
+
+#: tframeserverlog.cbcommand.text
+msgid "cbCommand"
+msgstr ""
+
+#: tframeserverlog.lbcommand.caption
+msgid "Command:"
+msgstr ""
+
+#: tframeserverlog.lblog.caption
+msgid "Server &log:"
+msgstr ""
+
+#: tframeserverlog.lbplayertitle.caption
+msgid "&Players:"
+msgstr ""
+
+#: tframeserverlog.lbtitle.caption
+msgid "lbTitle"
+msgstr ""
+
 #: tmcserviummain.acexit.caption
 msgctxt "tmcserviummain.acexit.caption"
 msgid "E&xit"
