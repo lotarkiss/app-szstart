@@ -1,0 +1,175 @@
+object frameServerLog: TframeServerLog
+  Left = 0
+  Height = 479
+  Top = 0
+  Width = 749
+  ClientHeight = 479
+  ClientWidth = 749
+  LCLVersion = '4.6.0.0'
+  TabOrder = 0
+  DesignLeft = 176
+  DesignTop = 28
+  object pnTop: TPanel
+    Left = 0
+    Height = 62
+    Top = 0
+    Width = 749
+    Align = alTop
+    Alignment = taLeftJustify
+    AutoSize = True
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 62
+    ClientWidth = 749
+    Color = clHighlight
+    Font.Color = clHighlightText
+    Font.Height = -16
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+    object lbTitle: TLabel
+      Left = 21
+      Height = 20
+      Top = 21
+      Width = 42
+      BorderSpacing.Around = 20
+      Caption = 'lbTitle'
+    end
+    object btnOpen: TSpeedButton
+      Left = 1
+      Height = 60
+      Top = 1
+      Width = 747
+      Align = alClient
+      Flat = True
+      OnClick = btnOpenClick
+    end
+  end
+  object pnRight: TPanel
+    Left = 579
+    Height = 345
+    Top = 62
+    Width = 170
+    Align = alRight
+    BevelOuter = bvNone
+    ChildSizing.LeftRightSpacing = 20
+    ChildSizing.TopBottomSpacing = 20
+    ChildSizing.HorizontalSpacing = 5
+    ChildSizing.VerticalSpacing = 5
+    ClientHeight = 345
+    ClientWidth = 170
+    TabOrder = 1
+    object lbPlayerTitle: TLabel
+      Left = 20
+      Height = 16
+      Top = 20
+      Width = 130
+      Align = alTop
+      Caption = '&Players:'
+      FocusControl = lbPlayers
+    end
+    object lbPlayers: TListBox
+      Left = 20
+      Height = 284
+      Top = 41
+      Width = 130
+      Align = alClient
+      ItemHeight = 0
+      TabOrder = 0
+      TopIndex = -1
+    end
+  end
+  object pnBottom: TPanel
+    Left = 0
+    Height = 72
+    Top = 407
+    Width = 749
+    Align = alBottom
+    AutoSize = True
+    BevelOuter = bvNone
+    ChildSizing.LeftRightSpacing = 20
+    ChildSizing.TopBottomSpacing = 20
+    ChildSizing.HorizontalSpacing = 10
+    ClientHeight = 72
+    ClientWidth = 749
+    TabOrder = 2
+    object lbCommand: TLabel
+      Left = 20
+      Height = 32
+      Top = 20
+      Width = 63
+      Align = alLeft
+      Caption = 'Command:'
+      FocusControl = cbCommand
+      Layout = tlCenter
+    end
+    object cbCommand: TComboBox
+      Left = 93
+      Height = 32
+      Top = 20
+      Width = 551
+      Align = alClient
+      ItemHeight = 28
+      TabOrder = 0
+      Text = 'cbCommand'
+    end
+    object btnCommand: TButton
+      Left = 654
+      Height = 32
+      Top = 20
+      Width = 75
+      Align = alRight
+      Caption = 'Send'
+      TabOrder = 1
+    end
+  end
+  object spRight: TSplitter
+    Left = 574
+    Height = 345
+    Top = 62
+    Width = 5
+    Align = alRight
+    ResizeAnchor = akRight
+  end
+  object pnClient: TPanel
+    Left = 0
+    Height = 345
+    Top = 62
+    Width = 574
+    Align = alClient
+    BevelOuter = bvNone
+    ChildSizing.LeftRightSpacing = 20
+    ChildSizing.TopBottomSpacing = 20
+    ChildSizing.HorizontalSpacing = 5
+    ChildSizing.VerticalSpacing = 5
+    ClientHeight = 345
+    ClientWidth = 574
+    TabOrder = 4
+    object lbLog: TLabel
+      Left = 20
+      Height = 16
+      Top = 20
+      Width = 534
+      Align = alTop
+      Caption = 'Server &log:'
+      FocusControl = mmLog
+    end
+    object mmLog: TMemo
+      Left = 20
+      Height = 284
+      Top = 41
+      Width = 534
+      Align = alClient
+      Font.Name = 'Courier New'
+      Lines.Strings = (
+        'mmLog'
+      )
+      ParentFont = False
+      ReadOnly = True
+      ScrollBars = ssAutoBoth
+      TabOrder = 0
+    end
+  end
+end
