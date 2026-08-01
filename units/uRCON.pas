@@ -157,6 +157,11 @@ begin
           if TotalRead <> dwLength then // malformed packet
             exit;
 
+          if dwClientID = RconRequestInvalid then begin // Bad password, or server error...
+            FreeAndNil(FSocket);
+            exit;
+          end;
+
           // Fix ending and cstr null terminator, just in case...
           FillChar(PByte(Payload)[dwLength + SizeOf(dword) - RconFooter], RconFooter, #0);
           Data := PChar(@szData[0]);
