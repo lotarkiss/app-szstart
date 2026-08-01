@@ -10,7 +10,8 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, frmMainForm, uDatabase, uExamples, dlgServerProps, uMinecraft, uJRE;
+  Forms, frmMainForm, uDatabase, uExamples, dlgServerProps, uMinecraft, uJRE,
+  frmServerLog, uProcess, uRCON, uServer;
 
 {$R *.res}
 
