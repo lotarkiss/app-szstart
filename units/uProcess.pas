@@ -14,11 +14,12 @@ type
   TProcessServer = class abstract(TCustomServer)
   private
     FProcess: TProcess;
+  protected
+    procedure Prepare(); override;
   public
     constructor Create(AServer: TOrmServerEntry); override;      
     destructor Destroy; override;
 
-    procedure Prepare(); virtual;
     procedure Start(); override;
     procedure Run(); override;
     procedure Kill(const AExitCode: integer = 1); override;
@@ -94,6 +95,7 @@ end;
 
 procedure TProcessServer.Prepare();
 begin
+  inherited Prepare();
   Assert(not Assigned(FProcess), 'The process is exists, maybe already running?');
 
   FProcess := TProcess.Create(nil);
@@ -102,7 +104,7 @@ end;
 
 procedure TProcessServer.Start();
 begin
-  Prepare();
+  inherited Start();
   FProcess.Execute;
 end;
 
@@ -129,6 +131,10 @@ begin
   Process.Executable := Server.bedrock_serverPath;
   CommandToList(Server.Arguments, Process.Parameters);
 end;
+
+initialization
+  ServerClasses.Add('java', TJavaServer);
+  ServerClasses.Add('bedrock', TBedrockServer);
 
 end.
 

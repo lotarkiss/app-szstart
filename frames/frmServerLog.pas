@@ -47,8 +47,14 @@ end;
 
 procedure TframeServerLog.UpdateFrame(const Server: TCustomServer);
 begin
-  lbTitle.Caption := Server.Server.Name;
-  btnOpen.Hint := ExcludeTrailingPathDelimiter(Server.Server.Path);
+  if Assigned(Server.Server) then begin
+    lbTitle.Caption := Server.Server.Name;
+    btnOpen.Hint := ExcludeTrailingPathDelimiter(Server.Server.Path);
+  end
+  else begin    
+    lbTitle.Caption := Server.UUID;
+    btnOpen.Hint := '';
+  end;
   mmLog.Lines.Assign(Server.Log);
 end;
 

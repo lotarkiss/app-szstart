@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls,
-  ComCtrls, ExtCtrls, ActnList, StdActns, uDatabase, Types, frmServerLog;
+  ComCtrls, ExtCtrls, ActnList, StdActns, uDatabase, Types, frmServerLog,
+  uServer;
 
 type
 
@@ -42,7 +43,8 @@ type
       ARect: TRect; State: TOwnerDrawState);
   private
   public
-    Servers: IOrmServerEntries;
+    Query: IOrmServerEntries;
+    Servers: TServerList;
     IconColor: TColor;
     Logs: TframeServerLog;
   end;
@@ -64,11 +66,13 @@ begin
   Logs.Parent := pgServer;
   Logs.Align := alClient;
 
+  Servers := TServerList.Create(true); // stateful data for servers
+
   InitSQLite();
   UpdateMenuKeys(mnuMain.Items);
-  QueryServersAll(Servers);
+  QueryServersAll(Query);  // stateless data from db
                  
-  Servers := nil;  // initialize properly
+  Query := nil;  // initialize properly
   edtSearch.OnChange := @edtSearchChange;
   edtSearch.OnChange(edtSearch);
 
@@ -76,9 +80,11 @@ begin
 end;
 
 procedure TmcServiumMain.FormDestroy(Sender: TObject);
-begin
-  lbxServers.Clear; // clear references to Servers IList<>
-  Servers := nil;   // free the list itself
+begin                                                   
+  Servers.Free();
+  lbxServers.Clear; // clear references to Query IList<>
+
+  Query := nil;   // free the list itself
 
   FreeSQLite();
 end;
@@ -97,7 +103,11 @@ begin
     end
     else begin
       nbtPages.PageIndex := pgServer.PageIndex;
-      Logs.UpdateFrame(lbxServers.Items.Objects[lbxServers.ItemIndex] as TOrmServerEntry);
+      Logs.UpdateFrame(
+        Servers.CreateOrFind(
+          lbxServers.Items.Objects[lbxServers.ItemIndex] as TOrmServerEntry
+        )
+      );
     end;
   end;
 end;
@@ -168,12 +178,12 @@ var
 begin
   lbxServers.Items.Clear;  
   if edtSearch.Text = '' then
-    Result := QueryServersAll(Servers)
+    Result := QueryServersAll(Query)
   else
-    Result := QueryServersByName(edtSearch.Text, Servers);
+    Result := QueryServersByName(edtSearch.Text, Query);
 
   if Result then
-    for Server in Servers do begin
+    for Server in Query do begin
       WriteLn(Server.Path);
       if DirectoryExists(Server.Path) then
         lbxServers.Items.AddObject(Server.Name, Server);

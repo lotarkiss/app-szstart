@@ -39,7 +39,9 @@ type
     FRconHost: RawUtf8;
     FRconPort: word;
     FRconUser: RawUtf8;
+    FUUID: RawUtf8;
   published
+    property UUID: RawUtf8 read FUUID write FUUID;
     property Kind: RawUtf8 read FKind write FKind;
     property Path: RawUtf8 read FPath write FPath;
     property Name: RawUtf8 read FName write FName;

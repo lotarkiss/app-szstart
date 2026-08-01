@@ -46,6 +46,8 @@ type
     FClientID: dword;
     FPassword: string;
     FSocket: TInetSocket;
+  protected
+    procedure Prepare(); override;
   public
     constructor Create(AServer: TOrmServerEntry); override;
     destructor Destroy; override;
@@ -80,15 +82,21 @@ begin
   inherited Destroy;
 end;
 
-procedure TRconServer.Start();
+procedure TRconServer.Prepare();
 begin
+  inherited Prepare();
+
   Assert(not Assigned(FSocket), 'The socket is exists, maybe already connected?');
 
   // use Password := 'asd' before Start()!
   Assert(FPassword <> '', 'The RCON password is not set, please specify one.');
 
   FSocket   := TInetSocket.Create(Server.rcon_remoteHost, Server.rcon_remotePort);
+end;
 
+procedure TRconServer.Start();
+begin
+  inherited Start();
   Send(FPassword, RconPayloadLogin); // send it to the server
   FPassword := '';  // clear password from memory
 end;
@@ -185,6 +193,7 @@ end;
 
 initialization
   randomize;
+  ServerClasses.Add('rcon', TRconServer);
 
 end.
 
