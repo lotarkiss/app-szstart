@@ -57,6 +57,17 @@ object mcServiumMain: TmcServiumMain
         Caption = 'To start playing Minecraft multiplayer with friends,'#10#10' - choose a server from the list on the left, or'#10' - create a new one by File > New...'#10#10'For more information use our Getting Started guide.'
         WordWrap = True
       end
+      object Memo1: TMemo
+        Left = 8
+        Height = 95
+        Top = 168
+        Width = 454
+        Lines.Strings = (
+          'Memo1'
+        )
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
+      end
     end
     object pgServer: TPage
     end

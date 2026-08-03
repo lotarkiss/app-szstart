@@ -20,6 +20,7 @@ type
     edtSearch: TEdit;
     lblWelcomeText: TLabel;
     lblWelcomeHeader: TLabel;
+    Memo1: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     miProperties: TMenuItem;
@@ -62,7 +63,7 @@ var
 
 implementation
 
-uses uPlatform, uExamples, dlgServerProps, LCLType, uRCON;
+uses uPlatform, uExamples, dlgServerProps, LCLType, uRCON, uVersions;
 
 {$R *.lfm}
 
@@ -73,6 +74,8 @@ resourcestring
 { TmcServiumMain }
 
 procedure TmcServiumMain.FormCreate(Sender: TObject);
+var
+  S: string;
 begin
   Logs := TframeServerLog.Create(Self); // so will be freed automatically...
   Logs.Parent := pgServer;
