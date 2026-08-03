@@ -106,6 +106,7 @@ type
     seRconPort: TSpinEdit;
     spSplitter: TSplitter;
     veAdvanced: TValueListEditor;
+    procedure btnJavaClick(Sender: TObject);
     procedure btnOpenClick(Sender: TObject);
     procedure btnVeAddClick(Sender: TObject);
     procedure FormResize(Sender: TObject);
@@ -120,7 +121,7 @@ var
 
 implementation
 
-uses Math, uMinecraft, LclIntf;
+uses Math, uMinecraft, LclIntf, dlgJavaPicker;
 
 resourcestring
   dlgPropsCaption = '%s properties';
@@ -191,6 +192,17 @@ begin
     else
       raise Exception.Create('Operation not implemented');
   end;
+end;
+
+procedure TdlgServerProperties.btnJavaClick(Sender: TObject);
+begin
+  with TdlgJavaPick.Create(Self) do
+    try
+      if ShowModal = mrOK then
+        Self.edJava.Text := edPath.Text;
+    finally
+      Free;
+    end;
 end;
 
 procedure TdlgServerProperties.Load(AServer: TOrmServerEntry);

@@ -10,8 +10,8 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, frmMainForm, uDatabase, uExamples, dlgServerProps, uMinecraft, uJRE,
-  frmServerLog, uProcess, uRCON, uServer;
+  Forms, anchordockpkg, frmMainForm, uDatabase, uExamples, dlgServerProps,
+  uMinecraft, uJRE, frmServerLog, uProcess, uRCON, uServer, dlgJavaPicker;
 
 {$R *.res}
 
@@ -20,7 +20,6 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TmcServiumMain, mcServiumMain);
-  Application.CreateForm(TdlgServerProperties, dlgServerProperties);
   Application.Run;
 end.
 

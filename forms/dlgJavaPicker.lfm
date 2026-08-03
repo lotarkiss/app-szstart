@@ -1,0 +1,107 @@
+object dlgJavaPick: TdlgJavaPick
+  Left = 176
+  Height = 431
+  Top = 250
+  Width = 533
+  BorderStyle = bsDialog
+  Caption = 'Select JRE for %s'
+  ChildSizing.LeftRightSpacing = 20
+  ChildSizing.TopBottomSpacing = 20
+  ChildSizing.VerticalSpacing = 5
+  ClientHeight = 431
+  ClientWidth = 533
+  Position = poOwnerFormCenter
+  LCLVersion = '4.6.0.0'
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  object lbxJava: TListBox
+    Left = 20
+    Height = 255
+    Top = 41
+    Width = 493
+    Align = alClient
+    ItemHeight = 0
+    TabOrder = 0
+    TopIndex = -1
+    OnClick = lbxJavaClick
+  end
+  object lbJava: TLabel
+    Left = 20
+    Height = 16
+    Top = 20
+    Width = 493
+    Align = alTop
+    Caption = 'Detected JRE &versions:'
+    FocusControl = lbxJava
+  end
+  object lbPath: TLabel
+    Left = 20
+    Height = 16
+    Top = 329
+    Width = 493
+    Align = alBottom
+    Caption = '&Path:'
+    FocusControl = edPath
+  end
+  object edPath: TEdit
+    Left = 20
+    Height = 29
+    Top = 350
+    Width = 493
+    Align = alBottom
+    ReadOnly = True
+    TabOrder = 1
+    Text = 'edPath'
+  end
+  object pnBottom: TPanel
+    Left = 20
+    Height = 27
+    Top = 384
+    Width = 493
+    Align = alBottom
+    AutoSize = True
+    BevelOuter = bvNone
+    ChildSizing.HorizontalSpacing = 10
+    ClientHeight = 27
+    ClientWidth = 493
+    TabOrder = 2
+    object btnCancel: TBitBtn
+      Left = 372
+      Height = 27
+      Top = 0
+      Width = 121
+      Align = alRight
+      Caption = '&Cancel'
+      Kind = bkCancel
+      ModalResult = 2
+      TabOrder = 0
+    end
+    object btnOK: TBitBtn
+      Left = 260
+      Height = 27
+      Top = 0
+      Width = 102
+      Align = alRight
+      Caption = '&OK'
+      Enabled = False
+      Kind = bkOK
+      ModalResult = 1
+      TabOrder = 1
+    end
+  end
+  object lbJavaVersion: TLabel
+    Left = 20
+    Height = 16
+    Top = 301
+    Width = 493
+    Align = alBottom
+    Caption = 'lbJavaVersion'
+  end
+  object bvBottom: TBevel
+    Left = 20
+    Height = 2
+    Top = 322
+    Width = 493
+    Align = alBottom
+  end
+end

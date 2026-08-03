@@ -40,6 +40,37 @@ msgstr ""
 msgid "Stopped"
 msgstr ""
 
+#: tdlgjavapick.btncancel.caption
+msgctxt "tdlgjavapick.btncancel.caption"
+msgid "&Cancel"
+msgstr ""
+
+#: tdlgjavapick.btnok.caption
+msgctxt "tdlgjavapick.btnok.caption"
+msgid "&OK"
+msgstr ""
+
+#: tdlgjavapick.caption
+#, object-pascal-format
+msgid "Select JRE for %s"
+msgstr ""
+
+#: tdlgjavapick.edpath.text
+msgid "edPath"
+msgstr ""
+
+#: tdlgjavapick.lbjava.caption
+msgid "Detected JRE &versions:"
+msgstr ""
+
+#: tdlgjavapick.lbjavaversion.caption
+msgid "lbJavaVersion"
+msgstr ""
+
+#: tdlgjavapick.lbpath.caption
+msgid "&Path:"
+msgstr ""
+
 #: tdlgserverproperties.btncancel.caption
 msgctxt "tdlgserverproperties.btncancel.caption"
 msgid "&Cancel"

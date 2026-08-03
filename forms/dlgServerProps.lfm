@@ -53,7 +53,7 @@ object dlgServerProperties: TdlgServerProperties
     Height = 369
     Top = 0
     Width = 491
-    PageIndex = 7
+    PageIndex = 6
     Align = alClient
     TabOrder = 1
     object pgGeneral: TPage
@@ -71,7 +71,7 @@ object dlgServerProperties: TdlgServerProperties
         Left = 20
         Height = 183
         Top = 20
-        Width = 461
+        Width = 451
         Align = alTop
         AutoSize = True
         Caption = '&General'
@@ -83,7 +83,7 @@ object dlgServerProperties: TdlgServerProperties
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
         ChildSizing.ControlsPerLine = 2
         ClientHeight = 157
-        ClientWidth = 457
+        ClientWidth = 447
         TabOrder = 0
         object lbName: TLabel
           Left = 20
@@ -99,7 +99,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 72
           Height = 29
           Top = 20
-          Width = 365
+          Width = 355
           Anchors = [akTop, akLeft, akRight]
           TabOrder = 0
           Text = 'edName'
@@ -116,7 +116,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 96
           Height = 40
           Top = 64
-          Width = 221
+          Width = 211
           Anchors = [akTop, akLeft, akRight]
           Lines.Strings = (
             'mmDescription'
@@ -124,7 +124,7 @@ object dlgServerProperties: TdlgServerProperties
           TabOrder = 1
         end
         object btnMove: TButton
-          Left = 337
+          Left = 327
           Height = 33
           Top = 104
           Width = 112
@@ -155,7 +155,7 @@ object dlgServerProperties: TdlgServerProperties
         end
         object btnOpen: TButton
           Tag = 1
-          Left = 337
+          Left = 327
           Height = 33
           Top = 64
           Width = 112
@@ -268,14 +268,14 @@ object dlgServerProperties: TdlgServerProperties
         Left = 20
         Height = 246
         Top = 20
-        Width = 461
+        Width = 451
         Align = alTop
         AutoSize = True
         Caption = 'Server'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
         ClientHeight = 220
-        ClientWidth = 457
+        ClientWidth = 447
         TabOrder = 0
         object lbMotd: TLabel
           Left = 20
@@ -289,7 +289,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 20
           Height = 64
           Top = 44
-          Width = 257
+          Width = 247
           Anchors = [akTop, akLeft, akRight]
           Lines.Strings = (
             'mmMotd'
@@ -345,7 +345,7 @@ object dlgServerProperties: TdlgServerProperties
           Caption = 'of Mojang / Microsoft'
         end
         object bvIcon1: TBevel
-          Left = 341
+          Left = 331
           Height = 82
           Top = 20
           Width = 88
@@ -389,14 +389,14 @@ object dlgServerProperties: TdlgServerProperties
         Left = 20
         Height = 166
         Top = 20
-        Width = 454
+        Width = 451
         Align = alTop
         AutoSize = True
         Caption = 'Gameplay'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
-        ClientHeight = 154
-        ClientWidth = 442
+        ClientHeight = 140
+        ClientWidth = 447
         TabOrder = 0
         object lbGameMode: TLabel
           Left = 20
@@ -465,7 +465,7 @@ object dlgServerProperties: TdlgServerProperties
         Left = 20
         Height = 128
         Top = 206
-        Width = 454
+        Width = 451
         Align = alTop
         AutoSize = True
         Caption = 'Spawn'
@@ -476,23 +476,23 @@ object dlgServerProperties: TdlgServerProperties
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 116
-        ClientWidth = 442
+        ClientHeight = 102
+        ClientWidth = 447
         TabOrder = 1
         object cbSpawnAnimals: TCheckBox
           Left = 20
           Height = 20
           Top = 50
-          Width = 190
+          Width = 188
           BorderSpacing.Top = 50
           Caption = 'Spawn &animals'
           TabOrder = 0
         end
         object cbSpawnMonsters: TCheckBox
-          Left = 230
+          Left = 228
           Height = 20
           Top = 50
-          Width = 200
+          Width = 199
           Caption = '&Spawn monsters'
           TabOrder = 1
         end
@@ -500,7 +500,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 20
           Height = 20
           Top = 70
-          Width = 190
+          Width = 188
           BorderSpacing.Bottom = 12
           Caption = '&Spawn NPCs'
           TabOrder = 2
@@ -509,12 +509,12 @@ object dlgServerProperties: TdlgServerProperties
           Left = 20
           Height = 29
           Top = 5
-          Width = 410
+          Width = 407
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
           ClientHeight = 29
-          ClientWidth = 410
+          ClientWidth = 407
           TabOrder = 3
           object lbSpawnProt: TLabel
             Left = 0
@@ -537,10 +537,10 @@ object dlgServerProperties: TdlgServerProperties
           end
         end
         object cbAllowNether: TCheckBox
-          Left = 230
+          Left = 228
           Height = 20
           Top = 70
-          Width = 200
+          Width = 199
           Caption = 'Allow net&her'
           TabOrder = 4
         end
@@ -755,7 +755,7 @@ object dlgServerProperties: TdlgServerProperties
         Left = 20
         Height = 329
         Top = 20
-        Width = 464
+        Width = 451
         Align = alClient
         Caption = 'JRE settings'
         ChildSizing.LeftRightSpacing = 20
@@ -765,14 +765,14 @@ object dlgServerProperties: TdlgServerProperties
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 317
-        ClientWidth = 452
+        ClientHeight = 303
+        ClientWidth = 447
         TabOrder = 0
         object pnJavaXm: TPanel
           Left = 20
           Height = 63
           Top = 114
-          Width = 420
+          Width = 407
           Align = alTop
           AutoSize = True
           BorderSpacing.Bottom = 15
@@ -784,22 +784,22 @@ object dlgServerProperties: TdlgServerProperties
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 2
           ClientHeight = 63
-          ClientWidth = 420
+          ClientWidth = 407
           TabOrder = 0
           object lbXms: TLabel
             Left = 0
             Height = 29
             Top = 0
-            Width = 265
+            Width = 258
             Caption = 'Start memory (-Xm&s, MiB):'
             FocusControl = seXms
             Layout = tlCenter
           end
           object seXms: TSpinEdit
-            Left = 285
+            Left = 278
             Height = 29
             Top = 0
-            Width = 135
+            Width = 129
             MaxValue = 99999
             MinValue = 1
             TabOrder = 0
@@ -809,16 +809,16 @@ object dlgServerProperties: TdlgServerProperties
             Left = 0
             Height = 29
             Top = 34
-            Width = 265
+            Width = 258
             Caption = 'Maximum memory (-Xm&x, MiB):'
             FocusControl = seXmx
             Layout = tlCenter
           end
           object seXmx: TSpinEdit
-            Left = 285
+            Left = 278
             Height = 29
             Top = 34
-            Width = 135
+            Width = 129
             MaxValue = 99999
             MinValue = 1
             TabOrder = 1
@@ -829,38 +829,39 @@ object dlgServerProperties: TdlgServerProperties
           Left = 20
           Height = 32
           Top = 41
-          Width = 420
+          Width = 407
           Align = alTop
           AutoSize = True
           BevelOuter = bvNone
           ChildSizing.HorizontalSpacing = 5
           ClientHeight = 32
-          ClientWidth = 420
+          ClientWidth = 407
           TabOrder = 1
           object edJava: TEdit
             Left = 0
             Height = 32
             Top = 0
-            Width = 324
+            Width = 311
             Align = alClient
             TabOrder = 0
             Text = 'edJava'
           end
           object btnJava: TButton
-            Left = 329
+            Left = 316
             Height = 32
             Top = 0
             Width = 91
             Align = alRight
             Caption = '&Select...'
             TabOrder = 1
+            OnClick = btnJavaClick
           end
         end
         object lbJava: TLabel
           Left = 20
           Height = 16
           Top = 20
-          Width = 420
+          Width = 407
           Align = alTop
           Caption = '&JRE binary path:'
           FocusControl = edJava
@@ -869,7 +870,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 20
           Height = 16
           Top = 78
-          Width = 420
+          Width = 407
           Align = alTop
           BorderSpacing.Bottom = 20
           Caption = 'lbJREVersion'
@@ -878,7 +879,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 20
           Height = 16
           Top = 192
-          Width = 420
+          Width = 407
           Align = alTop
           Caption = 'J&VM arguments:'
           FocusControl = mmJVM
@@ -887,7 +888,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 20
           Height = 70
           Top = 213
-          Width = 420
+          Width = 407
           Align = alClient
           Lines.Strings = (
             'mmJVM'
@@ -912,8 +913,8 @@ object dlgServerProperties: TdlgServerProperties
         Caption = '&Advanced'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
-        ClientHeight = 303
-        ClientWidth = 457
+        ClientHeight = 317
+        ClientWidth = 449
         TabOrder = 0
         object veAdvanced: TValueListEditor
           Left = 20
