@@ -154,6 +154,7 @@ procedure TdlgServerProperties.btnVeAddClick(Sender: TObject);
 var
   Result: array of string;
 begin
+  Initialize(Result);
   SetLength(Result, 2);
   Result[0] := format(veDefaultKeyFormat, [veAdvanced.Strings.Count]);
   Result[1] := format(veDefaultValFormat, [veAdvanced.Strings.Count]);

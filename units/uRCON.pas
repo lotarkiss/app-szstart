@@ -54,7 +54,7 @@ type
 
     procedure Start(); override;
     procedure Run(); override;
-    procedure Kill(const AExitCode: integer = 1); override;
+    procedure Kill(const {%H-}AExitCode: integer = 1); override;
     procedure Send(ACommand: string); override; overload;
     procedure Send(ACommand: string; const PayloadType: dword); overload;
 
@@ -127,6 +127,7 @@ var
 begin
   {$ifdef FPC_HAS_FEATURE_ANSISTRINGS} // assume sizeof(char) = sizeof(byte)     
   if Assigned(FSocket) then begin
+    Size := 0;
     Tmp := Socket.Read(Size, sizeOf(dword));
     if Tmp < 0 then // no data available yet
       exit;

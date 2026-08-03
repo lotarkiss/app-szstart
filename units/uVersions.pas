@@ -80,6 +80,9 @@ end;
 
 procedure TUrlVanillaFactory.Refresh;
 const
+  (*
+    Just hoping it does not change every week or something...
+  *)
   urlVanilla = 'https://launchermeta.mojang.com/mc/game/version_manifest_v2.json';
 var
   I: integer;
@@ -133,6 +136,10 @@ end;
 
 procedure TUrlBedrockFactory.Refresh;
 const
+  (*
+     Ty, so much for this repo. <3
+     https://github.com/kittizz/bedrock-server-downloads
+  *)
   urlBedrock = 'https://raw.githubusercontent.com/kittizz/bedrock-server-downloads/main/bedrock-server-downloads.json';
 var
   I: integer;

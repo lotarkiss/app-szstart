@@ -64,7 +64,7 @@ var
 begin
   {$ifdef FPC_HAS_FEATURE_ANSISTRINGS}
   if Assigned(FProcess) and (FProcess.Running) then begin
-
+    Buffer := '';
     SetLength(Buffer, BufSize + 1);
     BytesRead := FProcess.Output.Read(Buffer[1], Min(BufSize, FProcess.Output.NumBytesAvailable));
     SetLength(Buffer, BytesRead); //assume sizeof(char) = 1

@@ -53,7 +53,7 @@ object dlgServerProperties: TdlgServerProperties
     Height = 369
     Top = 0
     Width = 491
-    PageIndex = 6
+    PageIndex = 0
     Align = alClient
     TabOrder = 1
     object pgGeneral: TPage
@@ -82,8 +82,8 @@ object dlgServerProperties: TdlgServerProperties
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 157
-        ClientWidth = 447
+        ClientHeight = 171
+        ClientWidth = 439
         TabOrder = 0
         object lbName: TLabel
           Left = 20
@@ -182,8 +182,8 @@ object dlgServerProperties: TdlgServerProperties
         Caption = 'Server'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
-        ClientHeight = 185
-        ClientWidth = 447
+        ClientHeight = 199
+        ClientWidth = 439
         TabOrder = 0
         object lbRconHostname: TLabel
           Left = 20
@@ -274,8 +274,8 @@ object dlgServerProperties: TdlgServerProperties
         Caption = 'Server'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
-        ClientHeight = 220
-        ClientWidth = 447
+        ClientHeight = 234
+        ClientWidth = 439
         TabOrder = 0
         object lbMotd: TLabel
           Left = 20
@@ -395,8 +395,8 @@ object dlgServerProperties: TdlgServerProperties
         Caption = 'Gameplay'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
-        ClientHeight = 140
-        ClientWidth = 447
+        ClientHeight = 154
+        ClientWidth = 439
         TabOrder = 0
         object lbGameMode: TLabel
           Left = 20
@@ -476,8 +476,8 @@ object dlgServerProperties: TdlgServerProperties
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 102
-        ClientWidth = 447
+        ClientHeight = 116
+        ClientWidth = 439
         TabOrder = 1
         object cbSpawnAnimals: TCheckBox
           Left = 20
@@ -765,8 +765,8 @@ object dlgServerProperties: TdlgServerProperties
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 303
-        ClientWidth = 447
+        ClientHeight = 317
+        ClientWidth = 439
         TabOrder = 0
         object pnJavaXm: TPanel
           Left = 20

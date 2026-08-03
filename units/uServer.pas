@@ -17,7 +17,6 @@ type
   TCustomServer = class abstract
   private
     FLog: TStrings;
-    FName: string;
     FServer: TOrmServerEntry;
     FServerResponse: TServerResponseEvent;
     FUUID: string;
@@ -135,7 +134,6 @@ end;
 function TServerList.CreateOrFind(const Server: TOrmServerEntry;
   Event: TServerResponseEvent): TCustomServer;
 var
-  I: integer;
   C: TServerClass;
 begin
   Result := nil;

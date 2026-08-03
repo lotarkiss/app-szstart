@@ -4,8 +4,8 @@ object mcServiumMain: TmcServiumMain
   Top = 293
   Width = 690
   Caption = 'mcServium'
-  ClientHeight = 424
-  ClientWidth = 690
+  ClientHeight = 240
+  ClientWidth = 320
   Menu = mnuMain
   Position = poScreenCenter
   LCLVersion = '4.6.0.0'

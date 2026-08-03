@@ -10,7 +10,6 @@ uses
   mormot.core.os,
   mormot.core.collections,
   mormot.orm.core,
-  mormot.orm.sqlite3,
   mormot.rest.sqlite3,
   mormot.db.raw.sqlite3.static;
 
@@ -40,7 +39,6 @@ type
     FRconHost: RawUtf8;
     FRconIoTimeout: integer;
     FRconPort: word;
-    FRconUser: RawUtf8;
     FUUID: RawUtf8;
   published
     property UUID: RawUtf8 read FUUID write FUUID;

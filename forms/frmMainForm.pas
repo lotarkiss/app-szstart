@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls,
-  ComCtrls, ExtCtrls, ActnList, StdActns, Buttons, uDatabase, Types,
+  ComCtrls, ExtCtrls, ActnList, Buttons, uDatabase, Types,
   frmServerLog, uServer;
 
 type
@@ -74,8 +74,6 @@ resourcestring
 { TmcServiumMain }
 
 procedure TmcServiumMain.FormCreate(Sender: TObject);
-var
-  S: string;
 begin
   Logs := TframeServerLog.Create(Self); // so will be freed automatically...
   Logs.Parent := pgServer;
