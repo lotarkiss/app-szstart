@@ -401,9 +401,21 @@ msgctxt "tmcserviummain.acserverproperties.caption"
 msgid "&Properties..."
 msgstr ""
 
+#: tmcserviummain.btncreate.caption
+msgid "&Create a new Mincraft Server..."
+msgstr ""
+
+#: tmcserviummain.btnimport.caption
+msgid "&Import an existing Minecraft Server..."
+msgstr ""
+
 #: tmcserviummain.btnkill.caption
 msgctxt "tmcserviummain.btnkill.caption"
-msgid "&Kill"
+msgid "&Terminate"
+msgstr ""
+
+#: tmcserviummain.btnnetworktest.caption
+msgid "&Test network configuration, and connectivity..."
 msgstr ""
 
 #: tmcserviummain.btnstart.caption
@@ -424,15 +436,12 @@ msgstr ""
 msgid "Welcome to mcServium!"
 msgstr ""
 
-#: tmcserviummain.lblwelcometext.caption
-msgctxt "tmcserviummain.lblwelcometext.caption"
-msgid ""
-"To start playing Minecraft multiplayer with friends,\n"
-"\n"
-" - choose a server from the list on the left, or\n"
-" - create a new one by File > New...\n"
-"\n"
-"For more information use our Getting Started guide."
+#: tmcserviummain.lbwelcomdesc.caption
+msgid "To begin, please select a server from the list on the left or choose one of the available options."
+msgstr ""
+
+#: tmcserviummain.lbwelcomfooter.caption
+msgid "Have fun, play and build the world you imagine with your friends!"
 msgstr ""
 
 #: tmcserviummain.menuitem1.caption

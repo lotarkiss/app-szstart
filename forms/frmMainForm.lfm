@@ -4,8 +4,8 @@ object mcServiumMain: TmcServiumMain
   Top = 293
   Width = 690
   Caption = 'mcServium'
-  ClientHeight = 240
-  ClientWidth = 320
+  ClientHeight = 424
+  ClientWidth = 690
   Menu = mnuMain
   Position = poScreenCenter
   LCLVersion = '4.6.0.0'
@@ -44,29 +44,56 @@ object mcServiumMain: TmcServiumMain
         Top = 20
         Width = 422
         Align = alTop
+        Alignment = taCenter
         Caption = 'Welcome to mcServium!'
         Font.Height = -19
         ParentFont = False
       end
-      object lblWelcomeText: TLabel
+      object lbWelcomDesc: TLabel
         Left = 20
-        Height = 268
+        Height = 32
         Top = 58
         Width = 422
-        Align = alClient
-        Caption = 'To start playing Minecraft multiplayer with friends,'#10#10' - choose a server from the list on the left, or'#10' - create a new one by File > New...'#10#10'For more information use our Getting Started guide.'
+        Align = alTop
+        Alignment = taCenter
+        Caption = 'To begin, please select a server from the list on the left or choose one of the available options.'
         WordWrap = True
       end
-      object Memo1: TMemo
-        Left = 8
-        Height = 95
-        Top = 168
-        Width = 454
-        Lines.Strings = (
-          'Memo1'
-        )
-        ScrollBars = ssAutoBoth
-        TabOrder = 0
+      object btnCreate: TSpeedButton
+        Left = 20
+        Height = 38
+        Top = 105
+        Width = 422
+        Align = alTop
+        Caption = '&Create a new Mincraft Server...'
+        Enabled = False
+      end
+      object btnImport: TSpeedButton
+        Left = 20
+        Height = 42
+        Top = 158
+        Width = 422
+        Align = alTop
+        Caption = '&Import an existing Minecraft Server...'
+        Enabled = False
+      end
+      object btnNetworkTest: TSpeedButton
+        Left = 20
+        Height = 41
+        Top = 215
+        Width = 422
+        Align = alTop
+        Caption = '&Test network configuration, and connectivity...'
+        Enabled = False
+      end
+      object lbWelcomFooter: TLabel
+        Left = 20
+        Height = 16
+        Top = 271
+        Width = 422
+        Align = alTop
+        Alignment = taCenter
+        Caption = 'Have fun, play and build the world you imagine with your friends!'
       end
     end
     object pgServer: TPage
@@ -113,8 +140,8 @@ object mcServiumMain: TmcServiumMain
       Left = 108
       Height = 26
       Top = 11
-      Width = 28
-      Caption = '&Kill'
+      Width = 67
+      Caption = '&Terminate'
       Enabled = False
       OnClick = btnStartClick
     end
@@ -154,8 +181,8 @@ object mcServiumMain: TmcServiumMain
     end
   end
   object mnuMain: TMainMenu
-    Left = 416
-    Top = 256
+    Left = 424
+    Top = 232
     object MenuItem1: TMenuItem
       Caption = '&File'
       object MenuItem2: TMenuItem
@@ -195,7 +222,7 @@ object mcServiumMain: TmcServiumMain
     Enabled = False
     Interval = 100
     OnTimer = tmPollTimer
-    Left = 288
-    Top = 321
+    Left = 248
+    Top = 208
   end
 end

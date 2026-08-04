@@ -18,9 +18,9 @@ type
     acServerProperties: TAction;
     acExit: TAction;
     edtSearch: TEdit;
-    lblWelcomeText: TLabel;
+    lbWelcomFooter: TLabel;
+    lbWelcomDesc: TLabel;
     lblWelcomeHeader: TLabel;
-    Memo1: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     miProperties: TMenuItem;
@@ -34,6 +34,9 @@ type
     btnStart: TSpeedButton;
     btnStop: TSpeedButton;
     btnKill: TSpeedButton;
+    btnCreate: TSpeedButton;
+    btnImport: TSpeedButton;
+    btnNetworkTest: TSpeedButton;
     splSplitter: TSplitter;
     stbStatusBar: TStatusBar;
     lbxServers: TListBox;
