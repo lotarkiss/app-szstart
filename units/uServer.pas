@@ -58,6 +58,10 @@ type
     function CreateOrFind(const Server: TOrmServerEntry;
       ResponseEvent: TServerResponseEvent = nil;
       PlayersEvents: TNotifyEvent = nil): TCustomServer;
+
+    function IsAnyRunning(): boolean;
+    procedure StopAll();
+    procedure KillAll(const AExitCode: integer = 1);
   end;
               
   TServerClass   = class of TCustomServer;
@@ -89,7 +93,7 @@ end;
 
 procedure TCustomServer.InternalResponse(const Data: string);
 const
-  regExJoin  = '(?:\]:\s+([A-Za-z0-9_.]+)\s+joined|Player connected:\s*([^,\n]+|))';
+  regExJoin  = '(?:\]:\s+([A-Za-z0-9_.]+)\s+joined|Player connected:\s*([^,\n]+))';
   regExLeave = '(?:\]:\s+([A-Za-z0-9_.]+)\s+left|Player disconnected:\s*([^,\n]+))';
 var
   I, J: integer;
@@ -173,6 +177,34 @@ var
 begin
   for I := 0 to Count - 1 do
     Items[I].FindRefByUUID(List);
+end;
+
+function TServerList.IsAnyRunning(): boolean;
+var
+  S: TCustomServer;
+begin
+  Result := false;
+  for S in Self do
+    if S.IsRunning then
+      exit(true);
+end;
+
+procedure TServerList.StopAll();
+var
+  S: TCustomServer;
+begin
+  for S in Self do
+    if S.IsRunning then
+      S.Stop();
+end;
+
+procedure TServerList.KillAll(const AExitCode: integer);
+var
+  S: TCustomServer;
+begin
+  for S in Self do
+    if S.IsRunning then
+      S.Kill(AExitCode);
 end;
 
 function TServerList.Find(const Server: TOrmServerEntry; out

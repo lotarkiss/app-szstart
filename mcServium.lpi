@@ -142,6 +142,7 @@
         <Filename Value="forms/dlgDownload.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="dlgDownloader"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>

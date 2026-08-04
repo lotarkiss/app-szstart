@@ -40,10 +40,12 @@ type
     splSplitter: TSplitter;
     stbStatusBar: TStatusBar;
     lbxServers: TListBox;
+    tdQuit: TTaskDialog;
     tmPoll: TTimer;
     tmDance: TTimer;
     procedure acServerPropertiesExecute(Sender: TObject);
     procedure edtSearchChange(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormResize(Sender: TObject);
@@ -284,6 +286,20 @@ begin
   end
   else
     Servers.FindRefByUUID(nil); // all entries are orphan
+end;
+
+procedure TmcServiumMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  if Servers.IsAnyRunning() then begin
+    CanClose := false;
+    tdQuit.Execute(Handle);
+    case tdQuit.ModalResult of
+      100: Servers.StopAll();
+      101: Servers.KillAll();
+      else
+        exit;
+    end;
+  end;
 end;
 
 procedure TmcServiumMain.acServerPropertiesExecute(Sender: TObject);

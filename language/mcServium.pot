@@ -591,6 +591,24 @@ msgctxt "tmcserviummain.menuitem1.caption"
 msgid "&File"
 msgstr ""
 
+#: tmcserviummain.tdquit.buttons[0].caption
+msgid "Stop all instances"
+msgstr ""
+
+#: tmcserviummain.tdquit.buttons[1].caption
+msgctxt "tmcserviummain.tdquit.buttons[1].caption"
+msgid "Terminate all instances"
+msgstr ""
+
+#: tmcserviummain.tdquit.text
+msgid "There are servers that currently running. What do you want to do?"
+msgstr ""
+
+#: tmcserviummain.tdquit.title
+msgctxt "tmcserviummain.tdquit.title"
+msgid "Warning"
+msgstr ""
+
 #: urcon.dlgrconpasswordcaption
 msgid "Specify RCON password"
 msgstr ""

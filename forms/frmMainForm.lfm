@@ -9,6 +9,7 @@ object mcServiumMain: TmcServiumMain
   Menu = mnuMain
   Position = poScreenCenter
   LCLVersion = '4.6.0.0'
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnResize = FormResize
@@ -224,5 +225,30 @@ object mcServiumMain: TmcServiumMain
     OnTimer = tmPollTimer
     Left = 248
     Top = 208
+  end
+  object tdQuit: TTaskDialog
+    Buttons = <    
+      item
+        Caption = 'Stop all instances'
+        ModalResult = 100
+      end    
+      item
+        Caption = 'Terminate all instances'
+        ModalResult = 101
+      end>
+    CommonButtons = [tcbCancel]
+    Flags = [tfAllowDialogCancellation, tfUseCommandLinks, tfEmulateClassicStyle]
+    MainIcon = tdiWarning
+    RadioButtons = <>
+    QueryChoices.Strings = (
+      'foo'
+      'bar'
+      'help'
+    )
+    QueryItemIndex = 0
+    Text = 'There are servers that currently running. What do you want to do?'
+    Title = 'Warning'
+    Left = 264
+    Top = 68
   end
 end
