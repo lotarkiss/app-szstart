@@ -13,6 +13,7 @@ type
   { TdlgServerProperties }
 
   TdlgServerProperties = class(TForm)
+    btnDownload1: TButton;
     btnOK: TBitBtn;
     btnCancel: TBitBtn;
     btnMove: TButton;
@@ -21,8 +22,10 @@ type
     btnVeAdd: TButton;
     btnVeDelete: TButton;
     btnJava: TButton;
+    btnDownload2: TButton;
     bvIcon1: TBevel;
     cbEula: TCheckBox;
+    cbBedrockBinary: TComboBox;
     cbHardcore: TCheckBox;
     cbLevelName: TComboBox;
     cbLevelType: TComboBox;
@@ -35,6 +38,7 @@ type
     cbSpawnMonsters: TCheckBox;
     cbSpawnNPCs: TCheckBox;
     cbAllowNether: TCheckBox;
+    cbJavaJar: TComboBox;
     edGenSettings: TEdit;
     edRconHostname: TEdit;
     edJava: TEdit;
@@ -50,6 +54,12 @@ type
     gbNetwork: TGroupBox;
     gbJavaOnly1: TGroupBox;
     gbServer1: TGroupBox;
+    gbJavaOnly3: TGroupBox;
+    gbBedrockOnly1: TGroupBox;
+    lbFilename4: TLabel;
+    lbJarArgs: TLabel;
+    lbFilename3: TLabel;
+    lbJarArgs1: TLabel;
     lbRconPort: TLabel;
     lbRconHostname: TLabel;
     lbGenSettings: TLabel;
@@ -79,9 +89,12 @@ type
     lbName: TLabel;
     lbDescription: TLabel;
     lbPages: TListBox;
+    mmJarArgs: TMemo;
+    mmBedrockArgs: TMemo;
     mmJVM: TMemo;
     mmDescription: TMemo;
     mmMotd: TMemo;
+    pgExecutable: TPage;
     pgRCON: TPage;
     pnSpawnProt: TPanel;
     pgNetwork: TPage;
@@ -236,6 +249,18 @@ begin
   seXmx.Value := AServer.java_jvmXMX;
   mmJVM.Lines.Text := AServer.java_jvmArgs;
 
+  // Jar
+  gbJavaOnly3.Visible    := AServer.Kind = 'java';
+  gbBedrockOnly1.Visible := AServer.Kind = 'bedrock';
+  if gbJavaOnly3.Visible then begin
+    cbJavaJar.Text := AServer.java_jarName;                                 
+    mmJarArgs.Text := AServer.Arguments;
+  end
+  else if gbBedrockOnly1.Visible then begin
+    cbBedrockBinary.Text := AServer.bedrock_serverPath;
+    mmBedrockArgs.Text   := AServer.Arguments;
+  end;
+
   // RCON
   edRconHostname.Text := AServer.rcon_remoteHost;
   seRconPort.Value    := AServer.rcon_remotePort;
@@ -270,8 +295,8 @@ begin
       cbGameMode.Text      := ReadString('gamemode', true);
       cbDifficulty.Text    := ReadString('difficulty', true);
       cbForceGMode.Checked := ReadBoolean('force-gamemode', true);
-      gbJavaOnly1.Visible := AServer.Kind = 'java';
-      cbHardcore.Enabled  := gbJavaOnly1.Visible;
+      gbJavaOnly1.Visible  := gbJavaOnly3.Visible;
+      cbHardcore.Enabled   := gbJavaOnly3.Visible;
       if gbJavaOnly1.Visible then begin
         cbSpawnAnimals.Checked  := ReadBoolean('spawn-animals', true);
         cbSpawnMonsters.Checked := ReadBoolean('spawn-monsters', true);
@@ -328,6 +353,16 @@ begin
   AServer.java_jvmXMS  := seXms.Value;
   AServer.java_jvmXMX  := seXmx.Value;
   AServer.java_jvmArgs := mmJVM.Lines.Text;
+
+  // Jar
+  if gbJavaOnly3.Visible then begin
+    AServer.java_jarName := cbJavaJar.Text;
+    AServer.Arguments := mmJarArgs.Text;
+  end
+  else if gbBedrockOnly1.Visible then begin
+    AServer.bedrock_serverPath := cbBedrockBinary.Text;
+    AServer.Arguments := mmBedrockArgs.Text;
+  end;
 
   // RCON
   AServer.rcon_remoteHost     := edRconHostname.Text;

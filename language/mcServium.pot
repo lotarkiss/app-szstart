@@ -82,6 +82,16 @@ msgctxt "tdlgserverproperties.btncancel.caption"
 msgid "&Cancel"
 msgstr ""
 
+#: tdlgserverproperties.btndownload1.caption
+msgctxt "tdlgserverproperties.btndownload1.caption"
+msgid "&Download..."
+msgstr ""
+
+#: tdlgserverproperties.btndownload2.caption
+msgctxt "tdlgserverproperties.btndownload2.caption"
+msgid "&Download..."
+msgstr ""
+
 #: tdlgserverproperties.btnjava.caption
 msgid "&Select..."
 msgstr ""
@@ -119,6 +129,10 @@ msgstr ""
 msgid "Allow net&her"
 msgstr ""
 
+#: tdlgserverproperties.cbbedrockbinary.text
+msgid "cbBedrockBinary"
+msgstr ""
+
 #: tdlgserverproperties.cbdifficulty.text
 msgid "survival"
 msgstr ""
@@ -137,6 +151,10 @@ msgstr ""
 
 #: tdlgserverproperties.cbhardcore.caption
 msgid "Hardcore mode "
+msgstr ""
+
+#: tdlgserverproperties.cbjavajar.text
+msgid "cbJavaJar"
 msgstr ""
 
 #: tdlgserverproperties.cbleveltype.text
@@ -179,6 +197,10 @@ msgstr ""
 msgid "&Advanced"
 msgstr ""
 
+#: tdlgserverproperties.gbbedrockonly1.caption
+msgid "&Bedrock Edition"
+msgstr ""
+
 #: tdlgserverproperties.gbentry.caption
 msgid "&General"
 msgstr ""
@@ -199,6 +221,10 @@ msgstr ""
 
 #: tdlgserverproperties.gbjavaonly2.caption
 msgid "Generation"
+msgstr ""
+
+#: tdlgserverproperties.gbjavaonly3.caption
+msgid "&Java Edtition"
 msgstr ""
 
 #: tdlgserverproperties.gblevel.caption
@@ -244,6 +270,16 @@ msgstr ""
 msgid "of Mojang / Microsoft"
 msgstr ""
 
+#: tdlgserverproperties.lbfilename3.caption
+msgctxt "tdlgserverproperties.lbfilename3.caption"
+msgid "&Filename:"
+msgstr ""
+
+#: tdlgserverproperties.lbfilename4.caption
+msgctxt "tdlgserverproperties.lbfilename4.caption"
+msgid "&Filename:"
+msgstr ""
+
 #: tdlgserverproperties.lbgamemode.caption
 msgid "&Gamemode:"
 msgstr ""
@@ -258,6 +294,16 @@ msgstr ""
 
 #: tdlgserverproperties.lbiotimeout.caption
 msgid "I/O timeout (ms):"
+msgstr ""
+
+#: tdlgserverproperties.lbjarargs.caption
+msgctxt "tdlgserverproperties.lbjarargs.caption"
+msgid "&Extra arguments:"
+msgstr ""
+
+#: tdlgserverproperties.lbjarargs1.caption
+msgctxt "tdlgserverproperties.lbjarargs1.caption"
+msgid "&Extra arguments:"
 msgstr ""
 
 #: tdlgserverproperties.lbjava.caption
@@ -334,6 +380,10 @@ msgstr ""
 
 #: tdlgserverproperties.pgadvanced.hint
 msgid "Advanced"
+msgstr ""
+
+#: tdlgserverproperties.pgexecutable.hint
+msgid "Executable"
 msgstr ""
 
 #: tdlgserverproperties.pggameplay.hint

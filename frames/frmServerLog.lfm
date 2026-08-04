@@ -317,6 +317,7 @@ object frameServerLog: TframeServerLog
     end
   end
   object tmTail: TTimer
+    Interval = 500
     OnTimer = tmTailTimer
     Left = 199
     Top = 143
