@@ -59,6 +59,7 @@ type
     gbServer1: TGroupBox;
     gbJavaOnly3: TGroupBox;
     gbBedrockOnly1: TGroupBox;
+    imgIcon: TImage;
     lbFilename4: TLabel;
     lbJarArgs: TLabel;
     lbFilename3: TLabel;

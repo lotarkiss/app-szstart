@@ -40,7 +40,6 @@ object dlgServerProperties: TdlgServerProperties
       Top = 8
       Width = 119
       Align = alRight
-      Cancel = True
       Caption = '&Cancel'
       Default = True
       Kind = bkCancel
@@ -63,7 +62,7 @@ object dlgServerProperties: TdlgServerProperties
     Height = 381
     Top = 0
     Width = 509
-    PageIndex = 0
+    PageIndex = 2
     Align = alClient
     TabOrder = 1
     object pgGeneral: TPage
@@ -293,6 +292,14 @@ object dlgServerProperties: TdlgServerProperties
           Width = 295
           Caption = 'Online-mode (enforce official Minecraft clients)'
           TabOrder = 3
+        end
+        object imgIcon: TImage
+          Left = 360
+          Height = 78
+          Top = 24
+          Width = 87
+          Anchors = [akTop, akRight]
+          Center = True
         end
       end
     end

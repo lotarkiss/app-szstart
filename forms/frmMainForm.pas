@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls,
   ComCtrls, ExtCtrls, ActnList, Buttons, uDatabase, Types,
-  frmServerLog, uServer;
+  frmServerLog, uServer, uIconMap;
 
 type
 
@@ -57,8 +57,8 @@ type
   public
     Query: IOrmServerEntries;
     Servers: TServerList;
-    IconColor: TColor;
     Logs: TframeServerLog;
+    IconMap: TIconMap;
   end;
 
 var
@@ -83,6 +83,7 @@ begin
   Logs.Align := alClient;
 
   Servers := TServerList.Create(true); // stateful data for servers
+  IconMap := TIconMap.Create(); // icons
 
   InitSQLite();
   UpdateMenuKeys(mnuMain.Items);
@@ -91,8 +92,6 @@ begin
   Query := nil;  // initialize properly
   edtSearch.OnChange := @edtSearchChange;
   edtSearch.OnChange(edtSearch);
-
-  IconColor := random($FFFFFF + 1); // for debugging
 
   // now when everything is ready, start ticking
   tmDance.Enabled := true;
@@ -106,7 +105,8 @@ begin
   tmPoll.Enabled := false;
 
   // and then..
-  Servers.Free();
+  Servers.Free();                   
+  IconMap.Free();
   lbxServers.Clear; // clear references to Query IList<>
 
   Query := nil;   // free the list itself
@@ -161,14 +161,14 @@ begin
     FillRect(ARect);
 
     // Icon
-    Brush.Color := IconColor;
     Target := Rect(
         ARect.Left + TextPadding,
         ARect.Top + (ARect.Height - IconSize) div 2,
         ARect.Left + TextPadding + IconSize,
         ARect.Top + (ARect.Height - IconSize) div 2 + IconSize
     );
-    FillRect(Target);
+    IconMap.DrawIcon((Control as TListBox).Canvas, Target,
+       (Control as TListBox).Items.Objects[Index] as TOrmServerEntry);
 
     // Texts
     Style := TextStyle;
@@ -274,6 +274,7 @@ begin
     Result := QueryServersByName(edtSearch.Text, Query);
 
   if Result then begin
+    IconMap.UpdateMissing(Query); // update icons
     Servers.FindRefByUUID(Query); // assign entries to new indices
     for Server in Query do begin
       WriteLn(Server.Path);
@@ -288,12 +289,18 @@ end;
 procedure TmcServiumMain.acServerPropertiesExecute(Sender: TObject);
 var
   Server: TOrmServerEntry;
+  G: TPortableNetworkGraphic;
 begin
   if lbxServers.ItemIndex <> -1 then
     with TdlgServerProperties.Create(Self) do
       try
         Server := lbxServers.Items.Objects[lbxServers.ItemIndex] as TOrmServerEntry;
         Load(Server);
+
+        if IconMap.TryGetValue(Server.UUID, G) then
+          imgIcon.Picture.Assign(G)
+        else
+          imgIcon.Picture.Assign(nil);
 
         if ShowModal = mrOK then
           Save(Server);
