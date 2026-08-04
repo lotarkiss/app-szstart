@@ -132,7 +132,8 @@ begin
       Logs.UpdateFrame(
         Servers.CreateOrFind(
           lbxServers.Items.Objects[lbxServers.ItemIndex] as TOrmServerEntry,
-          @(Logs.DoServerResponse)
+          @(Logs.DoServerResponse),
+          @(Logs.DoPlayersChange)
         )
       );
     end;

@@ -68,9 +68,8 @@ begin
     SetLength(Buffer, BufSize + 1);
     BytesRead := FProcess.Output.Read(Buffer[1], Min(BufSize, FProcess.Output.NumBytesAvailable));
     SetLength(Buffer, BytesRead); //assume sizeof(char) = 1
-    Log.Text := Log.Text + buffer;
-    if Assigned(OnServerResponse) then
-      OnServerResponse(Self, Buffer);
+    Log.Text := Log.Text + Buffer;
+    InternalResponse(Buffer);
   end;
   {$endif}
 end;

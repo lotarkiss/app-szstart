@@ -167,8 +167,7 @@ begin
           FillChar(PByte(Payload)[dwLength + SizeOf(dword) - RconFooter], RconFooter, #0);
           Data := PChar(@szData[0]);
           Log.Text := Log.Text + Data;
-          if Assigned(OnServerResponse) then
-            OnServerResponse(Self, Data);
+          InternalResponse(Data);
         end;
       finally
         FreeMem(Payload);

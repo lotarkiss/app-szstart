@@ -77,6 +77,7 @@ object frameServerLog: TframeServerLog
       Width = 130
       Align = alClient
       ItemHeight = 0
+      PopupMenu = pmPlayer
       TabOrder = 0
       TopIndex = -1
     end
@@ -316,9 +317,35 @@ object frameServerLog: TframeServerLog
     end
   end
   object tmTail: TTimer
-    Interval = 50
     OnTimer = tmTailTimer
     Left = 199
     Top = 143
+  end
+  object pmPlayer: TPopupMenu
+    Left = 264
+    Top = 144
+    object miKick: TMenuItem
+      Caption = '&Kick...'
+      Hint = 'kick %s'
+      OnClick = miDeopClick
+    end
+    object miBan: TMenuItem
+      Caption = '&Ban...'
+      Hint = 'ban %s'
+      OnClick = miDeopClick
+    end
+    object Separator1: TMenuItem
+      Caption = '-'
+    end
+    object miOp: TMenuItem
+      Caption = '&Op...'
+      Hint = 'op %s'
+      OnClick = miDeopClick
+    end
+    object miDeop: TMenuItem
+      Caption = '&Deop...'
+      Hint = 'deop %s'
+      OnClick = miDeopClick
+    end
   end
 end

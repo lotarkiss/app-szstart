@@ -10,6 +10,7 @@ uses
   mormot.core.os,
   mormot.core.collections,
   mormot.orm.core,
+  mormot.orm.sqlite3,
   mormot.rest.sqlite3,
   mormot.db.raw.sqlite3.static;
 

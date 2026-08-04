@@ -2,11 +2,11 @@ object dlgServerProperties: TdlgServerProperties
   Left = 327
   Height = 418
   Top = 250
-  Width = 637
+  Width = 648
   BorderStyle = bsDialog
   Caption = 'dlgServerProperties'
   ClientHeight = 418
-  ClientWidth = 637
+  ClientWidth = 648
   Position = poMainFormCenter
   LCLVersion = '4.6.0.0'
   OnResize = FormResize
@@ -14,17 +14,17 @@ object dlgServerProperties: TdlgServerProperties
     Left = 0
     Height = 49
     Top = 369
-    Width = 637
+    Width = 648
     Align = alBottom
     BevelOuter = bvLowered
     ChildSizing.LeftRightSpacing = 15
     ChildSizing.TopBottomSpacing = 7
     ChildSizing.HorizontalSpacing = 5
     ClientHeight = 49
-    ClientWidth = 637
+    ClientWidth = 648
     TabOrder = 0
     object btnOK: TBitBtn
-      Left = 398
+      Left = 409
       Height = 33
       Top = 8
       Width = 99
@@ -35,7 +35,7 @@ object dlgServerProperties: TdlgServerProperties
       TabOrder = 0
     end
     object btnCancel: TBitBtn
-      Left = 502
+      Left = 513
       Height = 33
       Top = 8
       Width = 119
@@ -52,7 +52,7 @@ object dlgServerProperties: TdlgServerProperties
     Left = 146
     Height = 369
     Top = 0
-    Width = 491
+    Width = 502
     PageIndex = 0
     Align = alClient
     TabOrder = 1
@@ -71,7 +71,7 @@ object dlgServerProperties: TdlgServerProperties
         Left = 20
         Height = 183
         Top = 20
-        Width = 451
+        Width = 462
         Align = alTop
         AutoSize = True
         Caption = '&General'
@@ -82,8 +82,8 @@ object dlgServerProperties: TdlgServerProperties
         ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 171
-        ClientWidth = 439
+        ClientHeight = 157
+        ClientWidth = 458
         TabOrder = 0
         object lbName: TLabel
           Left = 20
@@ -99,7 +99,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 72
           Height = 29
           Top = 20
-          Width = 355
+          Width = 374
           Anchors = [akTop, akLeft, akRight]
           TabOrder = 0
           Text = 'edName'
@@ -116,7 +116,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 96
           Height = 40
           Top = 64
-          Width = 211
+          Width = 230
           Anchors = [akTop, akLeft, akRight]
           Lines.Strings = (
             'mmDescription'
@@ -124,7 +124,7 @@ object dlgServerProperties: TdlgServerProperties
           TabOrder = 1
         end
         object btnMove: TButton
-          Left = 327
+          Left = 336
           Height = 33
           Top = 104
           Width = 112
@@ -155,7 +155,7 @@ object dlgServerProperties: TdlgServerProperties
         end
         object btnOpen: TButton
           Tag = 1
-          Left = 327
+          Left = 336
           Height = 33
           Top = 64
           Width = 112

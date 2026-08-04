@@ -17,12 +17,15 @@ type
   TCustomServer = class abstract
   private
     FLog: TStrings;
+    FPlayers: TStrings;
+    FPlayersChange: TNotifyEvent;
     FServer: TOrmServerEntry;
     FServerResponse: TServerResponseEvent;
     FUUID: string;
   protected
     procedure Prepare(); virtual;     
     function GetRunning: boolean; virtual; abstract;
+    procedure InternalResponse(const Data: string); virtual;
   public
     constructor Create(AServer: TOrmServerEntry); virtual; reintroduce;
 
@@ -36,11 +39,13 @@ type
 
     destructor Destroy; override;
 
+    property Players: TStrings read FPlayers;
     property UUID: string read FUUID;
     property Server: TOrmServerEntry read FServer;
     property Log: TStrings read FLog;
     property IsRunning: boolean read GetRunning;
     property OnServerResponse: TServerResponseEvent read FServerResponse write FServerResponse;
+    property OnPlayersChange: TNotifyEvent read FPlayersChange write FPlayersChange;
   end;
 
   { TServerList }
@@ -50,7 +55,9 @@ type
     procedure FindRefByUUID(const List: IOrmServerEntries);
 
     function Find(const Server: TOrmServerEntry; out Entry: TCustomServer): boolean;
-    function CreateOrFind(const Server: TOrmServerEntry; Event: TServerResponseEvent = nil): TCustomServer;
+    function CreateOrFind(const Server: TOrmServerEntry;
+      ResponseEvent: TServerResponseEvent = nil;
+      PlayersEvents: TNotifyEvent = nil): TCustomServer;
   end;
               
   TServerClass   = class of TCustomServer;
@@ -61,6 +68,8 @@ var
 
 implementation
 
+uses RegExpr;
+
 { TCustomServer }
 
 constructor TCustomServer.Create(AServer: TOrmServerEntry);
@@ -70,11 +79,61 @@ begin
   FServer  := AServer;
   FUUID    := AServer.UUID;
   FLog     := TStringList.Create;
+  FPlayers := TStringList.Create;
 end;
 
 procedure TCustomServer.Prepare();
 begin
   Assert(Assigned(Server), 'The server entry is currently unavailable.');
+end;
+
+procedure TCustomServer.InternalResponse(const Data: string);
+const
+  regExJoin  = '(?:\]:\s+([A-Za-z0-9_.]+)\s+joined|Player connected:\s*([^,\n]+|))';
+  regExLeave = '(?:\]:\s+([A-Za-z0-9_.]+)\s+left|Player disconnected:\s*([^,\n]+))';
+var
+  I, J: integer;
+begin
+  if Trim(Data) = '' then
+    exit;
+
+  // Player connected
+  with TRegExpr.Create(regExJoin) do
+    try
+      ModifierI := true; // case sensitive
+      if Exec(Data) then
+        for I := 1 to 2 do
+          if Match[I] <> '' then begin
+            Players.Add(Match[I]);
+
+            if Assigned(FPlayersChange) then
+              FPlayersChange(Self);
+          end;
+    finally
+      Free;
+    end;
+
+  // Player disconnected
+  with TRegExpr.Create(regExLeave) do
+    try
+      ModifierI := true; // case sensitive
+      if Exec(Data) then
+        for I := 1 to 2 do
+           if Match[I] <> '' then begin
+             J := Players.IndexOf(Match[I]);
+             if J <> -1 then begin
+               Players.Delete(J);
+
+               if Assigned(FPlayersChange) then
+                 FPlayersChange(Self);
+             end;
+           end;
+    finally
+      Free;
+    end;
+
+  if Assigned(FServerResponse) then
+    FServerResponse(Self, Data);
 end;
 
 procedure TCustomServer.Start();
@@ -101,6 +160,7 @@ end;
 destructor TCustomServer.Destroy;
 begin              
   //WriteLn('TCustomServer.Free');
+  FPlayers.Free;
   FLog.Free;
   inherited Destroy;
 end;
@@ -132,7 +192,8 @@ begin
 end;
 
 function TServerList.CreateOrFind(const Server: TOrmServerEntry;
-  Event: TServerResponseEvent): TCustomServer;
+  ResponseEvent: TServerResponseEvent; PlayersEvents: TNotifyEvent
+  ): TCustomServer;
 var
   C: TServerClass;
 begin
@@ -145,7 +206,8 @@ begin
   // Create
   if ServerClasses.TryGetValue(Server.Kind, C) then begin
     Result := Items[Add(C.Create(Server))];
-    Result.OnServerResponse := Event;
+    Result.OnServerResponse := ResponseEvent;
+    Result.OnPlayersChange  := PlayersEvents;
   end;
 end;
 

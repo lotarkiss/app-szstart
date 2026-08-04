@@ -19,6 +19,7 @@ msgid "Enter the &value of the custom key:"
 msgstr ""
 
 #: dlgserverprops.dlgvedelkeytext
+msgctxt "dlgserverprops.dlgvedelkeytext"
 msgid "Are you sure?"
 msgstr ""
 
@@ -38,6 +39,11 @@ msgstr ""
 
 #: frmmainform.serverstopped
 msgid "Stopped"
+msgstr ""
+
+#: frmserverlog.dlgplayeroptext
+msgctxt "frmserverlog.dlgplayeroptext"
+msgid "Are you sure?"
 msgstr ""
 
 #: tdlgjavapick.btncancel.caption
@@ -389,6 +395,42 @@ msgstr ""
 
 #: tframeserverlog.lbtitle.caption
 msgid "lbTitle"
+msgstr ""
+
+#: tframeserverlog.miban.caption
+msgid "&Ban..."
+msgstr ""
+
+#: tframeserverlog.miban.hint
+#, object-pascal-format
+msgid "ban %s"
+msgstr ""
+
+#: tframeserverlog.mideop.caption
+msgid "&Deop..."
+msgstr ""
+
+#: tframeserverlog.mideop.hint
+#, object-pascal-format
+msgid "deop %s"
+msgstr ""
+
+#: tframeserverlog.mikick.caption
+msgid "&Kick..."
+msgstr ""
+
+#: tframeserverlog.mikick.hint
+#, object-pascal-format
+msgid "kick %s"
+msgstr ""
+
+#: tframeserverlog.miop.caption
+msgid "&Op..."
+msgstr ""
+
+#: tframeserverlog.miop.hint
+#, object-pascal-format
+msgid "op %s"
 msgstr ""
 
 #: tmcserviummain.acexit.caption
