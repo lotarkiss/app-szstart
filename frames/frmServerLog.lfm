@@ -48,10 +48,10 @@ object frameServerLog: TframeServerLog
     end
   end
   object pnRight: TPanel
-    Left = 579
+    Left = 555
     Height = 345
     Top = 62
-    Width = 170
+    Width = 194
     Align = alRight
     BevelOuter = bvNone
     ChildSizing.LeftRightSpacing = 20
@@ -59,13 +59,13 @@ object frameServerLog: TframeServerLog
     ChildSizing.HorizontalSpacing = 5
     ChildSizing.VerticalSpacing = 5
     ClientHeight = 345
-    ClientWidth = 170
+    ClientWidth = 194
     TabOrder = 1
     object lbPlayerTitle: TLabel
       Left = 20
       Height = 16
       Top = 20
-      Width = 130
+      Width = 154
       Align = alTop
       Caption = '&Players:'
       FocusControl = lbPlayers
@@ -74,7 +74,7 @@ object frameServerLog: TframeServerLog
       Left = 20
       Height = 284
       Top = 41
-      Width = 130
+      Width = 154
       Align = alClient
       ItemHeight = 0
       PopupMenu = pmPlayer
@@ -250,7 +250,7 @@ object frameServerLog: TframeServerLog
     end
   end
   object spRight: TSplitter
-    Left = 574
+    Left = 550
     Height = 345
     Top = 62
     Width = 5
@@ -261,7 +261,7 @@ object frameServerLog: TframeServerLog
     Left = 0
     Height = 345
     Top = 62
-    Width = 574
+    Width = 550
     Align = alClient
     BevelOuter = bvNone
     ChildSizing.LeftRightSpacing = 20
@@ -269,13 +269,13 @@ object frameServerLog: TframeServerLog
     ChildSizing.HorizontalSpacing = 5
     ChildSizing.VerticalSpacing = 5
     ClientHeight = 345
-    ClientWidth = 574
+    ClientWidth = 550
     TabOrder = 4
     object lbLog: TLabel
       Left = 20
       Height = 16
       Top = 20
-      Width = 534
+      Width = 510
       Align = alTop
       Caption = 'Server &log:'
       FocusControl = mmLog
@@ -284,7 +284,7 @@ object frameServerLog: TframeServerLog
       Left = 20
       Height = 234
       Top = 41
-      Width = 534
+      Width = 510
       Align = alClient
       Font.Name = 'Courier New'
       Lines.Strings = (
@@ -299,7 +299,7 @@ object frameServerLog: TframeServerLog
       Left = 20
       Height = 20
       Top = 280
-      Width = 534
+      Width = 510
       Align = alBottom
       Caption = 'Follow the &tail of the log'
       Checked = True
@@ -310,7 +310,7 @@ object frameServerLog: TframeServerLog
       Left = 20
       Height = 20
       Top = 305
-      Width = 534
+      Width = 510
       Align = alBottom
       Caption = 'Send every line as &message to players'
       TabOrder = 2

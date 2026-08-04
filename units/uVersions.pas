@@ -23,6 +23,7 @@ type
 
     procedure Refresh; virtual; abstract;
     function GetUrl(const AVersion: string): string; virtual; abstract;
+    function GetFileName(const AVersion: string): string; virtual; abstract;
     class function Fetch(const AURL: string): TJSONData;
 
     property Versions: TStrings read FVersions;
@@ -34,7 +35,8 @@ type
   TUrlVanillaFactory = class(TUrlSourceFactory)
   public
     procedure Refresh; override;
-    function GetUrl(const AVersion: string): string; override;
+    function GetUrl(const AVersion: string): string; override;  
+    function GetFileName(const AVersion: string): string; override;
   end;
 
   { TUrlBedrockFactory }
@@ -42,16 +44,22 @@ type
   TUrlBedrockFactory = class(TUrlSourceFactory)
   public
     procedure Refresh; override;
-    function GetUrl(const AVersion: string): string; override;
+    function GetUrl(const AVersion: string): string; override;   
+    function GetFileName(const AVersion: string): string; override;
   end;
 
 type
   TUrlSourceDictionary = specialize TObjectDictionary<string, TUrlSourceFactory>;
 
 var
-  UrlSources: TUrlSourceDictionary;
+  UrlJava: TUrlSourceDictionary;
+  UrlBedrock: TUrlSourceDictionary;
 
 implementation
+
+resourcestring
+  verVanilla = 'Minecraft - Java Edition (original / vanilla)';
+  verBedrock = 'Minecraft - Bedrock Edition';
 
 { TUrlSourceFactory }
 
@@ -132,6 +140,11 @@ begin
     Result := '';
 end;
 
+function TUrlVanillaFactory.GetFileName(const AVersion: string): string;
+begin
+  Result := 'minecraft-server_' + AVersion + '.jar';
+end;
+
 { TUrlBedrockFactory }
 
 procedure TUrlBedrockFactory.Refresh;
@@ -187,15 +200,29 @@ begin
   Result := TargetData.Values[AVersion];
 end;
 
+function TUrlBedrockFactory.GetFileName(const AVersion: string): string;
+const
+{$IFDEF MSWINDOWS}
+  binaryExt = '.exe';
+{$ELSE}
+  binaryExt = '';
+{$ENDIF}
+begin
+  Result := 'bedrock-server_' + AVersion + binaryExt;
+end;
+
 {$ENDREGION}
 
 initialization
-  UrlSources := TUrlSourceDictionary.Create([doOwnsValues]);
-  UrlSources.Add('vanilla', TUrlVanillaFactory.Create);
-  UrlSources.Add('bedrock', TUrlBedrockFactory.Create);
+  UrlJava := TUrlSourceDictionary.Create([doOwnsValues]);
+  UrlJava.Add(verVanilla, TUrlVanillaFactory.Create);
+
+  UrlBedrock := TUrlSourceDictionary.Create([doOwnsValues]);
+  UrlBedrock.Add(verBedrock, TUrlBedrockFactory.Create);
 
 finalization
-  UrlSources.Free;
+  UrlBedrock.Free;
+  UrlJava.Free;
 
 end.
 

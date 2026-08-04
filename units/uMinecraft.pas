@@ -134,7 +134,9 @@ var
   I: integer;
 begin
   for I := Count - 1 downto 0 do
-    if ValueFromIndex[I] = Defaults.Values[Names[I]] then
+    if (length(Strings[I]) = 0) or
+       (Strings[I][1] = '#') or
+       (ValueFromIndex[I] = Defaults.Values[Names[I]]) then
       Delete(I);
 end;
 

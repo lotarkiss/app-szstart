@@ -13,11 +13,14 @@ type
   { TdlgServerProperties }
 
   TdlgServerProperties = class(TForm)
+    btnScan: TBitBtn;
     btnDownload1: TButton;
     btnOK: TBitBtn;
     btnCancel: TBitBtn;
     btnMove: TButton;
     btnOpen: TButton;
+    btnOpen1: TButton;
+    btnOpen2: TButton;
     btnVeClear: TButton;
     btnVeAdd: TButton;
     btnVeDelete: TButton;
@@ -119,14 +122,17 @@ type
     seRconPort: TSpinEdit;
     spSplitter: TSplitter;
     veAdvanced: TValueListEditor;
+    procedure btnDownload1Click(Sender: TObject);
     procedure btnJavaClick(Sender: TObject);
     procedure btnOpenClick(Sender: TObject);
+    procedure btnScanClick(Sender: TObject);
     procedure btnVeAddClick(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure lbPagesClick(Sender: TObject);
   public
     procedure Load(AServer: TOrmServerEntry);
     procedure Save(AServer: TOrmServerEntry);
+    procedure UpdateLists();
   end;
 
 var
@@ -134,7 +140,11 @@ var
 
 implementation
 
-uses Math, uMinecraft, LclIntf, dlgJavaPicker;
+uses Math, uMinecraft, LclIntf, dlgJavaPicker, dlgDownload
+  {$IFDEF UNIX}
+     , BaseUnix
+  {$ENDIF}
+  ;
 
 resourcestring
   dlgPropsCaption = '%s properties';
@@ -208,12 +218,41 @@ begin
   end;
 end;
 
+procedure TdlgServerProperties.btnScanClick(Sender: TObject);
+begin
+  UpdateLists();
+end;
+
 procedure TdlgServerProperties.btnJavaClick(Sender: TObject);
 begin
   with TdlgJavaPick.Create(Self) do
     try
       if ShowModal = mrOK then
         Self.edJava.Text := edPath.Text;
+    finally
+      Free;
+    end;
+end;
+
+procedure TdlgServerProperties.btnDownload1Click(Sender: TObject);
+begin
+  with TdlgDownloader.Create(Self) do
+    try
+      Screen.Cursor := crHourGlass;
+      try
+        SetData((Sender as TButton).HelpKeyword, lbPath.Caption);
+      finally
+        Screen.Cursor := crDefault;
+      end;
+
+      if ShowModal = mrOK then begin
+        UpdateLists();
+
+        if (Sender as TButton).HelpKeyword = 'java' then
+          cbJavaJar.Text := lbTarget.Caption
+        else if (Sender as TButton).HelpKeyword = 'bedrock' then
+          cbBedrockBinary.Text := lbTarget.Caption;
+      end;
     finally
       Free;
     end;
@@ -286,6 +325,8 @@ begin
       if FileExists(Path) then
         LoadFromFile(Path);
 
+      Optimize(); // to remove comments
+
       // Server
       mmMotd.Text          := ReadString(keyMotd[AServer.Kind = 'java'], true);
       cbOnlineMode.Checked := ReadBoolean('online-mode', true);
@@ -336,6 +377,8 @@ begin
     finally
       Free;
     end;
+
+  UpdateLists(); // allow to pick already created maps, jars, etc.
 end;
 
 procedure TdlgServerProperties.Save(AServer: TOrmServerEntry);
@@ -420,7 +463,7 @@ begin
       // Network
       WriteInteger('view-distance', seViewDistance.Value);
 
-      Optimize();
+      Optimize(); // to remove entries = defaults
 
       ForceDirectories(AServer.Path);
       Path := IncludeTrailingPathDelimiter(AServer.Path) + spPathProperties;
@@ -440,6 +483,66 @@ begin
     finally
       Free;
     end;
+end;
+
+procedure TdlgServerProperties.UpdateLists();
+var
+  Sr: TSearchRec;
+
+  isReserved: boolean;
+  S, dirPath, textWorld, textJar, textBedrock: string;
+const
+{$IFDEF MSWINDOWS}
+  binaryExt = '.exe';
+{$ELSE}
+  binaryExt = '';
+{$ENDIF}
+  reservedFolders: array of string = ('libraries', 'logs', 'versions', 'config', 'mods', 'plugins');
+begin
+  textWorld   := cbLevelName.Text;
+  textJar     := cbJavaJar.Text;
+  textBedrock := cbBedrockBinary.Text;
+
+  cbLevelName.Clear;
+  cbJavaJar.Clear;
+  cbBedrockBinary.Clear;
+
+  dirPath := IncludeTrailingPathDelimiter(lbPath.Caption);
+  if FindFirst(dirPath + AllFilesMask, faAnyFile, Sr) = 0 then begin
+    repeat
+      if (Sr.Name = '.') or (Sr.Name = '..') then
+        continue;
+
+      if (Sr.Attr and faDirectory = faDirectory) then begin
+        isReserved := false;
+        for S in reservedFolders do
+          if S = Sr.Name then begin
+            isReserved := true;
+            break;
+          end;
+
+        if (not isReserved) and
+           (FileExists(dirPath + Sr.Name + PathDelim + 'level.dat')) then
+          cbLevelName.Items.Add(Sr.Name);
+      end
+      else begin
+        S := LowerCase(ExtractFileExt(Sr.Name));
+        if S = '.jar' then
+          cbJavaJar.Items.Add(Sr.Name)
+        else if (S = binaryExt)
+          {$IFDEF UNIX}
+             and (FpAccess(PChar(S), X_OK) = 0)
+          {$ENDIF}
+             then
+          cbBedrockBinary.Items.Add(Sr.Name);
+      end;
+    until FindNext(Sr) <> 0;
+    FindClose(Sr);
+  end;
+
+  cbLevelName.Text := textWorld;
+  cbJavaJar.Text := textJar;
+  cbBedrockBinary.Text := textBedrock;
 end;
 
 end.

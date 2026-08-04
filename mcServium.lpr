@@ -12,7 +12,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, anchordockpkg, frmMainForm, uDatabase, uExamples, dlgServerProps,
   uMinecraft, uJRE, frmServerLog, uProcess, uRCON, uServer, dlgJavaPicker,
-  uVersions;
+  uVersions, dlgDownload;
 
 {$R *.res}
 

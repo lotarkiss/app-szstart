@@ -1,6 +1,16 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: dlgdownload.dlgdownloadalreadyexists
+#, object-pascal-format
+msgid "The file (%s) is already exists. Overwrite?"
+msgstr ""
+
+#: dlgdownload.dlgdownloadsuccesstext
+#, object-pascal-format
+msgid "The file (%s) was downloaded successfully."
+msgstr ""
+
 #: dlgserverprops.dlgpropscaption
 #, object-pascal-format
 msgid "%s properties"
@@ -44,6 +54,35 @@ msgstr ""
 #: frmserverlog.dlgplayeroptext
 msgctxt "frmserverlog.dlgplayeroptext"
 msgid "Are you sure?"
+msgstr ""
+
+#: tdlgdownloader.bitbtn1.caption
+msgctxt "tdlgdownloader.bitbtn1.caption"
+msgid "&Cancel"
+msgstr ""
+
+#: tdlgdownloader.btndownload.caption
+msgid "&Download"
+msgstr ""
+
+#: tdlgdownloader.caption
+msgid "Download Minecraft Server"
+msgstr ""
+
+#: tdlgdownloader.lbfilename.caption
+msgid "File&name:"
+msgstr ""
+
+#: tdlgdownloader.lbkind.caption
+msgid "&Kind:"
+msgstr ""
+
+#: tdlgdownloader.lbtarget.caption
+msgid "lbTarget"
+msgstr ""
+
+#: tdlgdownloader.lbversions.caption
+msgid "&Versions:"
 msgstr ""
 
 #: tdlgjavapick.btncancel.caption
@@ -106,6 +145,17 @@ msgid "&OK"
 msgstr ""
 
 #: tdlgserverproperties.btnopen.caption
+msgctxt "tdlgserverproperties.btnopen.caption"
+msgid "&Open folder..."
+msgstr ""
+
+#: tdlgserverproperties.btnopen1.caption
+msgctxt "tdlgserverproperties.btnopen1.caption"
+msgid "&Open folder..."
+msgstr ""
+
+#: tdlgserverproperties.btnopen2.caption
+msgctxt "tdlgserverproperties.btnopen2.caption"
 msgid "&Open folder..."
 msgstr ""
 
@@ -548,5 +598,13 @@ msgstr ""
 #: urcon.dlgrconpasswordprompt
 #, object-pascal-format
 msgid "Please specify the RCON password for %s:%d"
+msgstr ""
+
+#: uversions.verbedrock
+msgid "Minecraft - Bedrock Edition"
+msgstr ""
+
+#: uversions.vervanilla
+msgid "Minecraft - Java Edition (original / vanilla)"
 msgstr ""
 

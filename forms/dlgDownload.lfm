@@ -1,0 +1,105 @@
+object dlgDownloader: TdlgDownloader
+  Left = 347
+  Height = 378
+  Top = 250
+  Width = 619
+  BorderStyle = bsDialog
+  Caption = 'Download Minecraft Server'
+  ChildSizing.LeftRightSpacing = 20
+  ChildSizing.TopBottomSpacing = 20
+  ChildSizing.HorizontalSpacing = 20
+  ChildSizing.VerticalSpacing = 10
+  ClientHeight = 378
+  ClientWidth = 619
+  Position = poOwnerFormCenter
+  LCLVersion = '4.6.0.0'
+  object pbProgress: TProgressBar
+    Left = 20
+    Height = 32
+    Top = 296
+    Width = 579
+    Align = alBottom
+    BorderSpacing.Bottom = 50
+    TabOrder = 2
+  end
+  object lbVersions: TLabel
+    Left = 20
+    Height = 16
+    Top = 88
+    Width = 579
+    Align = alTop
+    Caption = '&Versions:'
+    FocusControl = lbxVersions
+  end
+  object lbxVersions: TListBox
+    Left = 20
+    Height = 153
+    Top = 114
+    Width = 579
+    Align = alTop
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ItemHeight = 0
+    TabOrder = 0
+    TopIndex = -1
+    OnClick = lbxVersionsClick
+    OnDblClick = btnDownloadClick
+  end
+  object lbKind: TLabel
+    Left = 20
+    Height = 16
+    Top = 20
+    Width = 579
+    Align = alTop
+    Caption = '&Kind:'
+    FocusControl = cbKind
+  end
+  object cbKind: TComboBox
+    Left = 20
+    Height = 32
+    Top = 46
+    Width = 579
+    Align = alTop
+    ItemHeight = 22
+    Style = csDropDownList
+    TabOrder = 1
+    OnChange = cbKindChange
+  end
+  object lbFilename: TLabel
+    Left = 20
+    Height = 16
+    Top = 275
+    Width = 55
+    Anchors = [akLeft, akBottom]
+    Caption = 'File&name:'
+  end
+  object lbTarget: TLabel
+    Left = 88
+    Height = 16
+    Top = 275
+    Width = 47
+    Anchors = [akLeft, akBottom]
+    Caption = 'lbTarget'
+  end
+  object btnDownload: TButton
+    Left = 360
+    Height = 30
+    Top = 331
+    Width = 127
+    Anchors = [akRight, akBottom]
+    Caption = '&Download'
+    Enabled = False
+    TabOrder = 3
+    OnClick = btnDownloadClick
+  end
+  object BitBtn1: TBitBtn
+    Left = 496
+    Height = 30
+    Top = 331
+    Width = 103
+    Anchors = [akRight, akBottom]
+    Caption = '&Cancel'
+    Kind = bkCancel
+    ModalResult = 2
+    TabOrder = 4
+  end
+end

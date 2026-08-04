@@ -1,30 +1,30 @@
 object dlgServerProperties: TdlgServerProperties
   Left = 327
-  Height = 418
+  Height = 430
   Top = 250
-  Width = 648
+  Width = 655
   BorderStyle = bsDialog
   Caption = 'dlgServerProperties'
-  ClientHeight = 418
-  ClientWidth = 648
+  ClientHeight = 430
+  ClientWidth = 655
   Position = poMainFormCenter
   LCLVersion = '4.6.0.0'
   OnResize = FormResize
   object pnBottom: TPanel
     Left = 0
     Height = 49
-    Top = 369
-    Width = 648
+    Top = 381
+    Width = 655
     Align = alBottom
     BevelOuter = bvLowered
     ChildSizing.LeftRightSpacing = 15
     ChildSizing.TopBottomSpacing = 7
     ChildSizing.HorizontalSpacing = 5
     ClientHeight = 49
-    ClientWidth = 648
+    ClientWidth = 655
     TabOrder = 0
     object btnOK: TBitBtn
-      Left = 409
+      Left = 416
       Height = 33
       Top = 8
       Width = 99
@@ -35,7 +35,7 @@ object dlgServerProperties: TdlgServerProperties
       TabOrder = 0
     end
     object btnCancel: TBitBtn
-      Left = 513
+      Left = 520
       Height = 33
       Top = 8
       Width = 119
@@ -47,13 +47,23 @@ object dlgServerProperties: TdlgServerProperties
       ModalResult = 2
       TabOrder = 1
     end
+    object btnScan: TBitBtn
+      Left = 16
+      Height = 33
+      Top = 8
+      Width = 40
+      Align = alLeft
+      Kind = bkRetry
+      TabOrder = 2
+      OnClick = btnScanClick
+    end
   end
   object pgNotebook: TNotebook
     Left = 146
-    Height = 369
+    Height = 381
     Top = 0
-    Width = 502
-    PageIndex = 8
+    Width = 509
+    PageIndex = 0
     Align = alClient
     TabOrder = 1
     object pgGeneral: TPage
@@ -71,7 +81,7 @@ object dlgServerProperties: TdlgServerProperties
         Left = 20
         Height = 183
         Top = 20
-        Width = 462
+        Width = 469
         Align = alTop
         AutoSize = True
         Caption = '&General'
@@ -83,7 +93,7 @@ object dlgServerProperties: TdlgServerProperties
         ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
         ChildSizing.ControlsPerLine = 2
         ClientHeight = 157
-        ClientWidth = 458
+        ClientWidth = 465
         TabOrder = 0
         object lbName: TLabel
           Left = 20
@@ -99,7 +109,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 72
           Height = 29
           Top = 20
-          Width = 374
+          Width = 381
           Anchors = [akTop, akLeft, akRight]
           TabOrder = 0
           Text = 'edName'
@@ -116,7 +126,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 96
           Height = 40
           Top = 64
-          Width = 230
+          Width = 237
           Anchors = [akTop, akLeft, akRight]
           Lines.Strings = (
             'mmDescription'
@@ -124,7 +134,7 @@ object dlgServerProperties: TdlgServerProperties
           TabOrder = 1
         end
         object btnMove: TButton
-          Left = 336
+          Left = 343
           Height = 33
           Top = 104
           Width = 112
@@ -155,7 +165,7 @@ object dlgServerProperties: TdlgServerProperties
         end
         object btnOpen: TButton
           Tag = 1
-          Left = 336
+          Left = 343
           Height = 33
           Top = 64
           Width = 112
@@ -176,14 +186,14 @@ object dlgServerProperties: TdlgServerProperties
         Left = 20
         Height = 246
         Top = 20
-        Width = 462
+        Width = 469
         Align = alTop
         AutoSize = True
         Caption = 'Server'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
         ClientHeight = 220
-        ClientWidth = 458
+        ClientWidth = 465
         TabOrder = 0
         object lbMotd: TLabel
           Left = 20
@@ -197,7 +207,7 @@ object dlgServerProperties: TdlgServerProperties
           Left = 20
           Height = 64
           Top = 44
-          Width = 266
+          Width = 273
           Anchors = [akTop, akLeft, akRight]
           Lines.Strings = (
             'mmMotd'
@@ -253,7 +263,7 @@ object dlgServerProperties: TdlgServerProperties
           Caption = 'of Mojang / Microsoft'
         end
         object bvIcon1: TBevel
-          Left = 350
+          Left = 357
           Height = 82
           Top = 20
           Width = 88
@@ -388,21 +398,21 @@ object dlgServerProperties: TdlgServerProperties
       ChildSizing.VerticalSpacing = 10
       object gbJavaOnly3: TGroupBox
         Left = 20
-        Height = 168
+        Height = 170
         Top = 20
-        Width = 462
+        Width = 469
         Align = alTop
         AutoSize = True
         Caption = '&Java Edtition'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
-        ClientHeight = 142
-        ClientWidth = 458
+        ClientHeight = 144
+        ClientWidth = 465
         TabOrder = 0
         object lbFilename4: TLabel
           Left = 20
           Height = 16
-          Top = 32
+          Top = 37
           Width = 55
           Caption = '&Filename:'
           FocusControl = cbJavaJar
@@ -410,8 +420,8 @@ object dlgServerProperties: TdlgServerProperties
         object cbJavaJar: TComboBox
           Left = 164
           Height = 32
-          Top = 20
-          Width = 156
+          Top = 36
+          Width = 155
           Anchors = [akTop, akLeft, akRight]
           ItemHeight = 28
           TabOrder = 0
@@ -420,16 +430,16 @@ object dlgServerProperties: TdlgServerProperties
         object lbJarArgs: TLabel
           Left = 20
           Height = 16
-          Top = 59
+          Top = 68
           Width = 97
           Caption = '&Extra arguments:'
           FocusControl = mmJarArgs
         end
         object mmJarArgs: TMemo
           Left = 20
-          Height = 42
-          Top = 80
-          Width = 412
+          Height = 24
+          Top = 100
+          Width = 427
           Anchors = [akTop, akLeft, akRight]
           Lines.Strings = (
             'mmJarArgs'
@@ -438,33 +448,46 @@ object dlgServerProperties: TdlgServerProperties
           WantReturns = False
         end
         object btnDownload2: TButton
-          Left = 328
+          Left = 335
           Height = 29
-          Top = 24
+          Top = 20
           Width = 115
+          HelpType = htKeyword
+          HelpKeyword = 'java'
           Anchors = [akTop, akRight]
           Caption = '&Download...'
-          Enabled = False
           TabOrder = 2
+          OnClick = btnDownload1Click
+        end
+        object btnOpen1: TButton
+          Tag = 1
+          Left = 335
+          Height = 33
+          Top = 52
+          Width = 112
+          Anchors = [akTop, akRight]
+          Caption = '&Open folder...'
+          TabOrder = 3
+          OnClick = btnOpenClick
         end
       end
       object gbBedrockOnly1: TGroupBox
         Left = 20
-        Height = 164
-        Top = 198
-        Width = 462
+        Height = 174
+        Top = 200
+        Width = 469
         Align = alTop
         AutoSize = True
         Caption = '&Bedrock Edition'
         ChildSizing.LeftRightSpacing = 20
         ChildSizing.TopBottomSpacing = 20
-        ClientHeight = 138
-        ClientWidth = 458
+        ClientHeight = 148
+        ClientWidth = 465
         TabOrder = 1
         object lbFilename3: TLabel
           Left = 20
           Height = 16
-          Top = 25
+          Top = 44
           Width = 55
           Caption = '&Filename:'
           FocusControl = cbBedrockBinary
@@ -472,28 +495,30 @@ object dlgServerProperties: TdlgServerProperties
         object cbBedrockBinary: TComboBox
           Left = 164
           Height = 32
-          Top = 20
-          Width = 156
+          Top = 37
+          Width = 163
           Anchors = [akTop, akLeft, akRight]
           ItemHeight = 28
           TabOrder = 0
           Text = 'cbBedrockBinary'
         end
         object btnDownload1: TButton
-          Left = 328
+          Left = 335
           Height = 29
-          Top = 23
+          Top = 20
           Width = 115
+          HelpType = htKeyword
+          HelpKeyword = 'bedrock'
           Anchors = [akTop, akRight]
           Caption = '&Download...'
-          Enabled = False
           TabOrder = 1
+          OnClick = btnDownload1Click
         end
         object mmBedrockArgs: TMemo
           Left = 20
-          Height = 42
-          Top = 76
-          Width = 412
+          Height = 32
+          Top = 96
+          Width = 419
           Anchors = [akTop, akLeft, akRight]
           Lines.Strings = (
             'mmJarArgs'
@@ -504,10 +529,21 @@ object dlgServerProperties: TdlgServerProperties
         object lbJarArgs1: TLabel
           Left = 20
           Height = 16
-          Top = 52
+          Top = 72
           Width = 97
           Caption = '&Extra arguments:'
           FocusControl = mmBedrockArgs
+        end
+        object btnOpen2: TButton
+          Tag = 1
+          Left = 335
+          Height = 33
+          Top = 52
+          Width = 112
+          Anchors = [akTop, akRight]
+          Caption = '&Open folder...'
+          TabOrder = 3
+          OnClick = btnOpenClick
         end
       end
     end
@@ -1115,7 +1151,7 @@ object dlgServerProperties: TdlgServerProperties
   end
   object lbPages: TListBox
     Left = 5
-    Height = 359
+    Height = 371
     Top = 5
     Width = 131
     Align = alLeft
@@ -1127,7 +1163,7 @@ object dlgServerProperties: TdlgServerProperties
   end
   object spSplitter: TSplitter
     Left = 141
-    Height = 369
+    Height = 381
     Top = 0
     Width = 5
   end
